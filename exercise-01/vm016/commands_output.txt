@@ -1,0 +1,119 @@
+root@raibos:~# ls -l /dev/video*
+crw-rw---- 1 root video 81, 1 Jan  1 00:00 /dev/video1
+root@raibos:~# media-ctl -d /dev/video0 -p
+Failed to enumerate /dev/video0 (-2)
+root@raibos:~# media-ctl -d /dev/video1 -p                                                                                                                                                                         
+Failed to enumerate /dev/video1 (-25)
+root@raibos:~# v4l2-ctl -D -d /dev/video0 --all
+Cannot open device /dev/video0, exiting.
+root@raibos:~# v4l2-ctl -D -d /dev/video1 --all                                                                                                                                                                    
+Driver Info:
+        Driver name      : mxc-isi-cap
+        Card type        : mxc-isi-cap
+        Bus info         : platform:32e02000.isi:cap_devic
+        Driver version   : 5.4.70
+        Capabilities     : 0x84201000
+                Video Capture Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04201000
+                Video Capture Multiplanar
+                Streaming
+                Extended Pix Format
+Media Driver Info:
+        Driver name      : mxc-md
+        Model            : FSL Capture Media Device
+        Serial           : 
+        Bus info         : 
+        Media version    : 5.4.70
+        Hardware revision: 0x00000000 (0)
+        Driver version   : 5.4.70
+Interface Info:
+        ID               : 0x03000029
+        Type             : V4L Video
+Entity Info:
+        ID               : 0x00000027 (39)
+        Name             : mxc_isi.1.capture
+        Function         : V4L2 I/O
+        Pad 0x01000028   : 0: Sink
+          Link 0x02000044: from remote pad 0x1000023 of entity 'mxc_isi.1': Data, Enabled
+Priority: 2
+Format Video Capture Multiplanar:
+        Width/Height      : 0/0
+        Pixel Format      : 'GREY'
+        Field             : None
+        Number of planes  : 1
+        Flags             : 
+        Colorspace        : JPEG
+        Transfer Function : Default
+        YCbCr/HSV Encoding: Default
+        Quantization      : Default
+        Plane 0           :
+           Bytes per Line : 0
+           Size Image     : 0
+Streaming Parameters Video Capture:
+        Capabilities     : timeperframe
+        Frames per second: 60.000 (60/1)
+        Read buffers     : 0
+
+User Controls
+
+                       exposure 0x00980911 (int)    : min=0 max=65535 step=1 default=800 value=800
+                horizontal_flip 0x00980914 (bool)   : default=0 value=0
+                  vertical_flip 0x00980915 (bool)   : default=0 value=0
+                alpha_component 0x00980929 (int)    : min=0 max=255 step=1 default=0 value=0
+                  exposure_fine 0x00982e01 (int)    : min=0 max=65535 step=1 default=10 value=10
+              auto_exposure_min 0x00982e02 (int)    : min=0 max=65535 step=1 default=1 value=1
+              auto_exposure_max 0x00982e03 (int)    : min=0 max=65535 step=1 default=800 value=800
+           auto_exposure_target 0x00982e04 (int)    : min=0 max=65535 step=1 default=20480 value=20480
+              auto_exposure_cur 0x00982e05 (int)    : min=0 max=65535 step=1 default=0 value=1 flags=read-only, volatile
+              autogain_analogue 0x00982e06 (bool)   : default=1 value=1
+               autogain_digital 0x00982e07 (bool)   : default=0 value=0
+         analogue_gain_auto_min 0x00982e08 (menu)   : min=0 max=3 default=0 value=0
+                    row_binning 0x00982e09 (menu)   : min=0 max=1 default=0 value=0
+                    col_binning 0x00982e0a (menu)   : min=0 max=2 default=0 value=0
+                      compading 0x00982e0b (bool)   : default=0 value=0
+               digital_gain_red 0x00982e0c (int)    : min=1000 max=15999 step=1 default=1300 value=1300
+         digital_gain_green_red 0x00982e0d (int)    : min=1000 max=15999 step=1 default=1000 value=1000
+              digital_gain_blue 0x00982e0e (int)    : min=1000 max=15999 step=1 default=1500 value=1500
+        digital_gain_green_blue 0x00982e0f (int)    : min=1000 max=15999 step=1 default=1000 value=1000
+         black_level_correction 0x00982e11 (bool)   : default=1 value=1
+                    flash_delay 0x00982e12 (int)    : min=-128 max=127 step=1 default=0 value=0
+dynamic_defect_pixel_correction 0x00982e13 (bool)   : default=0 value=0
+
+Camera Controls
+
+                  auto_exposure 0x009a0901 (menu)   : min=0 max=1 default=0 value=0
+
+Flash Controls
+
+                       led_mode 0x009c0901 (menu)   : min=0 max=1 default=0 value=0
+
+Image Source Controls
+
+              vertical_blanking 0x009e0901 (int)    : min=22 max=65535 step=1 default=22 value=22
+            horizontal_blanking 0x009e0902 (int)    : min=208 max=65535 step=1 default=208 value=208
+                  analogue_gain 0x009e0903 (int)    : min=1000 max=16000 step=1 default=2000 value=2000
+                red_pixel_value 0x009e0904 (int)    : min=0 max=4095 step=1 default=0 value=0
+          green_red_pixel_value 0x009e0905 (int)    : min=0 max=4095 step=1 default=0 value=0
+               blue_pixel_value 0x009e0906 (int)    : min=0 max=4095 step=1 default=0 value=0
+         green_blue_pixel_value 0x009e0907 (int)    : min=0 max=4095 step=1 default=0 value=0
+
+Image Processing Controls
+
+                 link_frequency 0x009f0901 (intmenu): min=0 max=5 default=0 value=2
+                   test_pattern 0x009f0903 (menu)   : min=0 max=4 default=0 value=0
+                   digital_gain 0x009f0905 (int)    : min=1000 max=15999 step=1 default=1000 value=1000
+root@raibos:~# v4l2-ctl --list-devices
+ev ():
+        /dev/v4l-subdev0
+
+ev ():
+        /dev/v4l-subdev1
+
+mxc-isi-cap (platform:32e02000.isi:cap_devic):
+        /dev/video1
+
+Cannot open device /dev/video0, exiting.
+root@raibos:~# 

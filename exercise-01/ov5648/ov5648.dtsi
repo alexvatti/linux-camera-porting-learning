@@ -1,0 +1,114 @@
+&i2c3 {
+	pinctrl-names = "default","gpio";
+	pinctrl-0 = <&pinctrl_i2c3>;
+	pinctrl-1 = <&pinctrl_i2c3_gpio>;
+	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+	scl-gpios = <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+	clock-frequency = <400000>;
+	status = "okay";
+
+	ov5648_0: camera@36 {
+		reg = <0x36>;
+		clocks = <&cam_clk>;
+		clock-names = "ext";
+		csi_id = <0>;
+		assigned-clocks = <&cam_clk>;
+		assigned-clock-rates = <24000000>;
+		compatible = "ovti,ov5648";
+		mipi_csi;
+		status = "okay";
+
+		port {
+			ov5648_0_mipi_ep: endpoint {
+				data-lanes = <1 2>;
+				clock-lanes = <0>;
+				bus-type = <4>;
+				link-frequencies = /bits/ 64 <210000000 168000000>;
+				remote-endpoint = <&mipi_csi0_ep>;
+			};
+		};
+	};
+};
+
+&i2c2 {
+	clock-frequency = <400000>;
+	pinctrl-names = "default", "gpio";
+	pinctrl-0 = <&pinctrl_i2c2>;
+	pinctrl-1 = <&pinctrl_i2c2_gpio>;
+	sda-gpios = <&gpio5 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+	scl-gpios = <&gpio5 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+	status = "okay";
+
+	ov5648_1: camera@36 {	/* ov5648 */
+		reg = <0x36>;
+		clocks = <&cam_clk>;
+		assigned-clocks = <&cam_clk>;
+		csi_id = <1>;
+		assigned-clock-rates = <24000000>;
+		clock-names = "ext";
+		compatible = "ovti,ov5648";
+		mipi_csi;
+		status = "okay";
+
+		port {
+			ov5648_1_mipi_ep: endpoint {
+				data-lanes = <1 2>;
+				clock-lanes = <0>;
+				bus-type = <4>; /* MIPI-CSI2 */
+				link-frequencies = /bits/ 64 <210000000 168000000>;
+				remote-endpoint = <&mipi_csi1_ep>;
+			};
+		};
+	};
+};
+
+/* mipi csi2 - cam1 */
+&mipi_csi_0 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+	status = "okay";
+
+	port@0 {
+		reg = <0>;
+		mipi_csi0_ep: endpoint {
+			remote-endpoint = <&ov5648_0_mipi_ep>;
+			data-lanes = <2>;
+		};
+	};
+};
+
+/* mipi csi2 - cam2 */
+&mipi_csi_1 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+	status = "okay";
+
+	port@1 {
+		reg = <1>;
+		mipi_csi1_ep: endpoint {
+			remote-endpoint = <&ov5648_1_mipi_ep>;
+			data-lanes = <2>;
+		};
+	};
+};
+
+&cameradev {
+	status = "okay";
+};
+
+&isi_0 {
+	status = "okay";
+
+	cap_device {
+		status = "okay";
+	};
+};
+
+&isi_1 {
+	status = "okay";
+
+	cap_device {
+		status = "okay";
+	};
+};
+

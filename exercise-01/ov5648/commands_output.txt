@@ -1,0 +1,111 @@
+$ ls -l /dev/video*
+crw-rw---- 1 root video 81, 0 Jan  1 00:00 /dev/video0
+crw-rw---- 1 root video 81, 1 Jan  1 00:00 /dev/video1
+root@raibos:~# media-ctl -d /dev/video0 -p                                                                                                                                                                         
+[  189.983999] mxc-mipi-csi2.0: is_entity_link_setup, No remote pad found!
+Failed to enumerate /dev/video0 (-25)
+root@raibos:~# media-ctl -d /dev/video1 -p                                                                                                                                                                         
+[  194.354957] mxc-mipi-csi2.1: is_entity_link_setup, No remote pad found!
+Failed to enumerate /dev/video1 (-25)
+root@raibos:~# v4l2-ctl -D -d /dev/video0 --all
+[  121.987524] mxc-mipi-csi2.0: is_entity_link_setup, No remote pad found!
+[  121.994515] mxc-mipi-csi2.0: mipi_csis_get_fmt, No remote pad found!
+[  122.000909] mxc_isi.0: get remote fmt fail!
+[  122.005276] mxc-mipi-csi2.0: mipi_csis_g_frame_interval, No remote pad found!
+[  122.012468] mxc-mipi-csi2.0: mipi_csis_g_frame_interval, No remote subdev found!
+Driver Info:
+        Driver name      : mxc-isi-cap
+        Card type        : mxc-isi-cap
+        Bus info         : platform:32e00000.isi:cap_devic
+        Driver version   : 5.4.70
+        Capabilities     : 0x84201000
+                Video Capture Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04201000
+                Video Capture Multiplanar
+                Streaming
+                Extended Pix Format
+Priority: 0
+Format Video Capture Multiplanar:
+        Width/Height      : 0/0
+        Pixel Format      : 'GREY'
+        Field             : None
+        Number of planes  : 1
+        Flags             : 
+        Colorspace        : JPEG
+        Transfer Function : Default
+        YCbCr/HSV Encoding: Default
+        Quantization      : Default
+        Plane 0           :
+           Bytes per Line : 0
+           Size Image     : 0
+root@raibos:~# v4l2-ctl -D -d /dev/video1 --all
+[  153.095606] mxc-mipi-csi2.1: is_entity_link_setup, No remote pad found!
+[  153.102705] mxc-mipi-csi2.1: mipi_csis_get_fmt, No remote pad found!
+[  153.109119] mxc_isi.1: get remote fmt fail!
+[  153.113481] mxc-mipi-csi2.1: mipi_csis_g_frame_interval, No remote pad found!
+[  153.120633] mxc-mipi-csi2.1: mipi_csis_g_frame_interval, No remote subdev found!
+Driver Info:
+        Driver name      : mxc-isi-cap
+        Card type        : mxc-isi-cap
+        Bus info         : platform:32e02000.isi:cap_devic
+        Driver version   : 5.4.70
+        Capabilities     : 0x84201000
+                Video Capture Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04201000
+                Video Capture Multiplanar
+                Streaming
+                Extended Pix Format
+Priority: 0
+Format Video Capture Multiplanar:
+        Width/Height      : 0/0
+        Pixel Format      : 'GREY'
+        Field             : None
+        Number of planes  : 1
+        Flags             : 
+        Colorspace        : JPEG
+        Transfer Function : Default
+        YCbCr/HSV Encoding: Default
+        Quantization      : Default
+        Plane 0           :
+           Bytes per Line : 0
+           Size Image     : 0
+
+User Controls
+
+        white_balance_automatic 0x0098090c (bool)   : default=1 value=1 flags=update
+                    red_balance 0x0098090e (int)    : min=0 max=4095 step=1 default=1024 value=1024 flags=inactive, slider
+                   blue_balance 0x0098090f (int)    : min=0 max=4095 step=1 default=1024 value=1024 flags=inactive, slider
+error 6 getting ctrl Exposure
+                 gain_automatic 0x00980912 (bool)   : default=1 value=1 flags=update
+error 6 getting ctrl Gain
+                horizontal_flip 0x00980914 (bool)   : default=0 value=0
+                  vertical_flip 0x00980915 (bool)   : default=0 value=0
+                alpha_component 0x00980929 (int)    : min=0 max=255 step=1 default=0 value=0
+
+Camera Controls
+
+error 6 getting ext_ctrl Auto Exposure
+
+Image Processing Controls
+
+                 link_frequency 0x009f0901 (intmenu): min=0 max=1 default=0 value=1 flags=read-only
+                     pixel_rate 0x009f0902 (int64)  : min=1 max=2147483647 step=1 default=1 value=84000000 flags=read-only
+                   test_pattern 0x009f0903 (menu)   : min=0 max=5 default=0 value=0
+root@raibos:~# v4l2-ctl --list-devices
+[ 2712.958965] mxc-mipi-csi2.0: is_entity_link_setup, No remote pad found!
+[ 2712.965681] mxc-mipi-csi2.1: is_entity_link_setup, No remote pad found!
+mxc-isi-cap (platform:32e00000.is[ 2712.972773] mxc-mipi-csi2.0: is_entity_link_setup, No remote pad found!
+i:cap_devic):
+        /dev/video0
+
+mxc-isi-cap (platform:32e02000.isi:cap_devic):
+        /dev/video1
+
+root@raibos:~# 
+
