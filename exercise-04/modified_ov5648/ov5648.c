@@ -2355,6 +2355,17 @@ static int ov5648_enum_frame_interval(struct v4l2_subdev *subdev,
 	return 0;
 }
 
+/* V4L2 subdev core ops */
+static int ov5648_s_power(struct v4l2_subdev *sd, int on)
+{
+    return 0;
+}
+
+static const struct v4l2_subdev_core_ops ov5648_subdev_core_ops = {
+	.s_power		= ov5648_s_power,
+
+};
+
 static const struct v4l2_subdev_pad_ops ov5648_subdev_pad_ops = {
 	.enum_mbus_code		= ov5648_enum_mbus_code,
 	.get_fmt		= ov5648_get_fmt,
@@ -2364,6 +2375,7 @@ static const struct v4l2_subdev_pad_ops ov5648_subdev_pad_ops = {
 };
 
 static const struct v4l2_subdev_ops ov5648_subdev_ops = {
+    .core		= &ov5648_subdev_core_ops,
 	.video		= &ov5648_subdev_video_ops,
 	.pad		= &ov5648_subdev_pad_ops,
 };
