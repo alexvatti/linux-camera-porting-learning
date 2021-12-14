@@ -1,0 +1,2095 @@
+U-Boot SPL 2020.04 (Sep 08 2021 - 13:11:55 +0000)
+DDRINFO: start DRAM init
+DDRINFO: DRAM rate 4000MTS
+DDRINFO:ddrphy calibration done
+DDRINFO: ddrmix config done
+Normal Boot
+Trying to boot from BOOTROM
+image offset 0x8000, pagesize 0x200, ivt offset 0x0
+NOTICE:  BL31: v2.2(release):rel_imx_5.4.70_2.3.0-0-gf1d7187f2-dirty
+NOTICE:  BL31: Built : 12:13:24, Sep  8 2021
+
+
+U-Boot 2020.04 (Sep 08 2021 - 13:11:55 +0000)
+
+CPU:   i.MX8MP[8] rev1.1 1600 MHz (running at 1200 MHz)
+CPU:   Industrial temperature grade (-40C to 105C) at 40C
+Reset cause: POR
+Model: PHYTEC phyCORE-i.MX8MP
+       Watchdog enabled
+DRAM:  2 GiB
+MMC:   FSL_SDHC: 1, FSL_SDHC: 2
+Loading Environment from MMC... *** Warning - bad CRC, using default environment
+
+In:    serial
+Out:   serial
+Err:   serial
+
+ BuildInfo:
+  - ATF f1d7187
+  - U-Boot 2020.04
+
+Net:   
+Warning: ethernet@30bf0000 using MAC address from ROM
+eth1: ethernet@30bf0000 [PRIME]
+Normal Boot
+Hit any key to stop autoboot:  0 
+switch to partitions #0, OK
+mmc1 is current device
+38472192 bytes read in 1649 ms (22.2 MiB/s)
+Booting from mmc ...
+59092 bytes read in 17 ms (3.3 MiB/s)
+## Flattened Device Tree blob at 48000000
+   Booting using the fdt blob at 0x48000000
+   Loading Device Tree to 00000000bdbe4000, end 00000000bdbf56d3 ... OK
+
+Starting kernel ...
+
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
+[    0.000000] Linux version 5.4.70-bsp-yocto-fsl-i.mx8mp-alpha2 (oe-user@oe-host) (gcc version 9.2.0 (GCC)) #1 SMP PREEMPT Mon Dec 13 09:51:12 UTC 2021
+[    0.000000] Machine model: PHYTEC phyBOARD-Pollux i.MX8MP
+[    0.000000] efi: Getting EFI parameters from FDT:
+[    0.000000] efi: UEFI not found.
+[    0.000000] Reserved memory: created CMA memory pool at 0x0000000056000000, size 960 MiB
+[    0.000000] OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
+[    0.000000] NUMA: No NUMA configuration found
+[    0.000000] NUMA: Faking a node at [mem 0x0000000040000000-0x00000000bfffffff]
+[    0.000000] NUMA: NODE_DATA [mem 0xbfbce500-0xbfbcffff]
+[    0.000000] Zone ranges:
+[    0.000000]   DMA32    [mem 0x0000000040000000-0x00000000bfffffff]
+[    0.000000]   Normal   empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000040000000-0x00000000557fffff]
+[    0.000000]   node   0: [mem 0x0000000056000000-0x00000000923fffff]
+[    0.000000]   node   0: [mem 0x0000000094400000-0x00000000bfffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000040000000-0x00000000bfffffff]
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: MIGRATE_INFO_TYPE not supported.
+[    0.000000] psci: SMC Calling Convention v1.1
+[    0.000000] percpu: Embedded 33 pages/cpu s98136 r8192 d28840 u135168
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.000000] CPU features: detected: ARM erratum 845719
+[    0.000000] CPU features: detected: GIC system register CPU interface
+[    0.000000] Speculative Store Bypass Disable mitigation not required
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 505856
+[    0.000000] Policy zone: DMA32
+[    0.000000] Kernel command line: console=ttymxc0,115200 root=/dev/mmcblk1p2 rootwait rw
+[    0.000000] Dentry cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] Memory: 993780K/2056192K available (19836K kernel code, 2562K rwdata, 8256K rodata, 6848K init, 1053K bss, 79372K reserved, 983040K cma-reserved)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] ftrace: allocating 63362 entries in 248 pages
+[    0.000000] rcu: Preemptible hierarchical RCU implementation.
+[    0.000000] rcu:     RCU restricting CPUs from NR_CPUS=256 to nr_cpu_ids=4.
+[    0.000000]  Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=4
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] GICv3: GIC: Using split EOI/Deactivate mode
+[    0.000000] GICv3: 160 SPIs implemented
+[    0.000000] GICv3: 0 Extended SPIs implemented
+[    0.000000] GICv3: Distributor has no Range Selector support
+[    0.000000] GICv3: 16 PPIs implemented
+[    0.000000] GICv3: no VLPI support, no direct LPI support
+[    0.000000] GICv3: CPU0: found redistributor 0 region 0:0x0000000038880000
+[    0.000000] ITS: No ITS available, not enabling LPIs
+[    0.000000] random: get_random_bytes called from start_kernel+0x320/0x4b4 with crng_init=0
+[    0.000000] arch_timer: cp15 timer(s) running at 8.00MHz (phys).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x1d854df40, max_idle_ns: 440795202120 ns
+[    0.000004] sched_clock: 56 bits at 8MHz, resolution 125ns, wraps every 2199023255500ns
+[    0.000522] Console: colour dummy device 80x25
+[    0.000595] Calibrating delay loop (skipped), value calculated using timer frequency.. 16.00 BogoMIPS (lpj=32000)
+[    0.000603] pid_max: default: 32768 minimum: 301
+[    0.000690] LSM: Security Framework initializing
+[    0.000748] Mount-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.000764] Mountpoint-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.001955] ASID allocator initialised with 32768 entries
+[    0.002036] rcu: Hierarchical SRCU implementation.
+[    0.005738] EFI services will not be available.
+[    0.006002] smp: Bringing up secondary CPUs ...
+[    0.006427] Detected VIPT I-cache on CPU1
+[    0.006450] GICv3: CPU1: found redistributor 1 region 0:0x00000000388a0000
+[    0.006479] CPU1: Booted secondary processor 0x0000000001 [0x410fd034]
+[    0.006949] Detected VIPT I-cache on CPU2
+[    0.006966] GICv3: CPU2: found redistributor 2 region 0:0x00000000388c0000
+[    0.006983] CPU2: Booted secondary processor 0x0000000002 [0x410fd034]
+[    0.007390] Detected VIPT I-cache on CPU3
+[    0.007404] GICv3: CPU3: found redistributor 3 region 0:0x00000000388e0000
+[    0.007421] CPU3: Booted secondary processor 0x0000000003 [0x410fd034]
+[    0.007480] smp: Brought up 1 node, 4 CPUs
+[    0.007502] SMP: Total of 4 processors activated.
+[    0.007510] CPU features: detected: 32-bit EL0 Support
+[    0.007517] CPU features: detected: CRC32 instructions
+[    0.014377] CPU: All CPU(s) started at EL2
+[    0.014399] alternatives: patching kernel code
+[    0.015521] devtmpfs: initialized
+[    0.024705] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.024720] futex hash table entries: 1024 (order: 4, 65536 bytes, linear)
+[    0.048662] pinctrl core: initialized pinctrl subsystem
+[    0.049498] DMI not present or invalid.
+[    0.049743] NET: Registered protocol family 16
+[    0.057049] DMA: preallocated 256 KiB pool for atomic allocations
+[    0.057075] audit: initializing netlink subsys (disabled)
+[    0.057320] audit: type=2000 audit(0.056:1): state=initialized audit_enabled=0 res=1
+[    0.058334] cpuidle: using governor menu
+[    0.058874] hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+[    0.060148] Serial: AMBA PL011 UART driver
+[    0.060231] imx mu driver is registered.
+[    0.060259] imx rpmsg driver is registered.
+[    0.066148] imx8mp-pinctrl 30330000.pinctrl: initialized IMX pinctrl driver
+[    0.096669] HugeTLB registered 1.00 GiB page size, pre-allocated 0 pages
+[    0.096678] HugeTLB registered 32.0 MiB page size, pre-allocated 0 pages
+[    0.096683] HugeTLB registered 2.00 MiB page size, pre-allocated 0 pages
+[    0.096689] HugeTLB registered 64.0 KiB page size, pre-allocated 0 pages
+[    0.097615] cryptd: max_cpu_qlen set to 1000
+[    0.101260] ACPI: Interpreter disabled.
+[    0.102826] iommu: Default domain type: Translated 
+[    0.102982] vgaarb: loaded
+[    0.103315] SCSI subsystem initialized
+[    0.103700] usbcore: registered new interface driver usbfs
+[    0.103742] usbcore: registered new interface driver hub
+[    0.103805] usbcore: registered new device driver usb
+[    0.105755] mc: Linux media interface: v0.10
+[    0.105792] videodev: Linux video capture interface: v2.00
+[    0.105878] pps_core: LinuxPPS API ver. 1 registered
+[    0.105884] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.105903] PTP clock support registered
+[    0.106114] EDAC MC: Ver: 3.0.0
+[    0.107104] No BMan portals available!
+[    0.107479] QMan: Allocated lookup table at (____ptrval____), entry count 65537
+[    0.107872] No QMan portals available!
+[    0.108454] No USDPAA memory, no 'fsl,usdpaa-mem' in device-tree
+[    0.109053] FPGA manager framework
+[    0.109151] Advanced Linux Sound Architecture Driver Initialized.
+[    0.109561] Bluetooth: Core ver 2.22
+[    0.109606] NET: Registered protocol family 31
+[    0.109613] Bluetooth: HCI device and connection manager initialized
+[    0.109623] Bluetooth: HCI socket layer initialized
+[    0.109630] Bluetooth: L2CAP socket layer initialized
+[    0.109644] Bluetooth: SCO socket layer initialized
+[    0.110555] clocksource: Switched to clocksource arch_sys_counter
+[    0.751510] VFS: Disk quotas dquot_6.6.0
+[    0.751562] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    0.751739] pnp: PnP ACPI: disabled
+[    0.758999] thermal_sys: Registered thermal governor 'step_wise'
+[    0.759002] thermal_sys: Registered thermal governor 'power_allocator'
+[    0.759424] NET: Registered protocol family 2
+[    0.759745] tcp_listen_portaddr_hash hash table entries: 1024 (order: 2, 16384 bytes, linear)
+[    0.759776] TCP established hash table entries: 16384 (order: 5, 131072 bytes, linear)
+[    0.759884] TCP bind hash table entries: 16384 (order: 6, 262144 bytes, linear)
+[    0.760098] TCP: Hash tables configured (established 16384 bind 16384)
+[    0.760174] UDP hash table entries: 1024 (order: 3, 32768 bytes, linear)
+[    0.760220] UDP-Lite hash table entries: 1024 (order: 3, 32768 bytes, linear)
+[    0.760356] NET: Registered protocol family 1
+[    0.760689] RPC: Registered named UNIX socket transport module.
+[    0.760694] RPC: Registered udp transport module.
+[    0.760701] RPC: Registered tcp transport module.
+[    0.760706] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    0.761079] PCI: CLS 0 bytes, default 64
+[    0.761807] hw perfevents: enabled with armv8_pmuv3 PMU driver, 7 counters available
+[    0.762280] kvm [1]: IPA Size Limit: 40bits
+[    0.763645] kvm [1]: GICv3: no GICV resource entry
+[    0.763650] kvm [1]: disabling GICv2 emulation
+[    0.763669] kvm [1]: GIC system register CPU interface enabled
+[    0.763732] kvm [1]: vgic interrupt IRQ1
+[    0.763828] kvm [1]: Hyp mode initialized successfully
+[    0.767067] Initialise system trusted keyrings
+[    0.767177] workingset: timestamp_bits=44 max_order=19 bucket_order=0
+[    0.773598] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.774296] NFS: Registering the id_resolver key type
+[    0.774316] Key type id_resolver registered
+[    0.774320] Key type id_legacy registered
+[    0.774333] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    0.774353] jffs2: version 2.2. (NAND) �© 2001-2006 Red Hat, Inc.
+[    0.774745] 9p: Installing v9fs 9p2000 file system support
+[    0.787395] Key type asymmetric registered
+[    0.787403] Asymmetric key parser 'x509' registered
+[    0.787439] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 244)
+[    0.787446] io scheduler mq-deadline registered
+[    0.787454] io scheduler kyber registered
+[    0.790093] samsung-hdmi-phy 32fdff00.hdmiphy: failed to get phy apb clk: -517
+[    0.796185] EINJ: ACPI disabled.
+[    0.802766] i.MX8MP clock driver probe done
+[    0.807371] imx-sdma 30bd0000.dma-controller: Direct firmware load for imx/sdma/sdma-imx7d.bin failed with error -2
+[    0.807380] imx-sdma 30bd0000.dma-controller: Falling back to sysfs fallback for: imx/sdma/sdma-imx7d.bin
+[    0.809645] mxs-dma 33000000.dma-apbh: initialized
+[    0.811517] Bus freq driver module loaded
+[    0.819300] Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled
+[    0.821942] 30860000.serial: ttymxc0 at MMIO 0x30860000 (irq = 28, base_baud = 1500000) is a IMX
+[    1.812841] printk: console [ttymxc0] enabled
+[    1.817841] 30890000.serial: ttymxc1 at MMIO 0x30890000 (irq = 29, base_baud = 5000000) is a IMX
+[    1.831089] imx-lcdifv3 32fc6000.lcd-controller: No irq get
+[    1.840538] imx-hdmi-pavi 32fc4000.hdmi-pai-pvi: No pvi clock get
+[    1.851273] panel-simple panel1: panel1 supply power not found, using dummy regulator
+[    1.859564] panel-simple panel0: panel0 supply power not found, using dummy regulator
+[    1.875542] loop: module loaded
+[    1.887849] imx ahci driver is registered.
+[    1.896222] spi-nor spi0.0: mt25qu512a (65536 Kbytes)
+[    1.905085] libphy: Fixed MDIO Bus: probed
+[    1.910324] tun: Universal TUN/TAP device driver, 1.6
+[    1.915557] CAN device driver interface
+[    1.920431] thunder_xcv, ver 1.0
+[    1.923700] thunder_bgx, ver 1.0
+[    1.926974] nicpf, ver 1.0
+[    1.930796] pps pps0: new PPS source ptp0
+[    1.940334] Freescale FM module, FMD API version 21.1.0
+[    1.945960] Freescale FM Ports module
+[    1.949630] fsl_mac: fsl_mac: FSL FMan MAC API based driver
+[    1.955434] fsl_dpa: FSL DPAA Ethernet driver
+[    1.959964] fsl_advanced: FSL DPAA Advanced drivers:
+[    1.964972] fsl_proxy: FSL DPAA Proxy initialization driver
+[    1.970722] fsl_oh: FSL FMan Offline Parsing port driver
+[    1.977294] hclge is initializing
+[    1.980619] hns3: Hisilicon Ethernet Network Driver for Hip08 Family - version
+[    1.987849] hns3: Copyright (c) 2017 Huawei Corporation.
+[    1.993222] e1000: Intel(R) PRO/1000 Network Driver - version 7.3.21-k8-NAPI
+[    2.000277] e1000: Copyright (c) 1999-2006 Intel Corporation.
+[    2.006065] e1000e: Intel(R) PRO/1000 Network Driver - 3.2.6-k
+[    2.011905] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+[    2.017868] igb: Intel(R) Gigabit Ethernet Network Driver - version 5.6.0-k
+[    2.024837] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    2.030455] igbvf: Intel(R) Gigabit Virtual Function Network Driver - version 2.4.0-k
+[    2.038296] igbvf: Copyright (c) 2009 - 2012 Intel Corporation.
+[    2.044460] sky2: driver version 1.30
+[    2.048954] imx-dwmac 30bf0000.ethernet: IRQ eth_lpi not found
+[    2.054884] imx-dwmac 30bf0000.ethernet: no reset control found
+[    2.060986] imx-dwmac 30bf0000.ethernet: User ID: 0x10, Synopsys ID: 0x51
+[    2.067793] imx-dwmac 30bf0000.ethernet:     DWMAC4/5
+[    2.072595] imx-dwmac 30bf0000.ethernet: DMA HW capability register supported
+[    2.079741] imx-dwmac 30bf0000.ethernet: RX Checksum Offload Engine supported
+[    2.086887] imx-dwmac 30bf0000.ethernet: TX Checksum insertion supported
+[    2.093597] imx-dwmac 30bf0000.ethernet: Wake-Up On Lan supported
+[    2.099719] imx-dwmac 30bf0000.ethernet: Enable RX Mitigation via HW Watchdog Timer
+[    2.107388] imx-dwmac 30bf0000.ethernet: Enabled Flow TC (entries=8)
+[    2.113757] imx-dwmac 30bf0000.ethernet: Enabling HW TC (entries=256, max_off=256)
+[    2.121550] libphy: stmmac: probed
+[    2.127151] PPP generic driver version 2.4.2
+[    2.131641] usbcore: registered new interface driver qmi_wwan
+[    2.137435] usbcore: registered new interface driver qmi_wwan_q
+[    2.143378] GobiNet: Quectel_Linux&Android_GobiNet_Driver_V1.6
+[    2.149256] usbcore: registered new interface driver GobiNet
+[    2.155178] VFIO - User Level meta-driver version: 0.3
+[    2.166020] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    2.172595] ehci-pci: EHCI PCI platform driver
+[    2.177096] ehci-platform: EHCI generic platform driver
+[    2.182630] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    2.188829] ohci-pci: OHCI PCI platform driver
+[    2.193318] ohci-platform: OHCI generic platform driver
+[    2.199504] usbcore: registered new interface driver cdc_wdm
+[    2.205341] usbcore: registered new interface driver uas
+[    2.210712] usbcore: registered new interface driver usb-storage
+[    2.216803] usbcore: registered new interface driver usbserial_generic
+[    2.223359] usbserial: USB Serial support registered for generic
+[    2.229409] usbcore: registered new interface driver ftdi_sio
+[    2.235185] usbserial: USB Serial support registered for FTDI USB Serial Device
+[    2.242529] usbcore: registered new interface driver option
+[    2.248137] usbserial: USB Serial support registered for GSM modem (1-port)
+[    2.255138] usbcore: registered new interface driver usb_serial_simple
+[    2.261696] usbserial: USB Serial support registered for carelink
+[    2.267822] usbserial: USB Serial support registered for zio
+[    2.273510] usbserial: USB Serial support registered for funsoft
+[    2.279548] usbserial: USB Serial support registered for flashloader
+[    2.285930] usbserial: USB Serial support registered for google
+[    2.291886] usbserial: USB Serial support registered for libtransistor
+[    2.298445] usbserial: USB Serial support registered for vivopay
+[    2.304479] usbserial: USB Serial support registered for moto_modem
+[    2.310777] usbserial: USB Serial support registered for motorola_tetra
+[    2.317420] usbserial: USB Serial support registered for novatel_gps
+[    2.323801] usbserial: USB Serial support registered for hp4x
+[    2.329574] usbserial: USB Serial support registered for suunto
+[    2.335523] usbserial: USB Serial support registered for siemens_mpi
+[    2.341922] usbcore: registered new interface driver usb_ehset_test
+[    2.351811] input: 30370000.snvs:snvs-powerkey as /devices/platform/soc@0/30000000.bus/30370000.snvs/30370000.snvs:snvs-powerkey/input/input0
+[    2.365369] usbcore: registered new interface driver usbtouchscreen
+[    2.373722] snvs_rtc 30370000.snvs:snvs-rtc-lp: registered as rtc1
+[    2.380108] i2c /dev entries driver
+[    2.394451] imx2-wdt 30280000.watchdog: timeout 60 sec (nowayout=0)
+[    2.401202] Bluetooth: HCI UART driver ver 2.3
+[    2.405661] Bluetooth: HCI UART protocol H4 registered
+[    2.410808] Bluetooth: HCI UART protocol BCSP registered
+[    2.416150] Bluetooth: HCI UART protocol LL registered
+[    2.421297] Bluetooth: HCI UART protocol ATH3K registered
+[    2.426727] Bluetooth: HCI UART protocol Three-wire (H5) registered
+[    2.433131] Bluetooth: HCI UART protocol Broadcom registered
+[    2.438823] Bluetooth: HCI UART protocol QCA registered
+[    2.444155] EDAC MC: ECC not enabled
+[    2.450897] sdhci: Secure Digital Host Controller Interface driver
+[    2.457089] sdhci: Copyright(c) Pierre Ossman
+[    2.461750] Synopsys Designware Multimedia Card Interface Driver
+[    2.468675] sdhci-pltfm: SDHCI platform and OF driver helper
+[    2.475197] mmc0: CQHCI version 5.10
+[    2.479288] mmc1: CQHCI version 5.10
+[    2.483391] mmc2: CQHCI version 5.10
+[    2.518766] mmc2: SDHCI controller on 30b60000.mmc [30b60000.mmc] using ADMA
+[    2.529278] ledtrig-cpu: registered to indicate activity on CPUs
+[    2.537066] caam 30900000.crypto: device ID = 0x0a16040100000100 (Era 9)
+[    2.543788] caam 30900000.crypto: job rings = 3, qi = 0
+[    2.577083] caam algorithms registered in /proc/crypto
+[    2.588024] caam 30900000.crypto: caam pkc algorithms registered in /proc/crypto
+[    2.595453] caam 30900000.crypto: registering rng-caam
+[    2.601670] Device caam-keygen registered
+[    2.611035] caam-snvs 30370000.caam-snvs: violation handlers armed - non-secure state
+[    2.619200] hidraw: raw HID events driver (C) Jiri Kosina
+[    2.625190] usbcore: registered new interface driver usbhid
+[    2.630789] usbhid: USB HID core driver
+[    2.635441] mxc-md 32c00000.bus:camera: deferring cap_device device registration
+[    2.644141] mxc-isi 32e00000.isi: mxc_isi.0 registered successfully
+[    2.650101] random: fast init done
+[    2.654974] mxc-mipi-csi2-sam 32e40000.csi: 32e40000.csi supply mipi-phy not found, using dummy regulator
+[    2.658709] mmc2: new HS400 MMC card at address 0001
+[    2.669799] mxc-mipi-csi2-sam 32e40000.csi: lanes: 2, hs_settle: 0, clk_settle: 0, wclk: 0, freq: 500000000
+[    2.670597] mmcblk2: mmc2:0001 Q2J55L 7.09 GiB 
+[    2.675141] random: crng init done
+[    2.684266] mmcblk2boot0: mmc2:0001 Q2J55L partition 1 16.0 MiB
+[    2.686853] No fsl,qman node
+[    2.686856] Freescale USDPAA process driver
+[    2.686858] fsl-usdpaa: no region found
+[    2.686860] Freescale USDPAA process IRQ driver
+[    2.693642] mmcblk2boot1: mmc2:0001 Q2J55L partition 2 16.0 MiB
+[    2.715149] mmcblk2rpmb: mmc2:0001 Q2J55L partition 3 4.00 MiB, chardev (237:0)
+[    2.730132] Galcore version 6.4.3.p1.305572
+[    2.867797] [drm] Initialized vivante 1.0.0 20170808 for 40000000.mix_gpu_ml on minor 0
+[    2.877271] hantrodec 0 : module inserted. Major = 235
+[    2.883010] hantrodec 1 : module inserted. Major = 235
+[    2.889814] hantroenc: HW at base <0000000038320000> with ID <0x80006200>
+[    2.896744] hx280enc: module inserted. Major <234>
+[    2.919036] imx-cdnhdmi sound-hdmi: ASoC: failed to init link imx8 hdmi: -517
+[    2.926188] imx-cdnhdmi sound-hdmi: snd_soc_register_card failed (-517)
+[    2.933356] pktgen: Packet Generator for packet performance testing. Version: 2.75
+[    2.944263] drop_monitor: Initializing network drop monitor service
+[    2.950644] NET: Registered protocol family 26
+[    2.955688] NET: Registered protocol family 10
+[    2.961083] Segment Routing with IPv6
+[    2.964815] NET: Registered protocol family 17
+[    2.969273] can: controller area network core (rev 20170425 abi 9)
+[    2.975502] NET: Registered protocol family 29
+[    2.979955] can: raw protocol (rev 20170425)
+[    2.984235] can: broadcast manager protocol (rev 20170425 t)
+[    2.989906] can: netlink gateway (rev 20190810) max_hops=1
+[    2.996065] Bluetooth: RFCOMM TTY layer initialized
+[    3.000965] Bluetooth: RFCOMM socket layer initialized
+[    3.006133] Bluetooth: RFCOMM ver 1.11
+[    3.009895] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+[    3.015214] Bluetooth: BNEP filters: protocol multicast
+[    3.020451] Bluetooth: BNEP socket layer initialized
+[    3.025421] Bluetooth: HIDP (Human Interface Emulation) ver 1.2
+[    3.031353] Bluetooth: HIDP socket layer initialized
+[    3.036356] 8021q: 802.1Q VLAN Support v1.8
+[    3.040566] lib80211: common routines for IEEE802.11 drivers
+[    3.046358] 9pnet: Installing 9P2000 support
+[    3.050674] tsn generic netlink module v1 init...
+[    3.055452] Key type dns_resolver registered
+[    3.060416] registered taskstats version 1
+[    3.064530] Loading compiled-in X.509 certificates
+[    3.102101] pca9450 0-0025: Device ID=0x30
+[    3.106226] pca9450 0-0025: gpio_intr = 114
+[    3.110426] pca9450 0-0025: chip_irq=186
+[    3.129058] tmp102 0-0048: initialized
+[    3.133904] tmp102 0-0049: initialized
+[    3.138708] tmp102 0-004a: initialized
+[    3.143520] tmp102 0-004b: initialized
+[    3.148029] at24 0-0051: 4096 byte 24c32 EEPROM, writable, 32 bytes/write
+[    3.155542] at24 0-0059: 32 byte 24c32 EEPROM, writable, 32 bytes/write
+[    3.162760] rtc-rv3028 0-0052: Voltage low, data loss detected.
+[    3.252988] rtc-rv3028 0-0052: Voltage low, data is invalid.
+[    3.259094] rtc-rv3028 0-0052: registered as rtc0
+[    3.266949] i2c i2c-0: IMX I2C adapter registered
+[    3.274246] at24 1-0051: 256 byte 24c02 EEPROM, writable, 16 bytes/write
+[    3.281497] link-frequencies 0 value 210000000
+[    3.285957] link-frequencies 1 value 168000000
+[    3.290541] ov5648 1-0036: 1-0036 supply dvdd not found, using dummy regulator
+[    3.297853] ov5648 1-0036: 1-0036 supply dovdd not found, using dummy regulator
+[    3.305226] ov5648 1-0036: no AVDD regulator provided, using internal
+[    3.311797] i2c i2c-1: IMX I2C adapter registered
+[    3.317625] i2c i2c-2: IMX I2C adapter registered
+[    3.323828] tlv320aic3x-codec 3-0018: 3-0018 supply IOVDD not found, using dummy regulator
+[    3.332171] tlv320aic3x-codec 3-0018: 3-0018 supply DVDD not found, using dummy regulator
+[    3.340395] tlv320aic3x-codec 3-0018: 3-0018 supply AVDD not found, using dummy regulator
+[    3.348632] tlv320aic3x-codec 3-0018: 3-0018 supply DRVDD not found, using dummy regulator
+[    3.356973] tlv320aic3x-codec 3-0018: Invalid supply voltage(s) AVDD: -22, DVDD: -22
+[    3.364947] tlv320aic3x-codec 3-0018: Failed to init class D: -6
+[    3.428420] i2c i2c-3: IMX I2C adapter registered
+[    3.434166] imx8mq-usb-phy 381f0040.usb-phy: 381f0040.usb-phy supply vbus not found, using dummy regulator
+[    3.444168] imx8mq-usb-phy 382f0040.usb-phy: 382f0040.usb-phy supply vbus not found, using dummy regulator
+[    3.457310] pwm-backlight backlight0: backlight0 supply power not found, using dummy regulator
+[    3.457335] imx6q-pcie 33800000.pcie: 33800000.pcie supply epdev_on not found, using dummy regulator
+[    3.475357] imx6q-pcie 33800000.pcie: PLL REF_CLK is used!.
+[    3.481537] imx6q-pcie 33800000.pcie: PCIe PHY PLL clock is locked.
+[    3.491245] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    3.497874] [drm] No driver support for vblank timestamp query.
+[    3.503875] imx-drm display-subsystem: bound imx-lcdifv3-crtc.0 (ops lcdifv3_crtc_ops)
+[    3.511862] imx-drm display-subsystem: bound imx-lcdifv3-crtc.1 (ops lcdifv3_crtc_ops)
+[    3.514959] imx6q-pcie 33800000.pcie: PCIe PLL locked after 0 us.
+[    3.525928] imx6q-pcie 33800000.pcie: host bridge /pcie@33800000 ranges:
+[    3.532643] imx6q-pcie 33800000.pcie:   No bus range found for /pcie@33800000, using [bus 00-ff]
+[    3.532664] imx6q-pcie 33800000.pcie:    IO 0x1ff80000..0x1ff8ffff -> 0x00000000
+[    3.548850] imx6q-pcie 33800000.pcie:   MEM 0x18000000..0x1fefffff -> 0x18000000
+[    3.557032] panel-simple panel1: panel1 supply power not found, using dummy regulator
+[    3.565348] panel-simple panel0: panel0 supply power not found, using dummy regulator
+[    3.575095] pps pps0: new PPS source ptp0
+[    3.585547] libphy: fec_enet_mii_bus: probed
+[    3.593353] fec 30be0000.ethernet eth1: registered PHC device 0
+[    3.600455] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
+[    3.605971] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 1
+[    3.613983] xhci-hcd xhci-hcd.1.auto: hcc params 0x0220fe6c hci version 0x110 quirks 0x0000002001810010
+[    3.623424] xhci-hcd xhci-hcd.1.auto: irq 67, io mem 0x38100000
+[    3.630339] hub 1-0:1.0: USB hub found
+[    3.634130] hub 1-0:1.0: 1 port detected
+[    3.638410] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
+[    3.643925] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 2
+[    3.651600] xhci-hcd xhci-hcd.1.auto: Host supports USB 3.0 SuperSpeed
+[    3.658186] usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
+[    3.667109] hub 2-0:1.0: USB hub found
+[    3.670899] hub 2-0:1.0: 1 port detected
+[    3.676518] xhci-hcd xhci-hcd.2.auto: xHCI Host Controller
+[    3.682037] xhci-hcd xhci-hcd.2.auto: new USB bus registered, assigned bus number 3
+[    3.690052] xhci-hcd xhci-hcd.2.auto: hcc params 0x0220fe6c hci version 0x110 quirks 0x0000002001810010
+[    3.699495] xhci-hcd xhci-hcd.2.auto: irq 68, io mem 0x38200000
+[    3.706375] hub 3-0:1.0: USB hub found
+[    3.710160] hub 3-0:1.0: 1 port detected
+[    3.714432] xhci-hcd xhci-hcd.2.auto: xHCI Host Controller
+[    3.719939] xhci-hcd xhci-hcd.2.auto: new USB bus registered, assigned bus number 4
+[    3.727615] xhci-hcd xhci-hcd.2.auto: Host supports USB 3.0 SuperSpeed
+[    3.734213] usb usb4: We don't know the algorithms for LPM for this host, disabling LPM.
+[    3.743143] hub 4-0:1.0: USB hub found
+[    3.746932] hub 4-0:1.0: 1 port detected
+[    3.755653] imx-cpufreq-dt imx-cpufreq-dt: cpu speed grade 7 mkt segment 2 supported-hw 0x80 0x4
+[    3.766308] mmc0: CQHCI version 5.10
+[    3.769996] sdhci-esdhc-imx 30b40000.mmc: allocated mmc-pwrseq
+[    3.915741] mmc0: SDHCI controller on 30b40000.mmc [30b40000.mmc] using ADMA
+[    3.924041] mmc1: CQHCI version 5.10
+[    3.927706] sdhci-esdhc-imx 30b50000.mmc: Got CD GPIO
+[    3.965332] mmc1: SDHCI controller on 30b50000.mmc [30b50000.mmc] using ADMA
+[    3.974202] mx8-img-md: Registered mxc_isi.0.capture as /dev/video0
+[    3.980700] mx8-img-md: Registered sensor subdevice: ov5648 1-0036 (1)
+[    3.987270] mx8-img-md: created link [mxc_isi.0] => [mxc_isi.0.capture]
+[    3.993914] mx8-img-md: created link [mxc-mipi-csi2.0] => [mxc_isi.0]
+[    4.000419] mx8-img-md: subdev_notifier_complete error exit
+[    4.006028] mxc-md 32c00000.bus:camera: Sensor register failed
+[    4.011907] mxc-md: probe of 32c00000.bus:camera failed with error -515
+[    4.020542] debugfs: Directory '30c20000.sai' with parent 'snd-peb-av-10' already present!
+[    4.028951] asoc-simple-card sound-peb-av-10: tlv320aic3x-hifi <-> 30c20000.sai mapping ok
+[    4.037284] asoc-simple-card sound-peb-av-10: ASoC: no DMI vendor name!
+[    4.047210] imx-cdnhdmi sound-hdmi: ASoC: failed to init link imx8 hdmi: -517
+[    4.054364] imx-cdnhdmi sound-hdmi: snd_soc_register_card failed (-517)
+[    4.054582] usb 3-1: new high-speed USB device number 2 using xhci-hcd
+[    4.068106] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    4.074821] [drm] No driver support for vblank timestamp query.
+[    4.080821] imx-drm display-subsystem: bound imx-lcdifv3-crtc.0 (ops lcdifv3_crtc_ops)
+[    4.088823] imx-drm display-subsystem: bound imx-lcdifv3-crtc.1 (ops lcdifv3_crtc_ops)
+[    4.097011] imx-drm display-subsystem: bound 32c00000.bus:ldb@32ec005c (ops imx8mp_ldb_ops)
+[    4.105764] dwhdmi-imx 32fd8000.hdmi: Detected HDMI TX controller v2.13a with HDCP (samsung_dw_hdmi_phy2)
+[    4.116816] dwhdmi-imx 32fd8000.hdmi: registered DesignWare HDMI I2C bus driver
+[    4.127413] imx-drm display-subsystem: bound 32fd8000.hdmi (ops dw_hdmi_imx_ops)
+[    4.135709] [drm] Initialized imx-drm 1.0.0 20120507 for display-subsystem on minor 1
+[    4.195556] Console: switching to colour frame buffer device 160x50
+[    4.207509] mmc1: host does not support reading read-only switch, assuming write-enable
+[    4.225029] imx-drm display-subsystem: fb0: imx-drmdrmfb frame buffer device
+[    4.233661] debugfs: Directory '30cb0000.aud2htx' with parent 'audio-hdmi' already present!
+[    4.242128] imx-cdnhdmi sound-hdmi: i2s-hifi <-> 30cb0000.aud2htx mapping ok
+[    4.249225] imx-cdnhdmi sound-hdmi: ASoC: no DMI vendor name!
+[    4.256207] input: audio-hdmi HDMI Jack as /devices/platform/sound-hdmi/sound/card2/input1
+[    4.268212] rtc-rv3028 0-0052: Voltage low, data is invalid.
+[    4.273984] rtc-rv3028 0-0052: hctosys: unable to read the hardware clock
+[    4.281281] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[    4.289058] hub 3-1:1.0: USB hub found
+[    4.291479] cfg80211: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+[    4.299455] platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+[    4.299634] hub 3-1:1.0: 4 ports detected
+[    4.308110] platform regulatory.0: Falling back to sysfs fallback for: regulatory.db
+[    4.332356] ALSA device list:
+[    4.335339]   #0: Dummy 1
+[    4.337957]   #1: snd-peb-av-10
+[    4.338578] mmc1: new ultra high speed SDR104 SDHC card at address aaaa
+[    4.341106]   #2: audio-hdmi
+[    4.351457] mmcblk1: mmc1:aaaa SC16G 14.8 GiB 
+[    4.360341]  mmcblk1: p1 p2
+[    4.374406] usb 4-1: new SuperSpeed Gen 1 USB device number 2 using xhci-hcd
+[    4.423475] hub 4-1:1.0: USB hub found
+[    4.427867] hub 4-1:1.0: 4 ports detected
+[    4.555188] imx6q-pcie 33800000.pcie: Phy link never came up
+[    4.560891] imx6q-pcie 33800000.pcie: failed to initialize host
+[    4.566823] imx6q-pcie 33800000.pcie: unable to add pcie port.
+[    4.698081] EXT4-fs (mmcblk1p2): recovery complete
+[    4.704109] EXT4-fs (mmcblk1p2): mounted filesystem with ordered data mode. Opts: (null)
+[    4.712253] VFS: Mounted root (ext4 filesystem) on device 179:98.
+[    4.722205] devtmpfs: mounted
+[    4.731334] Freeing unused kernel memory: 6848K
+[    4.735932] Run /sbin/init as init process
+[    4.875057] systemd[1]: systemd 243.2+ running in system mode. (+PAM -AUDIT -SELINUX -IMA -APPARMOR -SMACK +SYSVINIT -UTMP -LIBCRYPTSETUP -GCRYPT -GNUTLS -ACL -XZ +LZ4 -SECCOMP +BLKID -ELFUTILS +KMOD -IDN2 -)
+[    4.897105] systemd[1]: Detected architecture arm64.
+
+Welcome to The Yogurt Distribution BSP-Yocto-FSL-i.MX8MP-ALPHA2!
+
+[    4.945108] systemd[1]: Set hostname to <raibos>.
+[    5.152148] systemd[1]: /lib/systemd/system/fancontrol.service:8: PIDFile= references a path below legacy directory /var/run/, updating /var/run/fancontrol.pid ��→ /run/fancontrol.pid; please update the unit.
+[    5.193277] systemd[1]: /lib/systemd/system/rpcbind.socket:5: ListenStream= references a path below legacy directory /var/run/, updating /var/run/rpcbind.sock ��→ /run/rpcbind.sock; please update the unit fi.
+[    5.216301] systemd[1]: /lib/systemd/system/dbus.socket:5: ListenStream= references a path below legacy directory /var/run/, updating /var/run/dbus/system_bus_socket ��→ /run/dbus/system_bus_socket; please u.
+[    5.248773] systemd[1]: Created slice system-getty.slice.
+[  OK  ] Created slice system-getty.slice.
+[    5.271569] systemd[1]: Created slice system-serial\x2dgetty.slice.
+[  OK  ] Created slice system-serial\x2dgetty.slice.
+[    5.295507] systemd[1]: Created slice User and Session Slice.
+[  OK  ] Created slice User and Session Slice.
+[    5.314871] systemd[1]: Started Dispatch Password Requests to Console Directory Watch.
+[  OK  ] Started Dispatch Password ��…ts to Console Directory Watch.
+[  OK  ] Started Forward Password R��…uests to Wall Directory Watch.
+[  OK  ] Reached target Paths.
+[  OK  ] Reached target Remote File Systems.
+[  OK  ] Reached target Slices.
+[  OK  ] Reached target Swap.
+[  OK  ] Listening on initctl Compatibility Named Pipe.
+[  OK  ] Listening on Journal Audit Socket.
+[  OK  ] Listening on Journal Socket (/dev/log).
+[  OK  ] Listening on Journal Socket.
+[  OK  ] Listening on Network Service Netlink Socket.
+[  OK  ] Listening on udev Control Socket.
+[  OK  ] Listening on udev Kernel Socket.
+         Mounting Huge Pages File System...
+         Mounting POSIX Message Queue File System...
+         Mounting Kernel Debug File System...
+         Mounting Temporary Directory (/tmp)...
+         Starting Create list of st��…odes for the current kernel...
+         Starting Journal Service...
+         Mounting Kernel Configuration File System...
+         Starting Remount Root and Kernel File Systems...
+[    5.658446] EXT4-fs (mmcblk1p2): re-mounted. Opts: (null)
+         Starting Apply Kernel Variables...
+         Starting udev Coldplug all Devices...
+[  OK  ] Mounted Huge Pages File System.
+[  OK  ] Mounted POSIX Message Queue File System.
+[  OK  ] Mounted Kernel Debug File System.
+[  OK  ] Mounted Temporary Directory (/tmp).
+[  OK  ] Started Create list of sta��… nodes for the current kernel.
+[  OK  ] Mounted Kernel Configuration File System.
+[  OK  ] Started Remount Root and Kernel File Systems.
+[  OK  ] Started Apply Kernel Variables.
+         Starting Create Static Device Nodes in /dev...
+[  OK  ] Started Create Static Device Nodes in /dev.
+[  OK  ] Started Journal Service.
+[  OK  ] Reached target Local File Systems (Pre).
+         Mounting /var/volatile...
+         Starting Flush Journal to Persistent Storage...
+[    5.966024] systemd-journald[257]: Received client request to flush runtime journal.
+         Starting udev Kernel Device Manager...
+[  OK  ] Mounted /var/volatile.
+[  OK  ] Started Flush Journal to Persistent Storage.
+[  OK  ] Reached target Local File Systems.
+         Starting Create Volatile Files and Directories...
+[  OK  ] Started udev Kernel Device Manager.
+[  OK  ] Started Create Volatile Files and Directories.
+         Starting Network Service...
+[  OK  ] Started udev Coldplug all Devices.
+[  OK  ] Reached target System Initialization.
+[  OK  ] Started Daily Cleanup of Temporary Directories.
+[  OK  ] Reached target Boot Completion Check.
+[  OK  ] Reached target Timers.
+[  OK  ] Listening on D-Bus System Message Bus Socket.
+[  OK  ] Listening on RPCbind Server Activation Socket.
+         Starting sshd.socket.
+         Starting Start Psplash Boot Screen...
+[  OK  ] Started Network Service.
+[  OK  ] Listening on sshd.socket.
+[  OK  ] Started Start Psplash Boot Screen.
+[  OK  ] Reached target Sockets.
+[  OK  ] Reached target Basic System.
+[  OK  ] Started can0 interface setup.
+[  OK  ] Started D-Bus System Message Bus.
+[  OK  ] Started Start fan control, if configured.
+[  OK  ] Started Configuration for i.MX GPU (Former rc_gpu.S).
+[  OK  ] Started Updates psplash to basic.
+         Starting Rauc Good-marking Service...
+         Starting RPC Bind Service...
+[    6.560167] cfg80211: failed to load regulatory.db
+         Starting Login Service...
+         Starting Network Name Resolution...
+[  OK  ] Started RPC Bind Service.
+[  OK  ] Created slice system-weston.slice.
+         Starting Save/Restore Sound Card State...
+[  OK  ] Started Login Service.
+         Starting Rauc Update Service...
+[  OK  ] Started Network Name Resolution.
+[  OK  ] Started Save/Restore Sound Card State.
+[    6.883875] audit: type=1701 audit(6.880:2): auid=4294967295 uid=0 gid=0 ses=4294967295 pid=419 comm="rauc" exe="/usr/bin/rauc" sig=5 res=1
+[    6.905086] TI DP83867 30be0000.ethernet-1:00: attached PHY driver [TI DP83867] (mii_bus:phy_addr=30be0000.ethernet-1:00, irq=87)
+[FAILED] Failed to start Rauc Update Service.
+See 'systemctl status rauc.service' for details.
+[    6.962372] imx-dwmac 30bf0000.ethernet eth0: PHY [stmmac-1:01] driver [TI DP83867]
+[    7.000891] imx-dwmac 30bf0000.ethernet eth0: No Safety Features support found
+[    7.008370] imx-dwmac 30bf0000.ethernet eth0: IEEE 1588-2008 Advanced Timestamp supported
+[    7.008406] imx-sdma 30bd0000.dma-controller: loaded firmware 4.5
+[    7.024352] imx-dwmac 30bf0000.ethernet eth0: registered PTP clock
+[    7.034370] mxc-mipi-csi2.0: is_entity_link_setup, No remote pad found!
+[    7.041072] imx-dwmac 30bf0000.ethernet eth0: configuring for phy/rgmii-id link mode
+[    7.049532] 8021q: adding VLAN 0 to HW filter on device eth0
+[  OK  ] Reached target Network.
+[  OK  ] Reached target Host and Network Name Lookups.
+[  OK  ] Reached target Sound Card.
+         Starting Install MySQL Community Server Database...
+[  OK  ] Started NFS status monitor for NFSv2/3 locking..
+[  OK  ] Started Update psplash to network.
+         Starting Terminate Psplash Boot Screen...
+         Starting Permit User Sessions...
+[  OK  ] Started HawkBit client for Rauc.
+[  OK  ] Started Install MySQL Community Server Database.
+[  OK  ] Started Terminate Psplash Boot Screen.
+[  OK  ] Started Permit User Sessions.
+[  OK  ] Started Getty on tty1.
+[  OK  ] Started Serial Getty on ttymxc0.
+[  OK  ] Reached target Login Prompts.
+         Starting Weston Wayland Compositor (on tty7)...
+[  OK  ] Started Weston Wayland Compositor (on tty7).
+[  OK  ] Created slice User Slice of UID 0.
+         Starting User Runtime Directory /run/user/0...
+[  OK  ] Started User Runtime Directory /run/user/0.
+         Starting User Manager for UID 0...
+[    7.613175] audit: type=1006 audit(7.608:3): pid=506 uid=0 old-auid=4294967295 auid=0 tty=(none) old-ses=4294967295 ses=1 res=1
+[  OK  ] Started User Manager for UID 0.
+[  OK  ] Started Session c1 of user root.
+
+ ____   _   _ __   __ _____  _____   ____
+|  _ \ | | | |\ \ / /|_   _|| ____| / ___|
+| |_) || |_| | \ V /   | |  |  _|  | |
+|  __/ |  _  |  | |    | |  | |___ | |___
+|_|    |_| |_|  |_|    |_|  |_____| \____|
+
+__   __  ___    ____  _   _  ____   _____
+\ \ / / / _ \  / ___|| | | ||  _ \ |_   _|
+ \ V / | | | || |  _ | | | || |_) |  | |
+  | |  | |_| || |_| || |_| ||  _ <   | |
+  |_|   \___/  \____| \___/ |_| \_\  |_|
+
+
+Yogurt Vendor xwayland (Phytec Vendor Distribution) BSP-Yocto-FSL-i.MX8MP-ALPHA2 raibos ttymxc0
+
+raibos login:
+root@raibos:~# dmesg
+[    3.475115] devices_kset: Moving backlight0 to end of list
+[    3.475118] PM: Moving platform:backlight0 to end of list
+[    3.475123] pwm-backlight backlight0: Linked as a consumer to 30690000.pwm
+[    3.475132] device: 'backlight0': device_add
+[    3.475148] devices_kset: Moving 33800000.pcie to end of list
+[    3.475152] PM: Moving platform:33800000.pcie to end of list
+[    3.475158] imx6q-pcie 33800000.pcie: Linked as a consumer to regulator.0
+[    3.475174] of_get_named_gpiod_flags: parsed 'reset-gpio' property of node '/pcie@33800000[0]' - status (0)
+[    3.475180] PM: Adding info for No Bus:backlight0
+[    3.475196] driver: 'pwm-backlight': driver_bound: bound to device 'backlight0'
+[    3.475200] devices_kset: Moving backlight0 to end of list
+[    3.475203] PM: Moving platform:backlight0 to end of list
+[    3.475206] devices_kset: Moving backlight0 to end of list
+[    3.475209] PM: Moving No Bus:backlight0 to end of list
+[    3.475229] bus: 'platform': really_probe: bound device backlight0 to driver pwm-backlight
+[    3.475238] platform 30e10000.dma-controller: Retrying from deferred list
+[    3.475357] imx6q-pcie 33800000.pcie: PLL REF_CLK is used!.
+[    3.475473] bus: 'platform': driver_probe_device: matched device 30e10000.dma-controller with driver imx-sdma
+[    3.480945] bus: 'platform': really_probe: probing driver imx-sdma with device 30e10000.dma-controller
+[    3.480959] imx-sdma 30e10000.dma-controller: no pinctrl handle
+[    3.480990] imx-sdma 30e10000.dma-controller: adding to PM domain audiomix
+[    3.480997] imx-sdma 30e10000.dma-controller: genpd_add_device()
+[    3.481537] imx6q-pcie 33800000.pcie: PCIe PHY PLL clock is locked.
+[    3.482781] device: 'dma2chan0': device_add
+[    3.487876] PM: Adding info for No Bus:dma2chan0
+[    3.487902] device: 'dma2chan1': device_add
+[    3.487939] PM: Adding info for No Bus:dma2chan1
+[    3.487956] device: 'dma2chan2': device_add
+[    3.487987] PM: Adding info for No Bus:dma2chan2
+[    3.488007] device: 'dma2chan3': device_add
+[    3.488044] PM: Adding info for No Bus:dma2chan3
+[    3.488064] device: 'dma2chan4': device_add
+[    3.488102] PM: Adding info for No Bus:dma2chan4
+[    3.488119] device: 'dma2chan5': device_add
+[    3.488154] PM: Adding info for No Bus:dma2chan5
+[    3.488179] device: 'dma2chan6': device_add
+[    3.488222] PM: Adding info for No Bus:dma2chan6
+[    3.488245] device: 'dma2chan7': device_add
+[    3.488284] PM: Adding info for No Bus:dma2chan7
+[    3.488304] device: 'dma2chan8': device_add
+[    3.488346] PM: Adding info for No Bus:dma2chan8
+[    3.488366] device: 'dma2chan9': device_add
+[    3.488407] PM: Adding info for No Bus:dma2chan9
+[    3.488440] device: 'dma2chan10': device_add
+[    3.488479] PM: Adding info for No Bus:dma2chan10
+[    3.488502] device: 'dma2chan11': device_add
+[    3.488540] PM: Adding info for No Bus:dma2chan11
+[    3.488558] device: 'dma2chan12': device_add
+[    3.488598] PM: Adding info for No Bus:dma2chan12
+[    3.488622] device: 'dma2chan13': device_add
+[    3.488660] PM: Adding info for No Bus:dma2chan13
+[    3.488682] device: 'dma2chan14': device_add
+[    3.488720] PM: Adding info for No Bus:dma2chan14
+[    3.488741] device: 'dma2chan15': device_add
+[    3.488778] PM: Adding info for No Bus:dma2chan15
+[    3.488801] device: 'dma2chan16': device_add
+[    3.488843] PM: Adding info for No Bus:dma2chan16
+[    3.488863] device: 'dma2chan17': device_add
+[    3.488899] PM: Adding info for No Bus:dma2chan17
+[    3.488918] device: 'dma2chan18': device_add
+[    3.488958] PM: Adding info for No Bus:dma2chan18
+[    3.488980] device: 'dma2chan19': device_add
+[    3.489018] PM: Adding info for No Bus:dma2chan19
+[    3.489041] device: 'dma2chan20': device_add
+[    3.489078] PM: Adding info for No Bus:dma2chan20
+[    3.489100] device: 'dma2chan21': device_add
+[    3.489153] PM: Adding info for No Bus:dma2chan21
+[    3.489177] device: 'dma2chan22': device_add
+[    3.489216] PM: Adding info for No Bus:dma2chan22
+[    3.489239] device: 'dma2chan23': device_add
+[    3.489278] PM: Adding info for No Bus:dma2chan23
+[    3.489300] device: 'dma2chan24': device_add
+[    3.489339] PM: Adding info for No Bus:dma2chan24
+[    3.489361] device: 'dma2chan25': device_add
+[    3.489401] PM: Adding info for No Bus:dma2chan25
+[    3.489425] device: 'dma2chan26': device_add
+[    3.489462] PM: Adding info for No Bus:dma2chan26
+[    3.489480] device: 'dma2chan27': device_add
+[    3.489523] PM: Adding info for No Bus:dma2chan27
+[    3.489544] device: 'dma2chan28': device_add
+[    3.489581] PM: Adding info for No Bus:dma2chan28
+[    3.489600] device: 'dma2chan29': device_add
+[    3.489636] PM: Adding info for No Bus:dma2chan29
+[    3.489659] device: 'dma2chan30': device_add
+[    3.489696] PM: Adding info for No Bus:dma2chan30
+[    3.489867] driver: 'imx-sdma': driver_bound: bound to device '30e10000.dma-controller'
+[    3.489873] devices_kset: Moving 30e10000.dma-controller to end of list
+[    3.489877] PM: Moving platform:30e10000.dma-controller to end of list
+[    3.489882] devices_kset: Moving dma2chan0 to end of list
+[    3.489885] PM: Moving No Bus:dma2chan0 to end of list
+[    3.489891] devices_kset: Moving dma2chan1 to end of list
+[    3.489896] PM: Moving No Bus:dma2chan1 to end of list
+[    3.489899] devices_kset: Moving dma2chan2 to end of list
+[    3.489902] PM: Moving No Bus:dma2chan2 to end of list
+[    3.489905] devices_kset: Moving dma2chan3 to end of list
+[    3.489908] PM: Moving No Bus:dma2chan3 to end of list
+[    3.489912] devices_kset: Moving dma2chan4 to end of list
+[    3.489915] PM: Moving No Bus:dma2chan4 to end of list
+[    3.489918] devices_kset: Moving dma2chan5 to end of list
+[    3.489923] PM: Moving No Bus:dma2chan5 to end of list
+[    3.489927] devices_kset: Moving dma2chan6 to end of list
+[    3.489930] PM: Moving No Bus:dma2chan6 to end of list
+[    3.489935] devices_kset: Moving dma2chan7 to end of list
+[    3.489938] PM: Moving No Bus:dma2chan7 to end of list
+[    3.489941] devices_kset: Moving dma2chan8 to end of list
+[    3.489946] PM: Moving No Bus:dma2chan8 to end of list
+[    3.489949] devices_kset: Moving dma2chan9 to end of list
+[    3.489952] PM: Moving No Bus:dma2chan9 to end of list
+[    3.489957] devices_kset: Moving dma2chan10 to end of list
+[    3.489960] PM: Moving No Bus:dma2chan10 to end of list
+[    3.489963] devices_kset: Moving dma2chan11 to end of list
+[    3.489966] PM: Moving No Bus:dma2chan11 to end of list
+[    3.489971] devices_kset: Moving dma2chan12 to end of list
+[    3.489976] PM: Moving No Bus:dma2chan12 to end of list
+[    3.489979] devices_kset: Moving dma2chan13 to end of list
+[    3.489982] PM: Moving No Bus:dma2chan13 to end of list
+[    3.489987] devices_kset: Moving dma2chan14 to end of list
+[    3.489991] PM: Moving No Bus:dma2chan14 to end of list
+[    3.489995] devices_kset: Moving dma2chan15 to end of list
+[    3.490000] PM: Moving No Bus:dma2chan15 to end of list
+[    3.490003] devices_kset: Moving dma2chan16 to end of list
+[    3.490008] PM: Moving No Bus:dma2chan16 to end of list
+[    3.490011] devices_kset: Moving dma2chan17 to end of list
+[    3.490016] PM: Moving No Bus:dma2chan17 to end of list
+[    3.490019] devices_kset: Moving dma2chan18 to end of list
+[    3.490022] PM: Moving No Bus:dma2chan18 to end of list
+[    3.490027] devices_kset: Moving dma2chan19 to end of list
+[    3.490030] PM: Moving No Bus:dma2chan19 to end of list
+[    3.490035] devices_kset: Moving dma2chan20 to end of list
+[    3.490038] PM: Moving No Bus:dma2chan20 to end of list
+[    3.490045] devices_kset: Moving dma2chan21 to end of list
+[    3.490050] PM: Moving No Bus:dma2chan21 to end of list
+[    3.490053] devices_kset: Moving dma2chan22 to end of list
+[    3.490058] PM: Moving No Bus:dma2chan22 to end of list
+[    3.490061] devices_kset: Moving dma2chan23 to end of list
+[    3.490066] PM: Moving No Bus:dma2chan23 to end of list
+[    3.490069] devices_kset: Moving dma2chan24 to end of list
+[    3.490074] PM: Moving No Bus:dma2chan24 to end of list
+[    3.490077] devices_kset: Moving dma2chan25 to end of list
+[    3.490082] PM: Moving No Bus:dma2chan25 to end of list
+[    3.490085] devices_kset: Moving dma2chan26 to end of list
+[    3.490090] PM: Moving No Bus:dma2chan26 to end of list
+[    3.490095] devices_kset: Moving dma2chan27 to end of list
+[    3.490100] PM: Moving No Bus:dma2chan27 to end of list
+[    3.490104] devices_kset: Moving dma2chan28 to end of list
+[    3.490106] PM: Moving No Bus:dma2chan28 to end of list
+[    3.490111] devices_kset: Moving dma2chan29 to end of list
+[    3.490118] PM: Moving No Bus:dma2chan29 to end of list
+[    3.490121] devices_kset: Moving dma2chan30 to end of list
+[    3.490126] PM: Moving No Bus:dma2chan30 to end of list
+[    3.490157] bus: 'platform': really_probe: bound device 30e10000.dma-controller to driver imx-sdma
+[    3.490171] platform 32fc6000.lcd-controller: Retrying from deferred list
+[    3.490459] bus: 'platform': driver_probe_device: matched device 32fc6000.lcd-controller with driver imx-lcdifv3
+[    3.490466] bus: 'platform': really_probe: probing driver imx-lcdifv3 with device 32fc6000.lcd-controller
+[    3.490486] imx-lcdifv3 32fc6000.lcd-controller: no pinctrl handle
+[    3.490587] imx-lcdifv3 32fc6000.lcd-controller: adding to PM domain hdmimix
+[    3.490594] imx-lcdifv3 32fc6000.lcd-controller: genpd_add_device()
+[    3.490846] Registering platform device 'imx-lcdifv3-crtc.1'. Parent at 32fc6000.lcd-controller
+[    3.490850] device: 'imx-lcdifv3-crtc.1': device_add
+[    3.490866] bus: 'platform': add device imx-lcdifv3-crtc.1
+[    3.490893] PM: Adding info for platform:imx-lcdifv3-crtc.1
+[    3.490910] imx-lcdifv3 32fc6000.lcd-controller: genpd_runtime_resume()
+[    3.490924] imx-lcdifv3 32fc6000.lcd-controller: resume latency exceeded, 5375 ns
+[    3.491020] bus: 'platform': driver_probe_device: matched device imx-lcdifv3-crtc.1 with driver imx-lcdifv3-crtc
+[    3.491027] bus: 'platform': really_probe: probing driver imx-lcdifv3-crtc with device imx-lcdifv3-crtc.1
+[    3.491059] imx-lcdifv3-crtc imx-lcdifv3-crtc.1: no default pinctrl state
+[    3.491086] imx-lcdifv3-crtc imx-lcdifv3-crtc.1: adding component (ops lcdifv3_crtc_ops)
+[    3.491092] imx-drm display-subsystem: trying to bring up master
+[    3.491100] imx-drm display-subsystem: Looking for component 0
+[    3.491104] imx-drm display-subsystem: Looking for component 1
+[    3.491116] imx-drm display-subsystem: found component imx-lcdifv3-crtc.1, duplicate 0
+[    3.491123] imx-drm display-subsystem: Looking for component 2
+[    3.491131] imx-drm display-subsystem: found component 32c00000.bus:ldb@32ec005c, duplicate 0
+[    3.491135] imx-drm display-subsystem: Looking for component 3
+[    3.491145] imx-drm display-subsystem: found component 32c00000.bus:ldb@32ec005c, duplicate 1
+[    3.491149] imx-drm display-subsystem: Looking for component 4
+[    3.491159] imx-drm display-subsystem: found component 32fd8000.hdmi, duplicate 0
+[    3.491245] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    3.497874] [drm] No driver support for vblank timestamp query.
+[    3.503809] imx-drm display-subsystem: binding imx-lcdifv3-crtc.0 (ops lcdifv3_crtc_ops)
+[    3.503875] imx-drm display-subsystem: bound imx-lcdifv3-crtc.0 (ops lcdifv3_crtc_ops)
+[    3.511819] imx-drm display-subsystem: binding imx-lcdifv3-crtc.1 (ops lcdifv3_crtc_ops)
+[    3.511862] imx-drm display-subsystem: bound imx-lcdifv3-crtc.1 (ops lcdifv3_crtc_ops)
+[    3.514959] imx6q-pcie 33800000.pcie: PCIe PLL locked after 0 us.
+[    3.519794] imx-drm display-subsystem: binding 32c00000.bus:ldb@32ec005c (ops imx8mp_ldb_ops)
+[    3.525912] imx8mp-ldb 32c00000.bus:ldb@32ec005c: genpd_runtime_resume()
+[    3.525919] imx8mp-ldb 32c00000.bus:ldb@32ec005c: resume latency exceeded, 750 ns
+[    3.525928] imx6q-pcie 33800000.pcie: host bridge /pcie@33800000 ranges:
+[    3.526034] platform imx-lcdifv3-crtc.1: Driver imx-lcdifv3-crtc requests probe deferral
+[    3.532643] imx6q-pcie 33800000.pcie:   No bus range found for /pcie@33800000, using [bus 00-ff]
+[    3.532664] imx6q-pcie 33800000.pcie:    IO 0x1ff80000..0x1ff8ffff -> 0x00000000
+[    3.541446] platform imx-lcdifv3-crtc.1: Added to deferred list
+[    3.548850] imx6q-pcie 33800000.pcie:   MEM 0x18000000..0x1fefffff -> 0x18000000
+[    3.549044] driver: 'imx-lcdifv3': driver_bound: bound to device '32fc6000.lcd-controller'
+[    3.556255] devices_kset: Moving 32fc6000.lcd-controller to end of list
+[    3.556259] PM: Moving platform:32fc6000.lcd-controller to end of list
+[    3.556263] devices_kset: Moving imx-lcdifv3-crtc.1 to end of list
+[    3.556266] PM: Moving platform:imx-lcdifv3-crtc.1 to end of list
+[    3.556294] bus: 'platform': really_probe: bound device 32fc6000.lcd-controller to driver imx-lcdifv3
+[    3.556303] platform 32fc4000.hdmi-pai-pvi: Retrying from deferred list
+[    3.556587] bus: 'platform': driver_probe_device: matched device 32fc4000.hdmi-pai-pvi with driver imx-hdmi-pavi
+[    3.556595] bus: 'platform': really_probe: probing driver imx-hdmi-pavi with device 32fc4000.hdmi-pai-pvi
+[    3.556610] imx-hdmi-pavi 32fc4000.hdmi-pai-pvi: no pinctrl handle
+[    3.556680] driver: 'imx-hdmi-pavi': driver_bound: bound to device '32fc4000.hdmi-pai-pvi'
+[    3.556685] devices_kset: Moving 32fc4000.hdmi-pai-pvi to end of list
+[    3.556688] PM: Moving platform:32fc4000.hdmi-pai-pvi to end of list
+[    3.556711] bus: 'platform': really_probe: bound device 32fc4000.hdmi-pai-pvi to driver imx-hdmi-pavi
+[    3.556720] platform panel1: Retrying from deferred list
+[    3.556949] bus: 'platform': driver_probe_device: matched device panel1 with driver panel-simple
+[    3.556956] bus: 'platform': really_probe: probing driver panel-simple with device panel1
+[    3.556968] panel-simple panel1: no pinctrl handle
+[    3.557032] panel-simple panel1: panel1 supply power not found, using dummy regulator
+[    3.564946] devices_kset: Moving panel1 to end of list
+[    3.564950] PM: Moving platform:panel1 to end of list
+[    3.564958] panel-simple panel1: Linked as a consumer to regulator.0
+[    3.564966] panel-simple panel1: GPIO lookup for consumer enable
+[    3.564972] panel-simple panel1: using device tree for GPIO lookup
+[    3.564985] of_get_named_gpiod_flags: can't parse 'enable-gpios' property of node '/panel1[0]'
+[    3.564997] of_get_named_gpiod_flags: can't parse 'enable-gpio' property of node '/panel1[0]'
+[    3.565005] panel-simple panel1: using lookup tables for GPIO lookup
+[    3.565013] panel-simple panel1: No GPIO consumer enable found
+[    3.565023] driver: 'panel-simple': driver_bound: bound to device 'panel1'
+[    3.565027] devices_kset: Moving panel1 to end of list
+[    3.565031] PM: Moving platform:panel1 to end of list
+[    3.565051] bus: 'platform': really_probe: bound device panel1 to driver panel-simple
+[    3.565058] platform panel0: Retrying from deferred list
+[    3.565267] bus: 'platform': driver_probe_device: matched device panel0 with driver panel-simple
+[    3.565272] bus: 'platform': really_probe: probing driver panel-simple with device panel0
+[    3.565286] panel-simple panel0: no pinctrl handle
+[    3.565348] panel-simple panel0: panel0 supply power not found, using dummy regulator
+[    3.573238] devices_kset: Moving panel0 to end of list
+[    3.573242] PM: Moving platform:panel0 to end of list
+[    3.573249] panel-simple panel0: Linked as a consumer to regulator.0
+[    3.573256] panel-simple panel0: GPIO lookup for consumer enable
+[    3.573262] panel-simple panel0: using device tree for GPIO lookup
+[    3.573274] of_get_named_gpiod_flags: can't parse 'enable-gpios' property of node '/panel0[0]'
+[    3.573285] of_get_named_gpiod_flags: can't parse 'enable-gpio' property of node '/panel0[0]'
+[    3.573293] panel-simple panel0: using lookup tables for GPIO lookup
+[    3.573300] panel-simple panel0: No GPIO consumer enable found
+[    3.573311] driver: 'panel-simple': driver_bound: bound to device 'panel0'
+[    3.573315] devices_kset: Moving panel0 to end of list
+[    3.573320] PM: Moving platform:panel0 to end of list
+[    3.573343] bus: 'platform': really_probe: bound device panel0 to driver panel-simple
+[    3.573351] platform 30be0000.ethernet: Retrying from deferred list
+[    3.573766] bus: 'platform': driver_probe_device: matched device 30be0000.ethernet with driver fec
+[    3.573772] bus: 'platform': really_probe: probing driver fec with device 30be0000.ethernet
+[    3.573993] fec 30be0000.ethernet: no init pinctrl state
+[    3.574011] fec 30be0000.ethernet: no sleep pinctrl state
+[    3.574018] fec 30be0000.ethernet: no idle pinctrl state
+[    3.574256] of_get_named_gpiod_flags: can't parse 'phy-reset-gpios' property of node '/soc@0/bus@30800000/ethernet@30be0000[0]'
+[    3.574337] device: 'pps0': device_add
+[    3.574390] PM: Adding info for No Bus:pps0
+[    3.574454] PM: audiomix: Power-off latency exceeded, new value 14875 ns
+[    3.574477] imx-lcdifv3 32fc6000.lcd-controller: genpd_runtime_suspend()
+[    3.574489] imx-lcdifv3 32fc6000.lcd-controller: suspend latency exceeded, 4000 ns
+[    3.575095] pps pps0: new PPS source ptp0
+[    3.579139] device: 'ptp0': device_add
+[    3.579196] PM: Adding info for No Bus:ptp0
+[    3.585395] device: '30be0000.ethernet-1': device_add
+[    3.585456] PM: Adding info for No Bus:30be0000.ethernet-1
+[    3.585486] mdio_bus 30be0000.ethernet-1: GPIO lookup for consumer reset
+[    3.585493] mdio_bus 30be0000.ethernet-1: using device tree for GPIO lookup
+[    3.585513] of_get_named_gpiod_flags: can't parse 'reset-gpios' property of node '/soc@0/bus@30800000/ethernet@30be0000/mdio[0]'
+[    3.585526] of_get_named_gpiod_flags: can't parse 'reset-gpio' property of node '/soc@0/bus@30800000/ethernet@30be0000/mdio[0]'
+[    3.585535] mdio_bus 30be0000.ethernet-1: using lookup tables for GPIO lookup
+[    3.585543] mdio_bus 30be0000.ethernet-1: No GPIO consumer reset found
+[    3.585547] libphy: fec_enet_mii_bus: probed
+[    3.592399] mdio_bus 30be0000.ethernet-1:00: GPIO lookup for consumer reset
+[    3.592406] mdio_bus 30be0000.ethernet-1:00: using device tree for GPIO lookup
+[    3.592421] of_get_named_gpiod_flags: can't parse 'reset-gpios' property of node '/soc@0/bus@30800000/ethernet@30be0000/mdio/ethernet-phy@0[0]'
+[    3.592434] of_get_named_gpiod_flags: can't parse 'reset-gpio' property of node '/soc@0/bus@30800000/ethernet@30be0000/mdio/ethernet-phy@0[0]'
+[    3.592443] mdio_bus 30be0000.ethernet-1:00: using lookup tables for GPIO lookup
+[    3.592451] mdio_bus 30be0000.ethernet-1:00: No GPIO consumer reset found
+[    3.592461] device: '30be0000.ethernet-1:00': device_add
+[    3.592491] bus: 'mdio_bus': add device 30be0000.ethernet-1:00
+[    3.592512] PM: Adding info for mdio_bus:30be0000.ethernet-1:00
+[    3.592556] bus: 'mdio_bus': driver_probe_device: matched device 30be0000.ethernet-1:00 with driver TI DP83867
+[    3.592564] bus: 'mdio_bus': really_probe: probing driver TI DP83867 with device 30be0000.ethernet-1:00
+[    3.592583] TI DP83867 30be0000.ethernet-1:00: no pinctrl handle
+[    3.592682] driver: 'TI DP83867': driver_bound: bound to device '30be0000.ethernet-1:00'
+[    3.592687] devices_kset: Moving 30be0000.ethernet-1:00 to end of list
+[    3.592691] PM: Moving mdio_bus:30be0000.ethernet-1:00 to end of list
+[    3.592715] bus: 'mdio_bus': really_probe: bound device 30be0000.ethernet-1:00 to driver TI DP83867
+[    3.592765] device: 'eth1': device_add
+[    3.592903] PM: Adding info for No Bus:eth1
+[    3.593301] device: 'wakeup3': device_add
+[    3.593353] fec 30be0000.ethernet eth1: registered PHC device 0
+[    3.599293] driver: 'fec': driver_bound: bound to device '30be0000.ethernet'
+[    3.599298] devices_kset: Moving 30be0000.ethernet to end of list
+[    3.599302] PM: Moving platform:30be0000.ethernet to end of list
+[    3.599306] devices_kset: Moving ptp0 to end of list
+[    3.599309] PM: Moving No Bus:ptp0 to end of list
+[    3.599313] devices_kset: Moving 30be0000.ethernet-1 to end of list
+[    3.599318] PM: Moving No Bus:30be0000.ethernet-1 to end of list
+[    3.599321] devices_kset: Moving 30be0000.ethernet-1:00 to end of list
+[    3.599326] PM: Moving mdio_bus:30be0000.ethernet-1:00 to end of list
+[    3.599329] devices_kset: Moving eth1 to end of list
+[    3.599334] PM: Moving No Bus:eth1 to end of list
+[    3.599339] devices_kset: Moving wakeup3 to end of list
+[    3.599367] bus: 'platform': really_probe: bound device 30be0000.ethernet to driver fec
+[    3.599379] platform 38100000.dwc3: Retrying from deferred list
+[    3.599389] imx8mp-dwc3 32f10100.usb: genpd_runtime_resume()
+[    3.599400] imx8mp-dwc3 32f10100.usb: resume latency exceeded, 3625 ns
+[    3.599852] bus: 'platform': driver_probe_device: matched device 38100000.dwc3 with driver dwc3
+[    3.599859] bus: 'platform': really_probe: probing driver dwc3 with device 38100000.dwc3
+[    3.599876] dwc3 38100000.dwc3: no pinctrl handle
+[    3.600154] Registering platform device 'xhci-hcd.1.auto'. Parent at 38100000.dwc3
+[    3.600158] device: 'xhci-hcd.1.auto': device_add
+[    3.600173] bus: 'platform': add device xhci-hcd.1.auto
+[    3.600198] PM: Adding info for platform:xhci-hcd.1.auto
+[    3.600359] bus: 'platform': driver_probe_device: matched device xhci-hcd.1.auto with driver xhci-hcd
+[    3.600365] bus: 'platform': really_probe: probing driver xhci-hcd with device xhci-hcd.1.auto
+[    3.600398] xhci-hcd xhci-hcd.1.auto: no default pinctrl state
+[    3.600455] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
+[    3.605971] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 1
+[    3.613983] xhci-hcd xhci-hcd.1.auto: hcc params 0x0220fe6c hci version 0x110 quirks 0x0000002001810010
+[    3.623424] xhci-hcd xhci-hcd.1.auto: irq 67, io mem 0x38100000
+[    3.629630] device: 'usb1': device_add
+[    3.629717] bus: 'usb': add device usb1
+[    3.629755] PM: Adding info for usb:usb1
+[    3.630193] bus: 'usb': driver_probe_device: matched device usb1 with driver usb
+[    3.630199] bus: 'usb': really_probe: probing driver usb with device usb1
+[    3.630246] device: '1-0:1.0': device_add
+[    3.630281] bus: 'usb': add device 1-0:1.0
+[    3.630290] PM: Adding info for usb:1-0:1.0
+[    3.630318] bus: 'usb': driver_probe_device: matched device 1-0:1.0 with driver hub
+[    3.630323] bus: 'usb': really_probe: probing driver hub with device 1-0:1.0
+[    3.630339] hub 1-0:1.0: USB hub found
+[    3.634130] hub 1-0:1.0: 1 port detected
+[    3.638099] device: 'usb1-port1': device_add
+[    3.638136] PM: Adding info for No Bus:usb1-port1
+[    3.638178] driver: 'hub': driver_bound: bound to device '1-0:1.0'
+[    3.638183] devices_kset: Moving 1-0:1.0 to end of list
+[    3.638187] PM: Moving usb:1-0:1.0 to end of list
+[    3.638190] devices_kset: Moving usb1-port1 to end of list
+[    3.638196] PM: Moving No Bus:usb1-port1 to end of list
+[    3.638224] bus: 'usb': really_probe: bound device 1-0:1.0 to driver hub
+[    3.638235] device: 'ep_81': device_add
+[    3.638276] PM: Adding info for No Bus:ep_81
+[    3.638286] driver: 'usb': driver_bound: bound to device 'usb1'
+[    3.638291] devices_kset: Moving usb1 to end of list
+[    3.638294] PM: Moving usb:usb1 to end of list
+[    3.638299] devices_kset: Moving 1-0:1.0 to end of list
+[    3.638307] PM: Moving usb:1-0:1.0 to end of list
+[    3.638310] devices_kset: Moving usb1-port1 to end of list
+[    3.638314] PM: Moving No Bus:usb1-port1 to end of list
+[    3.638320] devices_kset: Moving ep_81 to end of list
+[    3.638322] PM: Moving No Bus:ep_81 to end of list
+[    3.638351] bus: 'usb': really_probe: bound device usb1 to driver usb
+[    3.638360] device: 'ep_00': device_add
+[    3.638401] PM: Adding info for No Bus:ep_00
+[    3.638410] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
+[    3.643925] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned bus number 2
+[    3.651600] xhci-hcd xhci-hcd.1.auto: Host supports USB 3.0 SuperSpeed
+[    3.658186] usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
+[    3.666376] device: 'usb2': device_add
+[    3.666446] bus: 'usb': add device usb2
+[    3.666485] PM: Adding info for usb:usb2
+[    3.666941] bus: 'usb': driver_probe_device: matched device usb2 with driver usb
+[    3.666948] bus: 'usb': really_probe: probing driver usb with device usb2
+[    3.667007] device: '2-0:1.0': device_add
+[    3.667047] bus: 'usb': add device 2-0:1.0
+[    3.667059] PM: Adding info for usb:2-0:1.0
+[    3.667090] bus: 'usb': driver_probe_device: matched device 2-0:1.0 with driver hub
+[    3.667096] bus: 'usb': really_probe: probing driver hub with device 2-0:1.0
+[    3.667109] hub 2-0:1.0: USB hub found
+[    3.670899] hub 2-0:1.0: 1 port detected
+[    3.674877] device: 'usb2-port1': device_add
+[    3.674909] PM: Adding info for No Bus:usb2-port1
+[    3.674953] driver: 'hub': driver_bound: bound to device '2-0:1.0'
+[    3.674958] devices_kset: Moving 2-0:1.0 to end of list
+[    3.674962] PM: Moving usb:2-0:1.0 to end of list
+[    3.674965] devices_kset: Moving usb2-port1 to end of list
+[    3.674971] PM: Moving No Bus:usb2-port1 to end of list
+[    3.675001] bus: 'usb': really_probe: bound device 2-0:1.0 to driver hub
+[    3.675010] device: 'ep_81': device_add
+[    3.675051] PM: Adding info for No Bus:ep_81
+[    3.675059] driver: 'usb': driver_bound: bound to device 'usb2'
+[    3.675062] devices_kset: Moving usb2 to end of list
+[    3.675067] PM: Moving usb:usb2 to end of list
+[    3.675072] devices_kset: Moving 2-0:1.0 to end of list
+[    3.675077] PM: Moving usb:2-0:1.0 to end of list
+[    3.675081] devices_kset: Moving usb2-port1 to end of list
+[    3.675087] PM: Moving No Bus:usb2-port1 to end of list
+[    3.675092] devices_kset: Moving ep_81 to end of list
+[    3.675095] PM: Moving No Bus:ep_81 to end of list
+[    3.675118] bus: 'usb': really_probe: bound device usb2 to driver usb
+[    3.675128] device: 'ep_00': device_add
+[    3.675171] PM: Adding info for No Bus:ep_00
+[    3.675180] driver: 'xhci-hcd': driver_bound: bound to device 'xhci-hcd.1.auto'
+[    3.675184] devices_kset: Moving xhci-hcd.1.auto to end of list
+[    3.675187] PM: Moving platform:xhci-hcd.1.auto to end of list
+[    3.675190] devices_kset: Moving usb1 to end of list
+[    3.675193] PM: Moving usb:usb1 to end of list
+[    3.675196] devices_kset: Moving 1-0:1.0 to end of list
+[    3.675199] PM: Moving usb:1-0:1.0 to end of list
+[    3.675203] devices_kset: Moving usb1-port1 to end of list
+[    3.675206] PM: Moving No Bus:usb1-port1 to end of list
+[    3.675209] devices_kset: Moving ep_81 to end of list
+[    3.675212] PM: Moving No Bus:ep_81 to end of list
+[    3.675218] devices_kset: Moving ep_00 to end of list
+[    3.675223] PM: Moving No Bus:ep_00 to end of list
+[    3.675228] devices_kset: Moving usb2 to end of list
+[    3.675231] PM: Moving usb:usb2 to end of list
+[    3.675234] devices_kset: Moving 2-0:1.0 to end of list
+[    3.675237] PM: Moving usb:2-0:1.0 to end of list
+[    3.675244] devices_kset: Moving usb2-port1 to end of list
+[    3.675249] PM: Moving No Bus:usb2-port1 to end of list
+[    3.675254] devices_kset: Moving ep_81 to end of list
+[    3.675259] PM: Moving No Bus:ep_81 to end of list
+[    3.675264] devices_kset: Moving ep_00 to end of list
+[    3.675269] PM: Moving No Bus:ep_00 to end of list
+[    3.675286] bus: 'platform': really_probe: bound device xhci-hcd.1.auto to driver xhci-hcd
+[    3.675328] driver: 'dwc3': driver_bound: bound to device '38100000.dwc3'
+[    3.675332] devices_kset: Moving 38100000.dwc3 to end of list
+[    3.675335] PM: Moving platform:38100000.dwc3 to end of list
+[    3.675338] devices_kset: Moving xhci-hcd.1.auto to end of list
+[    3.675341] PM: Moving platform:xhci-hcd.1.auto to end of list
+[    3.675344] devices_kset: Moving usb1 to end of list
+[    3.675349] PM: Moving usb:usb1 to end of list
+[    3.675352] devices_kset: Moving 1-0:1.0 to end of list
+[    3.675354] PM: Moving usb:1-0:1.0 to end of list
+[    3.675359] devices_kset: Moving usb1-port1 to end of list
+[    3.675362] PM: Moving No Bus:usb1-port1 to end of list
+[    3.675365] devices_kset: Moving ep_81 to end of list
+[    3.675368] PM: Moving No Bus:ep_81 to end of list
+[    3.675373] devices_kset: Moving ep_00 to end of list
+[    3.675376] PM: Moving No Bus:ep_00 to end of list
+[    3.675382] devices_kset: Moving usb2 to end of list
+[    3.675385] PM: Moving usb:usb2 to end of list
+[    3.675387] devices_kset: Moving 2-0:1.0 to end of list
+[    3.675392] PM: Moving usb:2-0:1.0 to end of list
+[    3.675397] devices_kset: Moving usb2-port1 to end of list
+[    3.675402] PM: Moving No Bus:usb2-port1 to end of list
+[    3.675407] devices_kset: Moving ep_81 to end of list
+[    3.675412] PM: Moving No Bus:ep_81 to end of list
+[    3.675417] devices_kset: Moving ep_00 to end of list
+[    3.675420] PM: Moving No Bus:ep_00 to end of list
+[    3.675445] bus: 'platform': really_probe: bound device 38100000.dwc3 to driver dwc3
+[    3.675454] platform 38200000.dwc3: Retrying from deferred list
+[    3.675461] imx8mp-dwc3 32f10108.usb: genpd_runtime_resume()
+[    3.675473] imx8mp-dwc3 32f10108.usb: resume latency exceeded, 3750 ns
+[    3.675916] bus: 'platform': driver_probe_device: matched device 38200000.dwc3 with driver dwc3
+[    3.675923] bus: 'platform': really_probe: probing driver dwc3 with device 38200000.dwc3
+[    3.675941] dwc3 38200000.dwc3: no pinctrl handle
+[    3.676205] Registering platform device 'xhci-hcd.2.auto'. Parent at 38200000.dwc3
+[    3.676209] device: 'xhci-hcd.2.auto': device_add
+[    3.676226] bus: 'platform': add device xhci-hcd.2.auto
+[    3.676252] PM: Adding info for platform:xhci-hcd.2.auto
+[    3.676411] bus: 'platform': driver_probe_device: matched device xhci-hcd.2.auto with driver xhci-hcd
+[    3.676418] bus: 'platform': really_probe: probing driver xhci-hcd with device xhci-hcd.2.auto
+[    3.676456] xhci-hcd xhci-hcd.2.auto: no default pinctrl state
+[    3.676518] xhci-hcd xhci-hcd.2.auto: xHCI Host Controller
+[    3.682037] xhci-hcd xhci-hcd.2.auto: new USB bus registered, assigned bus number 3
+[    3.690052] xhci-hcd xhci-hcd.2.auto: hcc params 0x0220fe6c hci version 0x110 quirks 0x0000002001810010
+[    3.699495] xhci-hcd xhci-hcd.2.auto: irq 68, io mem 0x38200000
+[    3.705677] device: 'usb3': device_add
+[    3.705755] bus: 'usb': add device usb3
+[    3.705797] PM: Adding info for usb:usb3
+[    3.706225] bus: 'usb': driver_probe_device: matched device usb3 with driver usb
+[    3.706233] bus: 'usb': really_probe: probing driver usb with device usb3
+[    3.706273] device: '3-0:1.0': device_add
+[    3.706309] bus: 'usb': add device 3-0:1.0
+[    3.706320] PM: Adding info for usb:3-0:1.0
+[    3.706355] bus: 'usb': driver_probe_device: matched device 3-0:1.0 with driver hub
+[    3.706359] bus: 'usb': really_probe: probing driver hub with device 3-0:1.0
+[    3.706375] hub 3-0:1.0: USB hub found
+[    3.710160] hub 3-0:1.0: 1 port detected
+[    3.714127] device: 'usb3-port1': device_add
+[    3.714158] PM: Adding info for No Bus:usb3-port1
+[    3.714196] driver: 'hub': driver_bound: bound to device '3-0:1.0'
+[    3.714201] devices_kset: Moving 3-0:1.0 to end of list
+[    3.714205] PM: Moving usb:3-0:1.0 to end of list
+[    3.714208] devices_kset: Moving usb3-port1 to end of list
+[    3.714213] PM: Moving No Bus:usb3-port1 to end of list
+[    3.714243] bus: 'usb': really_probe: bound device 3-0:1.0 to driver hub
+[    3.714261] device: 'ep_81': device_add
+[    3.714300] PM: Adding info for No Bus:ep_81
+[    3.714310] driver: 'usb': driver_bound: bound to device 'usb3'
+[    3.714314] devices_kset: Moving usb3 to end of list
+[    3.714319] PM: Moving usb:usb3 to end of list
+[    3.714324] devices_kset: Moving 3-0:1.0 to end of list
+[    3.714327] PM: Moving usb:3-0:1.0 to end of list
+[    3.714332] devices_kset: Moving usb3-port1 to end of list
+[    3.714335] PM: Moving No Bus:usb3-port1 to end of list
+[    3.714340] devices_kset: Moving ep_81 to end of list
+[    3.714343] PM: Moving No Bus:ep_81 to end of list
+[    3.714368] bus: 'usb': really_probe: bound device usb3 to driver usb
+[    3.714379] device: 'ep_00': device_add
+[    3.714423] PM: Adding info for No Bus:ep_00
+[    3.714432] xhci-hcd xhci-hcd.2.auto: xHCI Host Controller
+[    3.719939] xhci-hcd xhci-hcd.2.auto: new USB bus registered, assigned bus number 4
+[    3.727615] xhci-hcd xhci-hcd.2.auto: Host supports USB 3.0 SuperSpeed
+[    3.734213] usb usb4: We don't know the algorithms for LPM for this host, disabling LPM.
+[    3.742417] device: 'usb4': device_add
+[    3.742493] bus: 'usb': add device usb4
+[    3.742530] PM: Adding info for usb:usb4
+[    3.742992] bus: 'usb': driver_probe_device: matched device usb4 with driver usb
+[    3.742998] bus: 'usb': really_probe: probing driver usb with device usb4
+[    3.743048] device: '4-0:1.0': device_add
+[    3.743080] bus: 'usb': add device 4-0:1.0
+[    3.743089] PM: Adding info for usb:4-0:1.0
+[    3.743121] bus: 'usb': driver_probe_device: matched device 4-0:1.0 with driver hub
+[    3.743129] bus: 'usb': really_probe: probing driver hub with device 4-0:1.0
+[    3.743143] hub 4-0:1.0: USB hub found
+[    3.746932] hub 4-0:1.0: 1 port detected
+[    3.750901] device: 'usb4-port1': device_add
+[    3.750943] PM: Adding info for No Bus:usb4-port1
+[    3.750985] driver: 'hub': driver_bound: bound to device '4-0:1.0'
+[    3.750989] devices_kset: Moving 4-0:1.0 to end of list
+[    3.750992] PM: Moving usb:4-0:1.0 to end of list
+[    3.750998] devices_kset: Moving usb4-port1 to end of list
+[    3.751000] PM: Moving No Bus:usb4-port1 to end of list
+[    3.751026] bus: 'usb': really_probe: bound device 4-0:1.0 to driver hub
+[    3.751036] device: 'ep_81': device_add
+[    3.751079] PM: Adding info for No Bus:ep_81
+[    3.751087] driver: 'usb': driver_bound: bound to device 'usb4'
+[    3.751091] devices_kset: Moving usb4 to end of list
+[    3.751094] PM: Moving usb:usb4 to end of list
+[    3.751099] devices_kset: Moving 4-0:1.0 to end of list
+[    3.751102] PM: Moving usb:4-0:1.0 to end of list
+[    3.751106] devices_kset: Moving usb4-port1 to end of list
+[    3.751109] PM: Moving No Bus:usb4-port1 to end of list
+[    3.751116] devices_kset: Moving ep_81 to end of list
+[    3.751119] PM: Moving No Bus:ep_81 to end of list
+[    3.751143] bus: 'usb': really_probe: bound device usb4 to driver usb
+[    3.751155] device: 'ep_00': device_add
+[    3.751192] PM: Adding info for No Bus:ep_00
+[    3.751202] driver: 'xhci-hcd': driver_bound: bound to device 'xhci-hcd.2.auto'
+[    3.751206] devices_kset: Moving xhci-hcd.2.auto to end of list
+[    3.751209] PM: Moving platform:xhci-hcd.2.auto to end of list
+[    3.751212] devices_kset: Moving usb3 to end of list
+[    3.751215] PM: Moving usb:usb3 to end of list
+[    3.751218] devices_kset: Moving 3-0:1.0 to end of list
+[    3.751220] PM: Moving usb:3-0:1.0 to end of list
+[    3.751224] devices_kset: Moving usb3-port1 to end of list
+[    3.751227] PM: Moving No Bus:usb3-port1 to end of list
+[    3.751230] devices_kset: Moving ep_81 to end of list
+[    3.751235] PM: Moving No Bus:ep_81 to end of list
+[    3.751239] devices_kset: Moving ep_00 to end of list
+[    3.751244] PM: Moving No Bus:ep_00 to end of list
+[    3.751249] devices_kset: Moving usb4 to end of list
+[    3.751254] PM: Moving usb:usb4 to end of list
+[    3.751259] devices_kset: Moving 4-0:1.0 to end of list
+[    3.751262] PM: Moving usb:4-0:1.0 to end of list
+[    3.751266] devices_kset: Moving usb4-port1 to end of list
+[    3.751273] PM: Moving No Bus:usb4-port1 to end of list
+[    3.751277] devices_kset: Moving ep_81 to end of list
+[    3.751280] PM: Moving No Bus:ep_81 to end of list
+[    3.751285] devices_kset: Moving ep_00 to end of list
+[    3.751290] PM: Moving No Bus:ep_00 to end of list
+[    3.751307] bus: 'platform': really_probe: bound device xhci-hcd.2.auto to driver xhci-hcd
+[    3.751366] driver: 'dwc3': driver_bound: bound to device '38200000.dwc3'
+[    3.751371] devices_kset: Moving 38200000.dwc3 to end of list
+[    3.751374] PM: Moving platform:38200000.dwc3 to end of list
+[    3.751377] devices_kset: Moving xhci-hcd.2.auto to end of list
+[    3.751380] PM: Moving platform:xhci-hcd.2.auto to end of list
+[    3.751383] devices_kset: Moving usb3 to end of list
+[    3.751386] PM: Moving usb:usb3 to end of list
+[    3.751389] devices_kset: Moving 3-0:1.0 to end of list
+[    3.751392] PM: Moving usb:3-0:1.0 to end of list
+[    3.751397] devices_kset: Moving usb3-port1 to end of list
+[    3.751400] PM: Moving No Bus:usb3-port1 to end of list
+[    3.751403] devices_kset: Moving ep_81 to end of list
+[    3.751406] PM: Moving No Bus:ep_81 to end of list
+[    3.751411] devices_kset: Moving ep_00 to end of list
+[    3.751414] PM: Moving No Bus:ep_00 to end of list
+[    3.751422] devices_kset: Moving usb4 to end of list
+[    3.751424] PM: Moving usb:usb4 to end of list
+[    3.751429] devices_kset: Moving 4-0:1.0 to end of list
+[    3.751434] PM: Moving usb:4-0:1.0 to end of list
+[    3.751437] devices_kset: Moving usb4-port1 to end of list
+[    3.751440] PM: Moving No Bus:usb4-port1 to end of list
+[    3.751443] devices_kset: Moving ep_81 to end of list
+[    3.751446] PM: Moving No Bus:ep_81 to end of list
+[    3.751450] devices_kset: Moving ep_00 to end of list
+[    3.751454] PM: Moving No Bus:ep_00 to end of list
+[    3.751476] bus: 'platform': really_probe: bound device 38200000.dwc3 to driver dwc3
+[    3.751485] platform pwm-fan: Retrying from deferred list
+[    3.752021] bus: 'platform': driver_probe_device: matched device pwm-fan with driver pwm-fan
+[    3.752029] bus: 'platform': really_probe: probing driver pwm-fan with device pwm-fan
+[    3.752047] pwm-fan pwm-fan: no pinctrl handle
+[    3.752084] devices_kset: Moving pwm-fan to end of list
+[    3.752088] PM: Moving platform:pwm-fan to end of list
+[    3.752097] pwm-fan pwm-fan: Linked as a consumer to 30670000.pwm
+[    3.753169] device: 'hwmon6': device_add
+[    3.753222] PM: Adding info for No Bus:hwmon6
+[    3.753247] device: 'cooling_device2': device_add
+[    3.753284] PM: Adding info for No Bus:cooling_device2
+[    3.755334] driver: 'pwm-fan': driver_bound: bound to device 'pwm-fan'
+[    3.755340] devices_kset: Moving pwm-fan to end of list
+[    3.755343] PM: Moving platform:pwm-fan to end of list
+[    3.755346] devices_kset: Moving hwmon6 to end of list
+[    3.755349] PM: Moving No Bus:hwmon6 to end of list
+[    3.755375] bus: 'platform': really_probe: bound device pwm-fan to driver pwm-fan
+[    3.755384] platform imx-cpufreq-dt: Retrying from deferred list
+[    3.755575] bus: 'platform': driver_probe_device: matched device imx-cpufreq-dt with driver imx-cpufreq-dt
+[    3.755582] bus: 'platform': really_probe: probing driver imx-cpufreq-dt with device imx-cpufreq-dt
+[    3.755616] imx-cpufreq-dt imx-cpufreq-dt: no default pinctrl state
+[    3.755653] imx-cpufreq-dt imx-cpufreq-dt: cpu speed grade 7 mkt segment 2 supported-hw 0x80 0x4
+[    3.764496] Registering platform device 'cpufreq-dt'. Parent at imx-cpufreq-dt
+[    3.764499] device: 'cpufreq-dt': device_add
+[    3.764520] bus: 'platform': add device cpufreq-dt
+[    3.764547] PM: Adding info for platform:cpufreq-dt
+[    3.764710] bus: 'platform': driver_probe_device: matched device cpufreq-dt with driver cpufreq-dt
+[    3.764718] bus: 'platform': really_probe: probing driver cpufreq-dt with device cpufreq-dt
+[    3.764740] cpufreq-dt cpufreq-dt: no default pinctrl state
+[    3.764782] platform cpufreq-dt: Driver cpufreq-dt requests probe deferral
+[    3.764789] platform cpufreq-dt: Added to deferred list
+[    3.764891] driver: 'imx-cpufreq-dt': driver_bound: bound to device 'imx-cpufreq-dt'
+[    3.764895] devices_kset: Moving imx-cpufreq-dt to end of list
+[    3.764899] PM: Moving platform:imx-cpufreq-dt to end of list
+[    3.764902] devices_kset: Moving cpufreq-dt to end of list
+[    3.764907] PM: Moving platform:cpufreq-dt to end of list
+[    3.764919] bus: 'platform': really_probe: bound device imx-cpufreq-dt to driver imx-cpufreq-dt
+[    3.764929] platform pwr_seq: Retrying from deferred list
+[    3.765396] bus: 'platform': driver_probe_device: matched device pwr_seq with driver pwrseq_simple
+[    3.765404] bus: 'platform': really_probe: probing driver pwrseq_simple with device pwr_seq
+[    3.765415] pwrseq_simple pwr_seq: no pinctrl handle
+[    3.765451] pwrseq_simple pwr_seq: GPIO lookup for consumer reset
+[    3.765457] pwrseq_simple pwr_seq: using device tree for GPIO lookup
+[    3.765488] of_get_named_gpiod_flags: parsed 'reset-gpios' property of node '/pwr_seq[0]' - status (0)
+[    3.765506] driver: 'pwrseq_simple': driver_bound: bound to device 'pwr_seq'
+[    3.765511] devices_kset: Moving pwr_seq to end of list
+[    3.765517] PM: Moving platform:pwr_seq to end of list
+[    3.765538] bus: 'platform': really_probe: bound device pwr_seq to driver pwrseq_simple
+[    3.765546] platform 30b40000.mmc: Retrying from deferred list
+[    3.766027] bus: 'platform': driver_probe_device: matched device 30b40000.mmc with driver sdhci-esdhc-imx
+[    3.766035] bus: 'platform': really_probe: probing driver sdhci-esdhc-imx with device 30b40000.mmc
+[    3.766145] sdhci-esdhc-imx 30b40000.mmc: no init pinctrl state
+[    3.766159] sdhci-esdhc-imx 30b40000.mmc: no sleep pinctrl state
+[    3.766163] sdhci-esdhc-imx 30b40000.mmc: no idle pinctrl state
+[    3.766308] mmc0: CQHCI version 5.10
+[    3.769917] sdhci-esdhc-imx 30b40000.mmc: GPIO lookup for consumer wp
+[    3.769923] sdhci-esdhc-imx 30b40000.mmc: using device tree for GPIO lookup
+[    3.769937] of_get_named_gpiod_flags: can't parse 'wp-gpios' property of node '/soc@0/bus@30800000/mmc@30b40000[0]'
+[    3.769948] of_get_named_gpiod_flags: can't parse 'wp-gpio' property of node '/soc@0/bus@30800000/mmc@30b40000[0]'
+[    3.769957] sdhci-esdhc-imx 30b40000.mmc: using lookup tables for GPIO lookup
+[    3.769965] sdhci-esdhc-imx 30b40000.mmc: No GPIO consumer wp found
+[    3.769996] sdhci-esdhc-imx 30b40000.mmc: allocated mmc-pwrseq
+[    3.776752] device: 'mmc0::': device_add
+[    3.776813] PM: Adding info for No Bus:mmc0::
+[    3.776835] device: 'mmc0': device_add
+[    3.776869] PM: Adding info for No Bus:mmc0
+[    3.915741] mmc0: SDHCI controller on 30b40000.mmc [30b40000.mmc] using ADMA
+[    3.922825] driver: 'sdhci-esdhc-imx': driver_bound: bound to device '30b40000.mmc'
+[    3.922832] devices_kset: Moving 30b40000.mmc to end of list
+[    3.922836] PM: Moving platform:30b40000.mmc to end of list
+[    3.922840] devices_kset: Moving mmc0:: to end of list
+[    3.922843] PM: Moving No Bus:mmc0:: to end of list
+[    3.922847] devices_kset: Moving mmc0 to end of list
+[    3.922852] PM: Moving No Bus:mmc0 to end of list
+[    3.922886] bus: 'platform': really_probe: bound device 30b40000.mmc to driver sdhci-esdhc-imx
+[    3.922898] platform 30b50000.mmc: Retrying from deferred list
+[    3.923574] bus: 'platform': driver_probe_device: matched device 30b50000.mmc with driver sdhci-esdhc-imx
+[    3.923581] bus: 'platform': really_probe: probing driver sdhci-esdhc-imx with device 30b50000.mmc
+[    3.923865] sdhci-esdhc-imx 30b50000.mmc: no init pinctrl state
+[    3.923879] sdhci-esdhc-imx 30b50000.mmc: no sleep pinctrl state
+[    3.923886] sdhci-esdhc-imx 30b50000.mmc: no idle pinctrl state
+[    3.924041] mmc1: CQHCI version 5.10
+[    3.927659] sdhci-esdhc-imx 30b50000.mmc: GPIO lookup for consumer cd
+[    3.927664] sdhci-esdhc-imx 30b50000.mmc: using device tree for GPIO lookup
+[    3.927687] of_get_named_gpiod_flags: parsed 'cd-gpios' property of node '/soc@0/bus@30800000/mmc@30b50000[0]' - status (0)
+[    3.927701] gpio-44 (cd): gpiod_set_debounce: missing set() or set_config() operations
+[    3.927706] sdhci-esdhc-imx 30b50000.mmc: Got CD GPIO
+[    3.932771] sdhci-esdhc-imx 30b50000.mmc: GPIO lookup for consumer wp
+[    3.932775] sdhci-esdhc-imx 30b50000.mmc: using device tree for GPIO lookup
+[    3.932787] of_get_named_gpiod_flags: can't parse 'wp-gpios' property of node '/soc@0/bus@30800000/mmc@30b50000[0]'
+[    3.932800] of_get_named_gpiod_flags: can't parse 'wp-gpio' property of node '/soc@0/bus@30800000/mmc@30b50000[0]'
+[    3.932809] sdhci-esdhc-imx 30b50000.mmc: using lookup tables for GPIO lookup
+[    3.932816] sdhci-esdhc-imx 30b50000.mmc: No GPIO consumer wp found
+[    3.932894] devices_kset: Moving 30b50000.mmc to end of list
+[    3.932899] PM: Moving platform:30b50000.mmc to end of list
+[    3.932907] sdhci-esdhc-imx 30b50000.mmc: Linked as a consumer to regulator.4
+[    3.934543] device: 'mmc1::': device_add
+[    3.934616] PM: Adding info for No Bus:mmc1::
+[    3.934640] device: 'mmc1': device_add
+[    3.934674] PM: Adding info for No Bus:mmc1
+[    3.965332] mmc1: SDHCI controller on 30b50000.mmc [30b50000.mmc] using ADMA
+[    3.972407] driver: 'sdhci-esdhc-imx': driver_bound: bound to device '30b50000.mmc'
+[    3.972413] devices_kset: Moving 30b50000.mmc to end of list
+[    3.972417] PM: Moving platform:30b50000.mmc to end of list
+[    3.972422] devices_kset: Moving mmc1:: to end of list
+[    3.972427] PM: Moving No Bus:mmc1:: to end of list
+[    3.972430] devices_kset: Moving mmc1 to end of list
+[    3.972433] PM: Moving No Bus:mmc1 to end of list
+[    3.972470] bus: 'platform': really_probe: bound device 30b50000.mmc to driver sdhci-esdhc-imx
+[    3.972484] platform 32c00000.bus:camera: Retrying from deferred list
+[    3.973164] bus: 'platform': driver_probe_device: matched device 32c00000.bus:camera with driver mxc-md
+[    3.973172] bus: 'platform': really_probe: probing driver mxc-md with device 32c00000.bus:camera
+[    3.973198] mxc-md 32c00000.bus:camera: no pinctrl handle
+[    3.973344] device: 'video0': device_add
+[    3.973398] PM: Adding info for No Bus:video0
+[    3.974202] mx8-img-md: Registered mxc_isi.0.capture as /dev/video0
+[    3.980700] mx8-img-md: Registered sensor subdevice: ov5648 1-0036 (1)
+[    3.987270] mx8-img-md: created link [mxc_isi.0] => [mxc_isi.0.capture]
+[    3.993914] mx8-img-md: created link [mxc-mipi-csi2.0] => [mxc_isi.0]
+[    4.000419] mx8-img-md: subdev_notifier_complete error exit
+[    4.006028] mxc-md 32c00000.bus:camera: Sensor register failed
+[    4.011907] mxc-md: probe of 32c00000.bus:camera failed with error -515
+[    4.018752] platform sound-peb-av-10: Retrying from deferred list
+[    4.019535] bus: 'platform': driver_probe_device: matched device sound-peb-av-10 with driver asoc-simple-card
+[    4.019543] bus: 'platform': really_probe: probing driver asoc-simple-card with device sound-peb-av-10
+[    4.019564] asoc-simple-card sound-peb-av-10: no pinctrl handle
+[    4.019941] of_get_named_gpiod_flags: can't parse 'simple-audio-card,hp-det-gpio' property of node '/sound-peb-av-10[0]'
+[    4.019954] of_get_named_gpiod_flags: can't parse 'simple-audio-card,mic-det-gpio' property of node '/sound-peb-av-10[0]'
+[    4.020542] debugfs: Directory '30c20000.sai' with parent 'snd-peb-av-10' already present!
+[    4.028867] device: '30c20000.sai-tlv320aic3x-hifi': device_add
+[    4.028909] PM: Adding info for No Bus:30c20000.sai-tlv320aic3x-hifi
+[    4.028951] asoc-simple-card sound-peb-av-10: tlv320aic3x-hifi <-> 30c20000.sai mapping ok
+[    4.037284] asoc-simple-card sound-peb-av-10: ASoC: no DMI vendor name!
+[    4.044846] device: 'card1': device_add
+[    4.044901] PM: Adding info for No Bus:card1
+[    4.044920] device: 'pcmC1D0p': device_add
+[    4.044948] PM: Adding info for No Bus:pcmC1D0p
+[    4.045637] device: 'pcmC1D0c': device_add
+[    4.045676] PM: Adding info for No Bus:pcmC1D0c
+[    4.045739] device: 'controlC1': device_add
+[    4.045770] PM: Adding info for No Bus:controlC1
+[    4.046210] driver: 'asoc-simple-card': driver_bound: bound to device 'sound-peb-av-10'
+[    4.046216] devices_kset: Moving sound-peb-av-10 to end of list
+[    4.046220] PM: Moving platform:sound-peb-av-10 to end of list
+[    4.046224] devices_kset: Moving 30c20000.sai-tlv320aic3x-hifi to end of list
+[    4.046228] PM: Moving No Bus:30c20000.sai-tlv320aic3x-hifi to end of list
+[    4.046232] devices_kset: Moving card1 to end of list
+[    4.046234] PM: Moving No Bus:card1 to end of list
+[    4.046237] devices_kset: Moving pcmC1D0p to end of list
+[    4.046242] PM: Moving No Bus:pcmC1D0p to end of list
+[    4.046245] devices_kset: Moving pcmC1D0c to end of list
+[    4.046251] PM: Moving No Bus:pcmC1D0c to end of list
+[    4.046254] devices_kset: Moving controlC1 to end of list
+[    4.046259] PM: Moving No Bus:controlC1 to end of list
+[    4.046285] bus: 'platform': really_probe: bound device sound-peb-av-10 to driver asoc-simple-card
+[    4.046296] platform sound-hdmi: Retrying from deferred list
+[    4.047099] bus: 'platform': driver_probe_device: matched device sound-hdmi with driver imx-cdnhdmi
+[    4.047107] bus: 'platform': really_probe: probing driver imx-cdnhdmi with device sound-hdmi
+[    4.047128] imx-cdnhdmi sound-hdmi: no pinctrl handle
+[    4.047210] imx-cdnhdmi sound-hdmi: ASoC: failed to init link imx8 hdmi: -517
+[    4.054364] imx-cdnhdmi sound-hdmi: snd_soc_register_card failed (-517)
+[    4.054582] usb 3-1: new high-speed USB device number 2 using xhci-hcd
+[    4.061028] platform sound-hdmi: Driver imx-cdnhdmi requests probe deferral
+[    4.067566] platform sound-hdmi: Added to deferred list
+[    4.067602] platform imx-lcdifv3-crtc.1: Retrying from deferred list
+[    4.067612] imx-lcdifv3 32fc6000.lcd-controller: genpd_runtime_resume()
+[    4.067629] imx-lcdifv3 32fc6000.lcd-controller: resume latency exceeded, 7625 ns
+[    4.067903] bus: 'platform': driver_probe_device: matched device imx-lcdifv3-crtc.1 with driver imx-lcdifv3-crtc
+[    4.067909] bus: 'platform': really_probe: probing driver imx-lcdifv3-crtc with device imx-lcdifv3-crtc.1
+[    4.067922] imx-lcdifv3-crtc imx-lcdifv3-crtc.1: no pinctrl handle
+[    4.067958] imx-lcdifv3-crtc imx-lcdifv3-crtc.1: adding component (ops lcdifv3_crtc_ops)
+[    4.067964] imx-drm display-subsystem: trying to bring up master
+[    4.067971] imx-drm display-subsystem: Looking for component 0
+[    4.067976] imx-drm display-subsystem: Looking for component 1
+[    4.067990] imx-drm display-subsystem: found component imx-lcdifv3-crtc.1, duplicate 0
+[    4.067996] imx-drm display-subsystem: Looking for component 2
+[    4.068003] imx-drm display-subsystem: Looking for component 3
+[    4.068009] imx-drm display-subsystem: Looking for component 4
+[    4.068106] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    4.074821] [drm] No driver support for vblank timestamp query.
+[    4.080772] imx-drm display-subsystem: binding imx-lcdifv3-crtc.0 (ops lcdifv3_crtc_ops)
+[    4.080821] imx-drm display-subsystem: bound imx-lcdifv3-crtc.0 (ops lcdifv3_crtc_ops)
+[    4.088786] imx-drm display-subsystem: binding imx-lcdifv3-crtc.1 (ops lcdifv3_crtc_ops)
+[    4.088823] imx-drm display-subsystem: bound imx-lcdifv3-crtc.1 (ops lcdifv3_crtc_ops)
+[    4.096861] imx-drm display-subsystem: binding 32c00000.bus:ldb@32ec005c (ops imx8mp_ldb_ops)
+[    4.096963] imx8mp-lvds-phy 32c00000.bus:phy@32ec0128: genpd_runtime_resume()
+[    4.096972] imx8mp-lvds-phy 32c00000.bus:phy@32ec0128: resume latency exceeded, 375 ns
+[    4.097011] imx-drm display-subsystem: bound 32c00000.bus:ldb@32ec005c (ops imx8mp_ldb_ops)
+[    4.105484] imx-drm display-subsystem: binding 32fd8000.hdmi (ops dw_hdmi_imx_ops)
+[    4.105764] dwhdmi-imx 32fd8000.hdmi: Detected HDMI TX controller v2.13a with HDCP (samsung_dw_hdmi_phy2)
+[    4.115484] imx8mp-ldb 32c00000.bus:ldb@32ec005c: genpd_runtime_suspend()
+[    4.115493] imx8mp-ldb 32c00000.bus:ldb@32ec005c: suspend latency exceeded, 625 ns
+[    4.115504] imx8mp-lvds-phy 32c00000.bus:phy@32ec0128: genpd_runtime_suspend()
+[    4.115512] imx8mp-lvds-phy 32c00000.bus:phy@32ec0128: suspend latency exceeded, 125 ns
+[    4.115528] PM: mediamix: Power-off latency exceeded, new value 10875 ns
+[    4.116251] device: 'i2c-4': device_add
+[    4.116279] bus: 'i2c': add device i2c-4
+[    4.116301] PM: Adding info for i2c:i2c-4
+[    4.116317] device: 'i2c-4': device_add
+[    4.116357] PM: Adding info for No Bus:i2c-4
+[    4.116816] dwhdmi-imx 32fd8000.hdmi: registered DesignWare HDMI I2C bus driver
+[    4.124219] Registering platform device 'dw-hdmi-gp-audio'. Parent at 32fd8000.hdmi
+[    4.124224] device: 'dw-hdmi-gp-audio': device_add
+[    4.124239] bus: 'platform': add device dw-hdmi-gp-audio
+[    4.124267] PM: Adding info for platform:dw-hdmi-gp-audio
+[    4.124422] bus: 'platform': driver_probe_device: matched device dw-hdmi-gp-audio with driver dw-hdmi-gp-audio
+[    4.124430] bus: 'platform': really_probe: probing driver dw-hdmi-gp-audio with device dw-hdmi-gp-audio
+[    4.124472] dw-hdmi-gp-audio dw-hdmi-gp-audio: no default pinctrl state
+[    4.124493] Registering platform device 'hdmi-audio-codec.1'. Parent at dw-hdmi-gp-audio
+[    4.124497] device: 'hdmi-audio-codec.1': device_add
+[    4.124514] bus: 'platform': add device hdmi-audio-codec.1
+[    4.124545] PM: Adding info for platform:hdmi-audio-codec.1
+[    4.124795] bus: 'platform': driver_probe_device: matched device hdmi-audio-codec.1 with driver hdmi-audio-codec
+[    4.124800] bus: 'platform': really_probe: probing driver hdmi-audio-codec with device hdmi-audio-codec.1
+[    4.124825] hdmi-audio-codec hdmi-audio-codec.1: no default pinctrl state
+[    4.124850] driver: 'hdmi-audio-codec': driver_bound: bound to device 'hdmi-audio-codec.1'
+[    4.124855] devices_kset: Moving hdmi-audio-codec.1 to end of list
+[    4.124859] PM: Moving platform:hdmi-audio-codec.1 to end of list
+[    4.124873] bus: 'platform': really_probe: bound device hdmi-audio-codec.1 to driver hdmi-audio-codec
+[    4.124881] driver: 'dw-hdmi-gp-audio': driver_bound: bound to device 'dw-hdmi-gp-audio'
+[    4.124885] devices_kset: Moving dw-hdmi-gp-audio to end of list
+[    4.124890] PM: Moving platform:dw-hdmi-gp-audio to end of list
+[    4.124895] devices_kset: Moving hdmi-audio-codec.1 to end of list
+[    4.124900] PM: Moving platform:hdmi-audio-codec.1 to end of list
+[    4.124913] bus: 'platform': really_probe: bound device dw-hdmi-gp-audio to driver dw-hdmi-gp-audio
+[    4.124922] Registering platform device 'dw-hdmi-cec'. Parent at 32fd8000.hdmi
+[    4.124925] device: 'dw-hdmi-cec': device_add
+[    4.124943] bus: 'platform': add device dw-hdmi-cec
+[    4.124969] PM: Adding info for platform:dw-hdmi-cec
+[    4.125057] bus: 'platform': driver_probe_device: matched device dw-hdmi-cec with driver dw-hdmi-cec
+[    4.125062] bus: 'platform': really_probe: probing driver dw-hdmi-cec with device dw-hdmi-cec
+[    4.125080] dw-hdmi-cec dw-hdmi-cec: no default pinctrl state
+[    4.126471] device: 'cec0': device_add
+[    4.126487] bus: 'cec': add device cec0
+[    4.126621] PM: Adding info for cec:cec0
+[    4.127354] driver: 'dw-hdmi-cec': driver_bound: bound to device 'dw-hdmi-cec'
+[    4.127361] devices_kset: Moving dw-hdmi-cec to end of list
+[    4.127364] PM: Moving platform:dw-hdmi-cec to end of list
+[    4.127377] bus: 'platform': really_probe: bound device dw-hdmi-cec to driver dw-hdmi-cec
+[    4.127413] imx-drm display-subsystem: bound 32fd8000.hdmi (ops dw_hdmi_imx_ops)
+[    4.134957] device: 'card1': device_add
+[    4.134994] PM: Adding info for No Bus:card1
+[    4.135442] device: 'card1-LVDS-1': device_add
+[    4.135484] PM: Adding info for No Bus:card1-LVDS-1
+[    4.135537] device: 'card1-LVDS-2': device_add
+[    4.135574] PM: Adding info for No Bus:card1-LVDS-2
+[    4.135631] device: 'card1-HDMI-A-1': device_add
+[    4.135668] PM: Adding info for No Bus:card1-HDMI-A-1
+[    4.135709] [drm] Initialized imx-drm 1.0.0 20120507 for display-subsystem on minor 1
+[    4.147735] device: 'fb0': device_add
+[    4.147795] PM: Adding info for No Bus:fb0
+[    4.148283] device: 'vtcon1': device_add
+[    4.148318] PM: Adding info for No Bus:vtcon1
+[    4.149589] imx-lcdifv3 32e90000.lcd-controller: genpd_runtime_resume()
+[    4.150176] imx-lcdifv3 32e90000.lcd-controller: resume latency exceeded, 512875 ns
+[    4.151763] imx8mp-lvds-phy 32c00000.bus:phy@32ec0128: genpd_runtime_resume()
+[    4.151835] imx8mp-ldb 32c00000.bus:ldb@32ec005c: genpd_runtime_resume()
+[    4.195556] Console: switching to colour frame buffer device 160x50
+[    4.207509] mmc1: host does not support reading read-only switch, assuming write-enable
+[    4.225029] imx-drm display-subsystem: fb0: imx-drmdrmfb frame buffer device
+[    4.232133] driver: 'imx-lcdifv3-crtc': driver_bound: bound to device 'imx-lcdifv3-crtc.1'
+[    4.232140] devices_kset: Moving imx-lcdifv3-crtc.1 to end of list
+[    4.232144] PM: Moving platform:imx-lcdifv3-crtc.1 to end of list
+[    4.232177] bus: 'platform': really_probe: bound device imx-lcdifv3-crtc.1 to driver imx-lcdifv3-crtc
+[    4.232191] platform cpufreq-dt: Retrying from deferred list
+[    4.232448] bus: 'platform': driver_probe_device: matched device cpufreq-dt with driver cpufreq-dt
+[    4.232463] bus: 'platform': really_probe: probing driver cpufreq-dt with device cpufreq-dt
+[    4.232522] cpufreq-dt cpufreq-dt: no default pinctrl state
+[    4.232588] platform cpufreq-dt: Driver cpufreq-dt requests probe deferral
+[    4.232593] platform cpufreq-dt: Added to deferred list
+[    4.232696] platform sound-hdmi: Retrying from deferred list
+[    4.233445] bus: 'platform': driver_probe_device: matched device sound-hdmi with driver imx-cdnhdmi
+[    4.233453] bus: 'platform': really_probe: probing driver imx-cdnhdmi with device sound-hdmi
+[    4.233470] imx-cdnhdmi sound-hdmi: no pinctrl handle
+[    4.233486] device: '3-1': device_add
+[    4.233572] bus: 'usb': add device 3-1
+[    4.233596] PM: Adding info for usb:3-1
+[    4.233661] debugfs: Directory '30cb0000.aud2htx' with parent 'audio-hdmi' already present!
+[    4.234275] bus: 'usb': driver_probe_device: matched device 3-1 with driver usb
+[    4.242040] bus: 'usb': really_probe: probing driver usb with device 3-1
+[    4.242070] device: 'imx8 hdmi': device_add
+[    4.242083] usb 3-1: no default pinctrl state
+[    4.242099] PM: Adding info for No Bus:imx8 hdmi
+[    4.242128] imx-cdnhdmi sound-hdmi: i2s-hifi <-> 30cb0000.aud2htx mapping ok
+[    4.249225] imx-cdnhdmi sound-hdmi: ASoC: no DMI vendor name!
+[    4.255071] imx-lcdifv3 32fc6000.lcd-controller: genpd_runtime_suspend()
+[    4.255084] imx-lcdifv3 32fc6000.lcd-controller: suspend latency exceeded, 6250 ns
+[    4.255663] device: 'card2': device_add
+[    4.255708] PM: Adding info for No Bus:card2
+[    4.255725] device: 'pcmC2D0p': device_add
+[    4.255752] PM: Adding info for No Bus:pcmC2D0p
+[    4.256106] device: 'input1': device_add
+[    4.256174] PM: Adding info for No Bus:input1
+[    4.256207] input: audio-hdmi HDMI Jack as /devices/platform/sound-hdmi/sound/card2/input1
+[    4.264504] device: 'event1': device_add
+[    4.264534] PM: Adding info for No Bus:event1
+[    4.264878] evbug: Connected device: input1 (audio-hdmi HDMI Jack at ALSA)
+[    4.264884] device: 'controlC2': device_add
+[    4.264913] PM: Adding info for No Bus:controlC2
+[    4.265273] driver: 'imx-cdnhdmi': driver_bound: bound to device 'sound-hdmi'
+[    4.265278] devices_kset: Moving sound-hdmi to end of list
+[    4.265282] PM: Moving platform:sound-hdmi to end of list
+[    4.265286] devices_kset: Moving imx8 hdmi to end of list
+[    4.265289] PM: Moving No Bus:imx8 hdmi to end of list
+[    4.265292] devices_kset: Moving card2 to end of list
+[    4.265295] PM: Moving No Bus:card2 to end of list
+[    4.265298] devices_kset: Moving pcmC2D0p to end of list
+[    4.265301] PM: Moving No Bus:pcmC2D0p to end of list
+[    4.265305] devices_kset: Moving input1 to end of list
+[    4.265307] PM: Moving No Bus:input1 to end of list
+[    4.265310] devices_kset: Moving event1 to end of list
+[    4.265313] PM: Moving No Bus:event1 to end of list
+[    4.265317] devices_kset: Moving controlC2 to end of list
+[    4.265319] PM: Moving No Bus:controlC2 to end of list
+[    4.265346] bus: 'platform': really_probe: bound device sound-hdmi to driver imx-cdnhdmi
+[    4.265356] platform cpufreq-dt: Retrying from deferred list
+[    4.265587] bus: 'platform': driver_probe_device: matched device cpufreq-dt with driver cpufreq-dt
+[    4.265594] bus: 'platform': really_probe: probing driver cpufreq-dt with device cpufreq-dt
+[    4.265634] cpufreq-dt cpufreq-dt: no default pinctrl state
+[    4.265690] platform cpufreq-dt: Driver cpufreq-dt requests probe deferral
+[    4.265695] platform cpufreq-dt: Added to deferred list
+[    4.266117] platform cpufreq-dt: Retrying from deferred list
+[    4.266300] bus: 'platform': driver_probe_device: matched device cpufreq-dt with driver cpufreq-dt
+[    4.266305] bus: 'platform': really_probe: probing driver cpufreq-dt with device cpufreq-dt
+[    4.266331] cpufreq-dt cpufreq-dt: no default pinctrl state
+[    4.266375] platform cpufreq-dt: Driver cpufreq-dt requests probe deferral
+[    4.266380] platform cpufreq-dt: Added to deferred list
+[    4.267041] device class 'ubi': registering
+[    4.267088] device: 'ubi_ctrl': device_add
+[    4.267128] PM: Adding info for No Bus:ubi_ctrl
+[    4.267588] bus: 'platform': add driver gpio-keys
+[    4.268212] rtc-rv3028 0-0052: Voltage low, data is invalid.
+[    4.273984] rtc-rv3028 0-0052: hctosys: unable to read the hardware clock
+[    4.281001] bus: 'platform': add driver isi-m2m
+[    4.281163] device: '3-1:1.0': device_add
+[    4.281197] bus: 'usb': add device 3-1:1.0
+[    4.281210] PM: Adding info for usb:3-1:1.0
+[    4.281241] bus: 'usb': driver_probe_device: matched device 3-1:1.0 with driver hub
+[    4.281248] bus: 'usb': really_probe: probing driver hub with device 3-1:1.0
+[    4.281281] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[    4.281296] hub 3-1:1.0: no default pinctrl state
+[    4.289058] hub 3-1:1.0: USB hub found
+[    4.291479] cfg80211: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+[    4.299455] platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+[    4.299634] hub 3-1:1.0: 4 ports detected
+[    4.302720] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.302864] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.302884] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.303018] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.303033] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.303166] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.303182] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.303317] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.303332] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.303465] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.303479] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.303612] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.303628] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.303761] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.303775] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.303908] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.303923] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.304056] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.304070] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.304203] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.304217] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.304350] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.304367] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.304501] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.304516] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.304651] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.304666] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.304799] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.304813] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.304948] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.304962] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.305095] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.305109] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.305242] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.305257] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.305390] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.305405] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.305538] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.305613] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.305746] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.305762] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.305897] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.305911] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.306044] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.306058] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.306191] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.306207] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.306340] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.306354] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.306488] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.306502] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.306644] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.306659] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.306792] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.306806] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.306940] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.306955] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.307087] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.307102] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.307235] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.307249] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.307382] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.307396] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.307528] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.307546] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.307683] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.307697] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.307830] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.307948] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.308082] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.308097] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.308110] platform regulatory.0: Falling back to sysfs fallback for: regulatory.db
+[    4.308124] device: 'regulatory.db': device_add
+[    4.308203] PM: Adding info for No Bus:regulatory.db
+[    4.320013] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.320034] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.320167] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.320182] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.320315] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.320336] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.320469] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.320484] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.320617] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.320634] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.320768] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.320783] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.320916] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.320931] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.321064] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.321079] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.321214] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.321229] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.321362] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.321377] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.321510] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.321525] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.321660] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.321675] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.321808] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.321823] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.321956] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.321971] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.322106] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.322120] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.322254] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.322269] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.322402] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.322417] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.322561] PM: audiomix: Power-on latency exceeded, new value 138125 ns
+[    4.322571] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.322587] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.322720] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.322833] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.322967] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.322984] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.323116] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.323983] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.324118] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.324134] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.324267] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.324283] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.324415] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.324430] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.324563] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.324578] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.324711] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.324726] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.324860] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.324875] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.325008] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.325023] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.325156] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.325171] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.325304] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.325318] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.325451] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.325466] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.325599] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.325613] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.325746] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.325761] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.325894] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.325909] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.326042] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.326056] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.326190] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.326204] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.326337] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.326354] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.326486] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.326501] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.326645] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.326661] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.326794] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.326819] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.326952] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.326968] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.327100] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.327115] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.327248] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.327262] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.327397] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.327416] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.327551] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.327567] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.327700] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.327715] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.327848] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.327862] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.327995] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.328010] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.328142] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.328157] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.328293] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.328307] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.328440] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.328455] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.328588] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.328603] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.328736] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.328751] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.328884] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.328899] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.329032] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.329060] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.329193] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.329209] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.329341] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.329356] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.329489] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.329504] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.329637] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.329652] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.329786] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.329801] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.329934] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.329949] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.330081] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.330097] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.330230] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.330244] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.330377] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.330392] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.330525] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.330539] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.330682] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.330698] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.330833] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.330848] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.330981] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.330996] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.331129] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.331144] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.331277] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.331291] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.331424] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.331439] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.331572] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.331586] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.331719] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.331734] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.331866] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.331881] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.332014] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.332038] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.332172] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.332187] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_resume()
+[    4.332319] imx-audiomix-clk 30e20000.audiomix:clock-controller: genpd_runtime_suspend()
+[    4.332356] ALSA device list:
+[    4.335339]   #0: Dummy 1
+[    4.337957]   #1: snd-peb-av-10
+[    4.338578] mmc1: new ultra high speed SDR104 SDHC card at address aaaa
+[    4.341106]   #2: audio-hdmi
+[    4.347756] device: 'mmc1:aaaa': device_add
+[    4.350693] bus: 'mmc': add device mmc1:aaaa
+[    4.350728] PM: Adding info for mmc:mmc1:aaaa
+[    4.350752] bus: 'mmc': driver_probe_device: matched device mmc1:aaaa with driver mmcblk
+[    4.350760] bus: 'mmc': really_probe: probing driver mmcblk with device mmc1:aaaa
+[    4.350804] mmcblk mmc1:aaaa: no default pinctrl state
+[    4.351457] mmcblk1: mmc1:aaaa SC16G 14.8 GiB 
+[    4.356140] device: '179:96': device_add
+[    4.356186] PM: Adding info for No Bus:179:96
+[    4.356227] device: 'mmcblk1': device_add
+[    4.356282] PM: Adding info for No Bus:mmcblk1
+[    4.360341]  mmcblk1: p1 p2
+[    4.363172] device: 'mmcblk1p1': device_add
+[    4.363220] PM: Adding info for No Bus:mmcblk1p1
+[    4.363278] device: 'mmcblk1p2': device_add
+[    4.363320] PM: Adding info for No Bus:mmcblk1p2
+[    4.363844] driver: 'mmcblk': driver_bound: bound to device 'mmc1:aaaa'
+[    4.363849] devices_kset: Moving mmc1:aaaa to end of list
+[    4.363853] PM: Moving mmc:mmc1:aaaa to end of list
+[    4.363857] devices_kset: Moving mmcblk1 to end of list
+[    4.363860] PM: Moving No Bus:mmcblk1 to end of list
+[    4.363863] devices_kset: Moving mmcblk1p1 to end of list
+[    4.363866] PM: Moving No Bus:mmcblk1p1 to end of list
+[    4.363870] devices_kset: Moving mmcblk1p2 to end of list
+[    4.363873] PM: Moving No Bus:mmcblk1p2 to end of list
+[    4.363890] bus: 'mmc': really_probe: bound device mmc1:aaaa to driver mmcblk
+[    4.363915] platform cpufreq-dt: Retrying from deferred list
+[    4.364155] bus: 'platform': driver_probe_device: matched device cpufreq-dt with driver cpufreq-dt
+[    4.364162] bus: 'platform': really_probe: probing driver cpufreq-dt with device cpufreq-dt
+[    4.364208] cpufreq-dt cpufreq-dt: no default pinctrl state
+[    4.364267] platform cpufreq-dt: Driver cpufreq-dt requests probe deferral
+[    4.364272] platform cpufreq-dt: Added to deferred list
+[    4.374406] usb 4-1: new SuperSpeed Gen 1 USB device number 2 using xhci-hcd
+[    4.381487] device: 'ep_81': device_add
+[    4.381538] PM: Adding info for No Bus:ep_81
+[    4.381629] device: '3-1-port1': device_add
+[    4.381658] PM: Adding info for No Bus:3-1-port1
+[    4.381681] device: '3-1-port2': device_add
+[    4.381712] PM: Adding info for No Bus:3-1-port2
+[    4.381727] device: '3-1-port3': device_add
+[    4.381754] PM: Adding info for No Bus:3-1-port3
+[    4.381770] device: '3-1-port4': device_add
+[    4.381801] PM: Adding info for No Bus:3-1-port4
+[    4.382016] driver: 'hub': driver_bound: bound to device '3-1:1.0'
+[    4.382022] devices_kset: Moving 3-1:1.0 to end of list
+[    4.382025] PM: Moving usb:3-1:1.0 to end of list
+[    4.382028] devices_kset: Moving ep_81 to end of list
+[    4.382034] PM: Moving No Bus:ep_81 to end of list
+[    4.382037] devices_kset: Moving 3-1-port1 to end of list
+[    4.382040] PM: Moving No Bus:3-1-port1 to end of list
+[    4.382043] devices_kset: Moving 3-1-port2 to end of list
+[    4.382046] PM: Moving No Bus:3-1-port2 to end of list
+[    4.382049] devices_kset: Moving 3-1-port3 to end of list
+[    4.382052] PM: Moving No Bus:3-1-port3 to end of list
+[    4.382055] devices_kset: Moving 3-1-port4 to end of list
+[    4.382058] PM: Moving No Bus:3-1-port4 to end of list
+[    4.382084] bus: 'usb': really_probe: bound device 3-1:1.0 to driver hub
+[    4.382098] driver: 'usb': driver_bound: bound to device '3-1'
+[    4.382102] devices_kset: Moving 3-1 to end of list
+[    4.382106] PM: Moving usb:3-1 to end of list
+[    4.382109] devices_kset: Moving 3-1:1.0 to end of list
+[    4.382112] PM: Moving usb:3-1:1.0 to end of list
+[    4.382115] devices_kset: Moving ep_81 to end of list
+[    4.382118] PM: Moving No Bus:ep_81 to end of list
+[    4.382121] devices_kset: Moving 3-1-port1 to end of list
+[    4.382124] PM: Moving No Bus:3-1-port1 to end of list
+[    4.382127] devices_kset: Moving 3-1-port2 to end of list
+[    4.382130] PM: Moving No Bus:3-1-port2 to end of list
+[    4.382133] devices_kset: Moving 3-1-port3 to end of list
+[    4.382136] PM: Moving No Bus:3-1-port3 to end of list
+[    4.382139] devices_kset: Moving 3-1-port4 to end of list
+[    4.382142] PM: Moving No Bus:3-1-port4 to end of list
+[    4.382161] bus: 'usb': really_probe: bound device 3-1 to driver usb
+[    4.382179] device: 'ep_00': device_add
+[    4.382216] PM: Adding info for No Bus:ep_00
+[    4.382228] platform cpufreq-dt: Retrying from deferred list
+[    4.382458] bus: 'platform': driver_probe_device: matched device cpufreq-dt with driver cpufreq-dt
+[    4.382464] bus: 'platform': really_probe: probing driver cpufreq-dt with device cpufreq-dt
+[    4.382504] cpufreq-dt cpufreq-dt: no default pinctrl state
+[    4.382577] platform cpufreq-dt: Driver cpufreq-dt requests probe deferral
+[    4.382582] platform cpufreq-dt: Added to deferred list
+[    4.400268] device: '4-1': device_add
+[    4.400337] bus: 'usb': add device 4-1
+[    4.400357] PM: Adding info for usb:4-1
+[    4.400753] bus: 'usb': driver_probe_device: matched device 4-1 with driver usb
+[    4.400759] bus: 'usb': really_probe: probing driver usb with device 4-1
+[    4.400791] usb 4-1: no default pinctrl state
+[    4.423345] device: '4-1:1.0': device_add
+[    4.423379] bus: 'usb': add device 4-1:1.0
+[    4.423392] PM: Adding info for usb:4-1:1.0
+[    4.423420] bus: 'usb': driver_probe_device: matched device 4-1:1.0 with driver hub
+[    4.423427] bus: 'usb': really_probe: probing driver hub with device 4-1:1.0
+[    4.423457] hub 4-1:1.0: no default pinctrl state
+[    4.423475] hub 4-1:1.0: USB hub found
+[    4.427867] hub 4-1:1.0: 4 ports detected
+[    4.433117] device: '4-1-port1': device_add
+[    4.433153] PM: Adding info for No Bus:4-1-port1
+[    4.433189] device: '4-1-port2': device_add
+[    4.433221] PM: Adding info for No Bus:4-1-port2
+[    4.433242] device: '4-1-port3': device_add
+[    4.433277] PM: Adding info for No Bus:4-1-port3
+[    4.433298] device: '4-1-port4': device_add
+[    4.433326] PM: Adding info for No Bus:4-1-port4
+[    4.436471] driver: 'hub': driver_bound: bound to device '4-1:1.0'
+[    4.436476] devices_kset: Moving 4-1:1.0 to end of list
+[    4.436480] PM: Moving usb:4-1:1.0 to end of list
+[    4.436483] devices_kset: Moving 4-1-port1 to end of list
+[    4.436486] PM: Moving No Bus:4-1-port1 to end of list
+[    4.436489] devices_kset: Moving 4-1-port2 to end of list
+[    4.436492] PM: Moving No Bus:4-1-port2 to end of list
+[    4.436496] devices_kset: Moving 4-1-port3 to end of list
+[    4.436499] PM: Moving No Bus:4-1-port3 to end of list
+[    4.436502] devices_kset: Moving 4-1-port4 to end of list
+[    4.436505] PM: Moving No Bus:4-1-port4 to end of list
+[    4.436527] bus: 'usb': really_probe: bound device 4-1:1.0 to driver hub
+[    4.436543] device: 'ep_81': device_add
+[    4.436579] PM: Adding info for No Bus:ep_81
+[    4.436586] driver: 'usb': driver_bound: bound to device '4-1'
+[    4.436590] devices_kset: Moving 4-1 to end of list
+[    4.436593] PM: Moving usb:4-1 to end of list
+[    4.436596] devices_kset: Moving 4-1:1.0 to end of list
+[    4.436599] PM: Moving usb:4-1:1.0 to end of list
+[    4.436602] devices_kset: Moving 4-1-port1 to end of list
+[    4.436605] PM: Moving No Bus:4-1-port1 to end of list
+[    4.436608] devices_kset: Moving 4-1-port2 to end of list
+[    4.436611] PM: Moving No Bus:4-1-port2 to end of list
+[    4.436615] devices_kset: Moving 4-1-port3 to end of list
+[    4.436618] PM: Moving No Bus:4-1-port3 to end of list
+[    4.436621] devices_kset: Moving 4-1-port4 to end of list
+[    4.436624] PM: Moving No Bus:4-1-port4 to end of list
+[    4.436627] devices_kset: Moving ep_81 to end of list
+[    4.436630] PM: Moving No Bus:ep_81 to end of list
+[    4.436650] bus: 'usb': really_probe: bound device 4-1 to driver usb
+[    4.436666] device: 'ep_00': device_add
+[    4.436702] PM: Adding info for No Bus:ep_00
+[    4.436715] platform cpufreq-dt: Retrying from deferred list
+[    4.436948] bus: 'platform': driver_probe_device: matched device cpufreq-dt with driver cpufreq-dt
+[    4.436953] bus: 'platform': really_probe: probing driver cpufreq-dt with device cpufreq-dt
+[    4.436981] cpufreq-dt cpufreq-dt: no default pinctrl state
+[    4.437032] platform cpufreq-dt: Driver cpufreq-dt requests probe deferral
+[    4.437037] platform cpufreq-dt: Added to deferred list
+[    4.555188] imx6q-pcie 33800000.pcie: Phy link never came up
+[    4.560891] imx6q-pcie 33800000.pcie: failed to initialize host
+[    4.566823] imx6q-pcie 33800000.pcie: unable to add pcie port.
+[    4.572667] imx6q-pcie 33800000.pcie: removing from PM domain pcie
+[    4.572672] imx6q-pcie 33800000.pcie: genpd_remove_device()
+[    4.572701] PM: pcie: Power-off latency exceeded, new value 3250 ns
+[    4.572788] imx6q-pcie 33800000.pcie: Dropping the link to regulator.0
+[    4.572845] imx6q-pcie: probe of 33800000.pcie rejects match -19
+[    4.573542] platform 33800000.pcie: async probe completed
+[    4.698081] EXT4-fs (mmcblk1p2): recovery complete
+[    4.704109] EXT4-fs (mmcblk1p2): mounted filesystem with ordered data mode. Opts: (null)
+[    4.712253] VFS: Mounted root (ext4 filesystem) on device 179:98.
+[    4.722205] devtmpfs: mounted
+[    4.731334] Freeing unused kernel memory: 6848K
+[    4.735932] Run /sbin/init as init process
+[    4.875057] systemd[1]: systemd 243.2+ running in system mode. (+PAM -AUDIT -SELINUX -IMA -APPARMOR -SMACK +SYSVINIT -UTMP -LIBCRYPTSETUP -GCRYPT -GNUTLS -ACL -XZ +LZ4 -SECCOMP +BLKID -ELFUTILS +KMOD -IDN2 -)
+[    4.897105] systemd[1]: Detected architecture arm64.
+[    4.945108] systemd[1]: Set hostname to <raibos>.
+[    5.152148] systemd[1]: /lib/systemd/system/fancontrol.service:8: PIDFile= references a path below legacy directory /var/run/, updating /var/run/fancontrol.pid ��→ /run/fancontrol.pid; please update the unit.
+[    5.193277] systemd[1]: /lib/systemd/system/rpcbind.socket:5: ListenStream= references a path below legacy directory /var/run/, updating /var/run/rpcbind.sock ��→ /run/rpcbind.sock; please update the unit fi.
+[    5.216301] systemd[1]: /lib/systemd/system/dbus.socket:5: ListenStream= references a path below legacy directory /var/run/, updating /var/run/dbus/system_bus_socket ��→ /run/dbus/system_bus_socket; please u.
+[    5.248773] systemd[1]: Created slice system-getty.slice.
+[    5.271569] systemd[1]: Created slice system-serial\x2dgetty.slice.
+[    5.295507] systemd[1]: Created slice User and Session Slice.
+[    5.314871] systemd[1]: Started Dispatch Password Requests to Console Directory Watch.
+[    5.658446] EXT4-fs (mmcblk1p2): re-mounted. Opts: (null)
+[    5.966024] systemd-journald[257]: Received client request to flush runtime journal.
+[    6.560081] PM: Removing info for No Bus:regulatory.db
+[    6.560167] cfg80211: failed to load regulatory.db
+[    6.576128] bus: 'platform': add driver flexcan
+[    6.587166] bus: 'platform': driver_probe_device: matched device 308c0000.can with driver flexcan
+[    6.587182] bus: 'platform': really_probe: probing driver flexcan with device 308c0000.can
+[    6.587771] flexcan 308c0000.can: no init pinctrl state
+[    6.587785] flexcan 308c0000.can: no sleep pinctrl state
+[    6.587790] flexcan 308c0000.can: no idle pinctrl state
+[    6.587948] devices_kset: Moving 308c0000.can to end of list
+[    6.587953] PM: Moving platform:308c0000.can to end of list
+[    6.587959] flexcan 308c0000.can: Linked as a consumer to regulator.1
+[    6.588134] device: 'can0': device_add
+[    6.588283] PM: Adding info for No Bus:can0
+[    6.590000] driver: 'flexcan': driver_bound: bound to device '308c0000.can'
+[    6.590011] devices_kset: Moving 308c0000.can to end of list
+[    6.590015] PM: Moving platform:308c0000.can to end of list
+[    6.590021] devices_kset: Moving can0 to end of list
+[    6.590024] PM: Moving No Bus:can0 to end of list
+[    6.590050] platform cpufreq-dt: Retrying from deferred list
+[    6.590329] bus: 'platform': driver_probe_device: matched device cpufreq-dt with driver cpufreq-dt
+[    6.590338] bus: 'platform': really_probe: probing driver cpufreq-dt with device cpufreq-dt
+[    6.590394] cpufreq-dt cpufreq-dt: no default pinctrl state
+[    6.598042] platform cpufreq-dt: Driver cpufreq-dt requests probe deferral
+[    6.598053] platform cpufreq-dt: Added to deferred list
+[    6.598289] bus: 'platform': really_probe: bound device 308c0000.can to driver flexcan
+[    6.598308] bus: 'platform': driver_probe_device: matched device 308d0000.can with driver flexcan
+[    6.598316] bus: 'platform': really_probe: probing driver flexcan with device 308d0000.can
+[    6.598420] flexcan 308d0000.can: no init pinctrl state
+[    6.598431] flexcan 308d0000.can: no sleep pinctrl state
+[    6.598436] flexcan 308d0000.can: no idle pinctrl state
+[    6.611279] devices_kset: Moving 308d0000.can to end of list
+[    6.611287] PM: Moving platform:308d0000.can to end of list
+[    6.611295] flexcan 308d0000.can: Linked as a consumer to regulator.2
+[    6.611495] device: 'can1': device_add
+[    6.618450] PM: Adding info for No Bus:can1
+[    6.627160] driver: 'flexcan': driver_bound: bound to device '308d0000.can'
+[    6.627173] devices_kset: Moving 308d0000.can to end of list
+[    6.627178] PM: Moving platform:308d0000.can to end of list
+[    6.627183] devices_kset: Moving can1 to end of list
+[    6.627186] PM: Moving No Bus:can1 to end of list
+[    6.627210] platform cpufreq-dt: Retrying from deferred list
+[    6.627501] bus: 'platform': driver_probe_device: matched device cpufreq-dt with driver cpufreq-dt
+[    6.627513] bus: 'platform': really_probe: probing driver cpufreq-dt with device cpufreq-dt
+[    6.627577] cpufreq-dt cpufreq-dt: no default pinctrl state
+[    6.627666] platform cpufreq-dt: Driver cpufreq-dt requests probe deferral
+[    6.627672] platform cpufreq-dt: Added to deferred list
+[    6.637716] bus: 'platform': really_probe: bound device 308d0000.can to driver flexcan
+[    6.762510] device: 'vcs2': device_add
+[    6.762610] PM: Adding info for No Bus:vcs2
+[    6.765556] device: 'vcsu2': device_add
+[    6.765617] PM: Adding info for No Bus:vcsu2
+[    6.765727] device: 'vcsa2': device_add
+[    6.765759] PM: Adding info for No Bus:vcsa2
+[    6.766057] device: 'vcs3': device_add
+[    6.766105] PM: Adding info for No Bus:vcs3
+[    6.766212] device: 'vcsu3': device_add
+[    6.766243] PM: Adding info for No Bus:vcsu3
+[    6.766302] device: 'vcsa3': device_add
+[    6.766336] PM: Adding info for No Bus:vcsa3
+[    6.767453] device: 'vcs4': device_add
+[    6.767513] PM: Adding info for No Bus:vcs4
+[    6.767642] device: 'vcsu4': device_add
+[    6.767691] PM: Adding info for No Bus:vcsu4
+[    6.767758] device: 'vcsa4': device_add
+[    6.767793] PM: Adding info for No Bus:vcsa4
+[    6.768055] device: 'vcs5': device_add
+[    6.768101] PM: Adding info for No Bus:vcs5
+[    6.768194] device: 'vcsu5': device_add
+[    6.768222] PM: Adding info for No Bus:vcsu5
+[    6.768279] device: 'vcsa5': device_add
+[    6.768312] PM: Adding info for No Bus:vcsa5
+[    6.768570] device: 'vcs6': device_add
+[    6.768610] PM: Adding info for No Bus:vcs6
+[    6.768709] device: 'vcsu6': device_add
+[    6.768753] PM: Adding info for No Bus:vcsu6
+[    6.768821] device: 'vcsa6': device_add
+[    6.768850] PM: Adding info for No Bus:vcsa6
+[    6.883875] audit: type=1701 audit(6.880:2): auid=4294967295 uid=0 gid=0 ses=4294967295 pid=419 comm="rauc" exe="/usr/bin/rauc" sig=5 res=1
+[    6.905086] TI DP83867 30be0000.ethernet-1:00: attached PHY driver [TI DP83867] (mii_bus:phy_addr=30be0000.ethernet-1:00, irq=87)
+[    6.928413] device: 'wakeup3': device_unregister
+[    6.962372] imx-dwmac 30bf0000.ethernet eth0: PHY [stmmac-1:01] driver [TI DP83867]
+[    7.000891] imx-dwmac 30bf0000.ethernet eth0: No Safety Features support found
+[    7.002207] PM: Removing info for No Bus:imx!sdma!sdma-imx7d.bin
+[    7.008370] imx-dwmac 30bf0000.ethernet eth0: IEEE 1588-2008 Advanced Timestamp supported
+[    7.008406] imx-sdma 30bd0000.dma-controller: loaded firmware 4.5
+[    7.016628] device: 'ptp1': device_add
+[    7.022820] PM: Adding info for No Bus:ptp1
+[    7.024352] imx-dwmac 30bf0000.ethernet eth0: registered PTP clock
+[    7.034370] mxc-mipi-csi2.0: is_entity_link_setup, No remote pad found!
+[    7.041072] imx-dwmac 30bf0000.ethernet eth0: configuring for phy/rgmii-id link mode
+[    7.049532] 8021q: adding VLAN 0 to HW filter on device eth0
+[    7.422216] device: 'vcs7': device_add
+[    7.422272] PM: Adding info for No Bus:vcs7
+[    7.422626] device: 'vcsu7': device_add
+[    7.422674] PM: Adding info for No Bus:vcsu7
+[    7.423029] device: 'vcsa7': device_add
+[    7.423077] PM: Adding info for No Bus:vcsa7
+[    7.613175] audit: type=1006 audit(7.608:3): pid=506 uid=0 old-auid=4294967295 auid=0 tty=(none) old-ses=4294967295 ses=1 res=1
+[   35.806878] can1-stby: disabling
+[   35.810113] can2-stby: disabling
+root@raibos:~# 

@@ -1,0 +1,73 @@
+root@raibos:~# media-ctl -p -d /dev/media0
+Failed to enumerate /dev/media0 (-2)
+root@raibos:~# v4l2-ctl --all
+[  197.115461] mxc-mipi-csi2.0: is_entity_link_setup, No remote pad found!
+Driver Info:[  197.122590] mxc-mipi-csi2.0: mipi_csis_get_fmt, No remote pad found!
+
+        Driver name      : mxc-isi-cap[  197.129839] mxc_isi.0: get remote fmt fail!
+
+        Card type        : mxc-isi-cap[  197.137033] mxc-mipi-csi2.0: mipi_csis_g_frame_interval, No remote pad found!
+
+        Bus info         : platform:32[  197.146870] mxc-mipi-csi2.0: mipi_csis_g_frame_interval, No remote subdev found!
+e00000.isi:cap_devic
+        Driver version   : 5.4.70
+        Capabilities     : 0x84201000
+                Video Capture Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04201000
+                Video Capture Multiplanar
+                Streaming
+                Extended Pix Format
+Priority: 0
+Format Video Capture Multiplanar:
+        Width/Height      : 0/0
+        Pixel Format      : 'GREY'
+        Field             : None
+        Number of planes  : 1
+        Flags             : 
+        Colorspace        : JPEG
+        Transfer Function : Default
+        YCbCr/HSV Encoding: Default
+        Quantization      : Default
+        Plane 0           :
+           Bytes per Line : 0
+           Size Image     : 0
+root@raibos:~# ls -l /dev/v*
+crw-rw---- 1 root tty    7,   0 Jan  1 00:00 /dev/vcs
+crw-rw---- 1 root tty    7,   1 Jan  1 00:00 /dev/vcs1
+crw-rw---- 1 root tty    7,   2 Jan  1 00:00 /dev/vcs2
+crw-rw---- 1 root tty    7,   3 Jan  1 00:00 /dev/vcs3
+crw-rw---- 1 root tty    7,   4 Jan  1 00:00 /dev/vcs4
+crw-rw---- 1 root tty    7,   5 Jan  1 00:00 /dev/vcs5
+crw-rw---- 1 root tty    7,   6 Jan  1 00:00 /dev/vcs6
+crw-rw---- 1 root tty    7,   7 Jan  1 00:00 /dev/vcs7
+crw-rw---- 1 root tty    7, 128 Jan  1 00:00 /dev/vcsa
+crw-rw---- 1 root tty    7, 129 Jan  1 00:00 /dev/vcsa1
+crw-rw---- 1 root tty    7, 130 Jan  1 00:00 /dev/vcsa2
+crw-rw---- 1 root tty    7, 131 Jan  1 00:00 /dev/vcsa3
+crw-rw---- 1 root tty    7, 132 Jan  1 00:00 /dev/vcsa4
+crw-rw---- 1 root tty    7, 133 Jan  1 00:00 /dev/vcsa5
+crw-rw---- 1 root tty    7, 134 Jan  1 00:00 /dev/vcsa6
+crw-rw---- 1 root tty    7, 135 Jan  1 00:00 /dev/vcsa7
+crw-rw---- 1 root tty    7,  64 Jan  1 00:00 /dev/vcsu
+crw-rw---- 1 root tty    7,  65 Jan  1 00:00 /dev/vcsu1
+crw-rw---- 1 root tty    7,  66 Jan  1 00:00 /dev/vcsu2
+crw-rw---- 1 root tty    7,  67 Jan  1 00:00 /dev/vcsu3
+crw-rw---- 1 root tty    7,  68 Jan  1 00:00 /dev/vcsu4
+crw-rw---- 1 root tty    7,  69 Jan  1 00:00 /dev/vcsu5
+crw-rw---- 1 root tty    7,  70 Jan  1 00:00 /dev/vcsu6
+crw-rw---- 1 root tty    7,  71 Jan  1 00:00 /dev/vcsu7
+crw------- 1 root root  10,  63 Jan  1 00:00 /dev/vga_arbiter
+crw------- 1 root root  10, 137 Jan  1 00:00 /dev/vhci
+crw-rw---- 1 root video 81,   0 Jan  1 00:00 /dev/video0
+
+/dev/v4l:
+total 0
+drwxr-xr-x 2 root root 60 Jan  1 00:00 by-path/
+
+/dev/vfio:
+total 0
+crw-rw-rw- 1 root root 10, 196 Jan  1 00:00 vfio
+root@raibos:~# 
