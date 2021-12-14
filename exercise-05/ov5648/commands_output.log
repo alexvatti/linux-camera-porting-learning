@@ -1,0 +1,134 @@
+root@raibos:~# v4l2-ctl -D -d /dev/video0 --all
+Driver Info:
+        Driver name      : mxc-isi-cap
+        Card type        : mxc-isi-cap
+        Bus info         : platform:32e00000.isi:cap_devic
+        Driver version   : 5.4.70
+        Capabilities     : 0x84201000
+                Video Capture Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04201000
+                Video Capture Multiplanar
+                Streaming
+                Extended Pix Format
+Media Driver Info:
+        Driver name      : mxc-md
+        Model            : FSL Capture Media Device
+        Serial           : 
+        Bus info         : 
+        Media version    : 5.4.70
+        Hardware revision: 0x00000000 (0)
+        Driver version   : 5.4.70
+Interface Info:
+        ID               : 0x03000014
+        Type             : V4L Video
+Entity Info:
+        ID               : 0x00000012 (18)
+        Name             : mxc_isi.0.capture
+        Function         : V4L2 I/O
+        Pad 0x01000013   : 0: Sink
+          Link 0x02000021: from remote pad 0x100000e of entity 'mxc_isi.0': Data, Enabled
+Priority: 2
+Format Video Capture Multiplanar:
+        Width/Height      : 0/0
+        Pixel Format      : 'GREY'
+        Field             : None
+        Number of planes  : 1
+        Flags             : 
+        Colorspace        : JPEG
+        Transfer Function : Default
+        YCbCr/HSV Encoding: Default
+        Quantization      : Default
+        Plane 0           :
+           Bytes per Line : 0
+           Size Image     : 0
+Streaming Parameters Video Capture:
+        Capabilities     : timeperframe
+        Frames per second: 15.000 (15/1)
+        Read buffers     : 0
+
+User Controls
+
+        white_balance_automatic 0x0098090c (bool)   : default=1 value=1 flags=update
+                    red_balance 0x0098090e (int)    : min=0 max=4095 step=1 default=1024 value=1024 flags=inactive, slider
+                   blue_balance 0x0098090f (int)    : min=0 max=4095 step=1 default=1024 value=1024 flags=inactive, slider
+                       exposure 0x00980911 (int)    : min=16 max=1048575 step=16 default=512 value=512 flags=inactive, volatile
+                 gain_automatic 0x00980912 (bool)   : default=1 value=1 flags=update
+                           gain 0x00980913 (int)    : min=16 max=1023 step=16 default=16 value=16 flags=inactive, volatile
+                horizontal_flip 0x00980914 (bool)   : default=0 value=0
+                  vertical_flip 0x00980915 (bool)   : default=0 value=0
+                alpha_component 0x00980929 (int)    : min=0 max=255 step=1 default=0 value=0
+
+Camera Controls
+
+                  auto_exposure 0x009a0901 (menu)   : min=0 max=1 default=0 value=0 flags=update
+
+Image Processing Controls
+
+                 link_frequency 0x009f0901 (intmenu): min=0 max=1 default=0 value=1 flags=read-only
+                     pixel_rate 0x009f0902 (int64)  : min=1 max=2147483647 step=1 default=1 value=84000000 flags=read-only
+                   test_pattern 0x009f0903 (menu)   : min=0 max=5 default=0 value=0
+root@raibos:~# media-ctl -p -d /dev/media0 
+Media controller API version 5.4.70
+
+Media device information
+------------------------
+driver          mxc-md
+model           FSL Capture Media Device
+serial          
+bus info        
+hw revision     0x0
+driver version  5.4.70
+
+Device topology
+- entity 1: mxc_isi.0 (16 pads, 2 links)
+            type V4L2 subdev subtype Unknown flags 0
+        pad0: Sink
+                <- "mxc-mipi-csi2.0":4 [ENABLED]
+        pad1: Sink
+        pad2: Sink
+        pad3: Sink
+        pad4: Sink
+        pad5: Sink
+        pad6: Sink
+        pad7: Sink
+        pad8: Sink
+        pad9: Sink
+        pad10: Sink
+        pad11: Sink
+        pad12: Source
+                -> "mxc_isi.0.capture":0 [ENABLED]
+        pad13: Source
+        pad14: Source
+        pad15: Sink
+
+- entity 18: mxc_isi.0.capture (1 pad, 1 link)
+             type Node subtype V4L flags 0
+             device node name /dev/video0
+        pad0: Sink
+                <- "mxc_isi.0":12 [ENABLED]
+
+- entity 22: mxc-mipi-csi2.0 (8 pads, 2 links)
+             type Node subtype V4L flags 0
+             device node name /dev/v4l-subdev0
+        pad0: Sink
+                <- "ov5648 1-0036":0 [ENABLED,IMMUTABLE]
+        pad1: Sink
+        pad2: Sink
+        pad3: Sink
+        pad4: Source
+                -> "mxc_isi.0":0 [ENABLED]
+        pad5: Source
+        pad6: Source
+        pad7: Source
+
+- entity 31: ov5648 1-0036 (1 pad, 1 link)
+             type V4L2 subdev subtype Sensor flags 0
+             device node name /dev/v4l-subdev1
+        pad0: Source
+                [fmt:SBGGR8_1X8/2592x1944@1/15 field:none colorspace:unknown xfer:none ycbcr:601 quantization:full-range]
+                -> "mxc-mipi-csi2.0":0 [ENABLED,IMMUTABLE]
+
+root@raibos:~# 
