@@ -64,11 +64,12 @@ Device topology
 
 Step 1:
 
-media-ctl -V "63:0[fmt:SGRBG8_1X8/2592x1944 field:none]"
-media-ctl -V "43:0[fmt:SGRBG8_1X8/2592x1944 field:none]"
-media-ctl -V "43:4[fmt:SGRBG8_1X8/2592x1944 field:none]"
-media-ctl -V "1:0[fmt:SGRBG8_1X8/2592x1944 field:none]"
-media-ctl -V "1:12[fmt:SGRBG8_1X8/2592x1944 field:none]"
+media-ctl -V "63:0[fmt:SBGGR8_1X8/2592x1944 field:none]"
+media-ctl -V "43:0[fmt:SBGGR8_1X8/2592x1944 field:none]"
+media-ctl -V "43:4[fmt:SBGGR8_1X8/2592x1944 field:none]"
+media-ctl -V "1:0[fmt:SBGGR8_1X8/2592x1944 field:none]"
+media-ctl -V "1:12[fmt:SBGGR8_1X8/2592x1944 field:none]"
+
 v4l2-ctl -d0 -v width=2592,height=1944,pixelformat=BA81
 
 Step 2:
@@ -162,10 +163,3 @@ Captured 2 frames in 0.068123 seconds (29.358660 fps, 2885354.432424 B/s).
 
 Step 7:  output
 ls -l /tmp/capture.output-00000*.bin
-
-
-
-
-
-
-
