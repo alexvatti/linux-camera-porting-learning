@@ -1,0 +1,291 @@
+root@raibos:~# media-ctl -p
+Media controller API version 5.4.70
+
+Media device information
+------------------------
+driver          mxc-md
+model           FSL Capture Media Device
+serial          
+bus info        
+hw revision     0x0
+driver version  5.4.70
+
+Device topology
+- entity 1: mxc_isi.0 (16 pads, 2 links)
+            type V4L2 subdev subtype Unknown flags 0
+        pad0: Sink
+                <- "mxc-mipi-csi2.0":4 [ENABLED]
+        pad1: Sink
+        pad2: Sink
+        pad3: Sink
+        pad4: Sink
+        pad5: Sink
+        pad6: Sink
+        pad7: Sink
+        pad8: Sink
+        pad9: Sink
+        pad10: Sink
+        pad11: Sink
+        pad12: Source
+                -> "mxc_isi.0.capture":0 [ENABLED]
+        pad13: Source
+        pad14: Source
+        pad15: Sink
+
+- entity 18: mxc_isi.0.capture (1 pad, 1 link)
+             type Node subtype V4L flags 0
+             device node name /dev/video0
+        pad0: Sink
+                <- "mxc_isi.0":12 [ENABLED]
+
+- entity 43: mxc-mipi-csi2.0 (8 pads, 2 links)
+             type Node subtype V4L flags 0
+             device node name /dev/v4l-subdev0
+        pad0: Sink
+                <- "ar0144 1-0010":0 [ENABLED,IMMUTABLE]
+        pad1: Sink
+        pad2: Sink
+        pad3: Sink
+        pad4: Source
+                -> "mxc_isi.0":0 [ENABLED]
+        pad5: Source
+        pad6: Source
+        pad7: Source
+
+- entity 52: mxc-mipi-csi2.1 (8 pads, 0 link)
+             type Node subtype V4L flags 0
+             device node name /dev/v4l-subdev1
+        pad0: Sink
+        pad1: Sink
+        pad2: Sink
+        pad3: Sink
+        pad4: Source
+        pad5: Source
+        pad6: Source
+        pad7: Source
+
+- entity 61: ar0144 1-0010 (2 pads, 1 link)
+             type V4L2 subdev subtype Sensor flags 0
+             device node name /dev/v4l-subdev2
+        pad0: Source
+                [fmt:SGRBG8_1X8/1280x720@1/60 field:none colorspace:unknown xfer:none
+                 crop.bounds:(0,0)/1296x808
+                 crop:(0,44)/1280x720]
+                -> "mxc-mipi-csi2.0":0 [ENABLED,IMMUTABLE]
+        pad1: Source
+                [fmt:SGRBG8_1X8/1280x720@1/60 field:none colorspace:unknown xfer:none
+                 crop.bounds:(0,0)/1296x808
+                 crop:(0,44)/1280x720]
+
+root@raibos:~#  v4l2-ctl -D -d /dev/video0                                                                                                                                                                          
+Driver Info:
+        Driver name      : mxc-isi-cap
+        Card type        : mxc-isi-cap
+        Bus info         : platform:32e00000.isi:cap_devic
+        Driver version   : 5.4.70
+        Capabilities     : 0x84201000
+                Video Capture Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04201000
+                Video Capture Multiplanar
+                Streaming
+                Extended Pix Format
+Media Driver Info:
+        Driver name      : mxc-md
+        Model            : FSL Capture Media Device
+        Serial           : 
+        Bus info         : 
+        Media version    : 5.4.70
+        Hardware revision: 0x00000000 (0)
+        Driver version   : 5.4.70
+Interface Info:
+        ID               : 0x03000014
+        Type             : V4L Video
+Entity Info:
+        ID               : 0x00000012 (18)
+        Name             : mxc_isi.0.capture
+        Function         : V4L2 I/O
+        Pad 0x01000013   : 0: Sink
+          Link 0x02000040: from remote pad 0x100000e of entity 'mxc_isi.0': Data, Enabled
+root@raibos:~#  v4l2-ctl -D -d /dev/video0 --all
+Driver Info:
+        Driver name      : mxc-isi-cap
+        Card type        : mxc-isi-cap
+        Bus info         : platform:32e00000.isi:cap_devic
+        Driver version   : 5.4.70
+        Capabilities     : 0x84201000
+                Video Capture Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04201000
+                Video Capture Multiplanar
+                Streaming
+                Extended Pix Format
+Media Driver Info:
+        Driver name      : mxc-md
+        Model            : FSL Capture Media Device
+        Serial           : 
+        Bus info         : 
+        Media version    : 5.4.70
+        Hardware revision: 0x00000000 (0)
+        Driver version   : 5.4.70
+Interface Info:
+        ID               : 0x03000014
+        Type             : V4L Video
+Entity Info:
+        ID               : 0x00000012 (18)
+        Name             : mxc_isi.0.capture
+        Function         : V4L2 I/O
+        Pad 0x01000013   : 0: Sink
+          Link 0x02000040: from remote pad 0x100000e of entity 'mxc_isi.0': Data, Enabled
+Priority: 2
+Format Video Capture Multiplanar:
+        Width/Height      : 1280/720
+        Pixel Format      : 'GRBG' (8-bit Bayer GRGR/BGBG)
+        Field             : None
+        Number of planes  : 1
+        Flags             : 
+        Colorspace        : JPEG
+        Transfer Function : Default
+        YCbCr/HSV Encoding: Default
+        Quantization      : Default
+        Plane 0           :
+           Bytes per Line : 1280
+           Size Image     : 921600
+Streaming Parameters Video Capture:
+        Capabilities     : timeperframe
+        Frames per second: 60.000 (60/1)
+        Read buffers     : 0
+
+User Controls
+
+                alpha_component 0x00980929 (int)    : min=0 max=255 step=1 default=0 value=0
+root@raibos:demo-celebrity-face-match# python3 camvm016.py 
+unknown control 'vertical_flip'
+v4l2-ctl failed: 1
+unknown control 'horizontal_blanking'
+v4l2-ctl failed: 1
+unknown control 'digital_gain_red'
+v4l2-ctl failed: 1
+unknown control 'digital_gain_blue'
+v4l2-ctl failed: 1
+Unable to setup formats: Invalid argument (22)
+Unable to setup formats: Invalid argument (22)
+unknown control 'vertical_flip'
+unknown control 'horizontal_blanking'
+unknown control 'digital_gain_red'
+unknown control 'digital_gain_blue'
+[   78.926081] bypass csc
+[   78.928460] input fmt RGB4
+[   78.931165] output fmt GRBG
+
+^C
+(python3:673): GStreamer-CRITICAL **: 00:02:37.390: 
+Trying to dispose element pipeline0, but it is in PAUSED instead of the NULL state.
+You need to explicitly set elements to the NULL state before
+dropping the final reference, to allow them to clean up.
+This problem may also be caused by a refcounting bug in the
+application or some element.
+
+[ WARN:0] global /usr/src/debug/opencv/4.4.0-r0/git/modules/videoio/src/cap_gstreamer.cpp (888) open OpenCV | GStreamer warning: unable to start pipeline
+[ WARN:0] global /usr/src/debug/opencv/4.4.0-r0/git/modules/videoio/src/cap_gstreamer.cpp (480) isPipelinePlaying OpenCV | GStreamer warning: GStreamer: pipeline have not been created
+
+(python3:673): GStreamer-CRITICAL **: 00:02:37.396: 
+Trying to dispose element appsink0, but it is in READY instead of the NULL state.
+You need to explicitly set elements to the NULL state before
+dropping the final reference, to allow them to clean up.
+This problem may also be caused by a refcounting bug in the
+application or some element.
+
+Traceback (most recent call last):
+  File "camvm016.py", line 95, in <module>
+    cam = get_camera()
+  File "camvm016.py", line 89, in get_camera
+    return cv2.VideoCapture(pipeline, cv2.CAP_GSTREAMER)
+KeyboardInterrupt
+
+
+root@raibos:demo-celebrity-face-match# media-ctl -p
+Media controller API version 5.4.70
+
+Media device information
+------------------------
+driver          mxc-md
+model           FSL Capture Media Device
+serial          
+bus info        
+hw revision     0x0
+driver version  5.4.70
+
+Device topology
+- entity 1: mxc_isi.0 (16 pads, 2 links)
+            type V4L2 subdev subtype Unknown flags 0
+        pad0: Sink
+                <- "mxc-mipi-csi2.0":4 [ENABLED]
+        pad1: Sink
+        pad2: Sink
+        pad3: Sink
+        pad4: Sink
+        pad5: Sink
+        pad6: Sink
+        pad7: Sink
+        pad8: Sink
+        pad9: Sink
+        pad10: Sink
+        pad11: Sink
+        pad12: Source
+                -> "mxc_isi.0.capture":0 [ENABLED]
+        pad13: Source
+        pad14: Source
+        pad15: Sink
+
+- entity 18: mxc_isi.0.capture (1 pad, 1 link)
+             type Node subtype V4L flags 0
+             device node name /dev/video0
+        pad0: Sink
+                <- "mxc_isi.0":12 [ENABLED]
+
+- entity 43: mxc-mipi-csi2.0 (8 pads, 2 links)
+             type Node subtype V4L flags 0
+             device node name /dev/v4l-subdev0
+        pad0: Sink
+                <- "ar0144 1-0010":0 [ENABLED,IMMUTABLE]
+        pad1: Sink
+        pad2: Sink
+        pad3: Sink
+        pad4: Source
+                -> "mxc_isi.0":0 [ENABLED]
+        pad5: Source
+        pad6: Source
+        pad7: Source
+
+- entity 52: mxc-mipi-csi2.1 (8 pads, 0 link)
+             type Node subtype V4L flags 0
+             device node name /dev/v4l-subdev1
+        pad0: Sink
+        pad1: Sink
+        pad2: Sink
+        pad3: Sink
+        pad4: Source
+        pad5: Source
+        pad6: Source
+        pad7: Source
+
+- entity 61: ar0144 1-0010 (2 pads, 1 link)
+             type V4L2 subdev subtype Sensor flags 0
+             device node name /dev/v4l-subdev2
+        pad0: Source
+                [fmt:SGRBG8_1X8/1280x800@1/60 field:none colorspace:unknown xfer:none
+                 crop.bounds:(0,0)/1296x808
+                 crop:(4,4)/1280x800]
+                -> "mxc-mipi-csi2.0":0 [ENABLED,IMMUTABLE]
+        pad1: Source
+                [fmt:SGRBG8_1X8/1280x800@1/60 field:none colorspace:unknown xfer:none
+                 crop.bounds:(0,0)/1296x808
+                 crop:(4,4)/1280x800]
+
+root@raibos:demo-celebrity-face-match# 
+

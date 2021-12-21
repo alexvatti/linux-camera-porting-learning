@@ -1,0 +1,24 @@
+diff --git a/yavta.c b/yavta.c
+index ea687d2..3d96b23 100644
+--- a/yavta.c
++++ b/yavta.c
+@@ -1026,7 +1026,7 @@ int main(int argc, char *argv[])
+ 
+ 	/* Capture loop */
+ 	unsigned int delay = 0, nframes = (unsigned int)-1;
+-	const char *filename = "/dev/shm/capture.output";
++	const char *filename = "/tmp/capture.output";
+ 
+ 	opterr = 0;
+ 	while ((c = getopt_long(argc, argv, "c::d:f:F::hi:ln:pq:r:s:t:uw:", opts, NULL)) != -1) {
+@@ -1054,6 +1054,10 @@ int main(int argc, char *argv[])
+ 				pixelformat = V4L2_PIX_FMT_SGRBG10DPCM8;
+ 			else if (strcasecmp(optarg, "SGRBG10") == 0)
+ 				pixelformat = V4L2_PIX_FMT_SGRBG10;
++			else if (strcasecmp(optarg, "SBGGR8") == 0)
++				pixelformat = V4L2_PIX_FMT_SBGGR8;
++			else if (strcasecmp(optarg, "BA81") == 0)
++				pixelformat = V4L2_PIX_FMT_SBGGR8;
+ #ifdef V4L2_PIX_FMT_SGRBG12
+ 			else if (strcasecmp(optarg, "SGRBG12") == 0)
+ 				pixelformat = V4L2_PIX_FMT_SGRBG12;

@@ -1,0 +1,171 @@
+root@raibos:~# media-ctl -p
+Media controller API version 5.4.70
+
+Media device information
+------------------------
+driver          mxc-md
+model           FSL Capture Media Device
+serial          
+bus info        
+hw revision     0x0
+driver version  5.4.70
+
+Device topology
+- entity 1: mxc_isi.0 (16 pads, 2 links)
+            type V4L2 subdev subtype Unknown flags 0
+        pad0: Sink
+                <- "mxc-mipi-csi2.0":4 [ENABLED]
+        pad1: Sink
+        pad2: Sink
+        pad3: Sink
+        pad4: Sink
+        pad5: Sink
+        pad6: Sink
+        pad7: Sink
+        pad8: Sink
+        pad9: Sink
+        pad10: Sink
+        pad11: Sink
+        pad12: Source
+                -> "mxc_isi.0.capture":0 [ENABLED]
+        pad13: Source
+        pad14: Source
+        pad15: Sink
+
+- entity 18: mxc_isi.0.capture (1 pad, 1 link)
+             type Node subtype V4L flags 0
+             device node name /dev/video0
+        pad0: Sink
+                <- "mxc_isi.0":12 [ENABLED]
+
+
+- entity 43: mxc-mipi-csi2.0 (8 pads, 2 links)
+             type Node subtype V4L flags 0
+             device node name /dev/v4l-subdev0
+        pad0: Sink
+                <- "ov5648 1-0036":0 [ENABLED,IMMUTABLE]
+        pad1: Sink
+        pad2: Sink
+        pad3: Sink
+        pad4: Source
+                -> "mxc_isi.0":0 [ENABLED]
+        pad5: Source
+        pad6: Source
+        pad7: Source
+
+
+- entity 63: ov5648 1-0036 (1 pad, 1 link)
+             type V4L2 subdev subtype Sensor flags 0
+             device node name /dev/v4l-subdev3
+        pad0: Source
+                [fmt:SBGGR8_1X8/2592x1944@1/15 field:none colorspace:unknown xfer:none ycbcr:601 quantization:full-range]
+                -> "mxc-mipi-csi2.0":0 [ENABLED,IMMUTABLE]
+
+
+Step 1:
+
+media-ctl -V "63:0[fmt:SGRBG8_1X8/2592x1944 field:none]"
+media-ctl -V "43:0[fmt:SGRBG8_1X8/2592x1944 field:none]"
+media-ctl -V "43:4[fmt:SGRBG8_1X8/2592x1944 field:none]"
+media-ctl -V "1:0[fmt:SGRBG8_1X8/2592x1944 field:none]"
+media-ctl -V "1:12[fmt:SGRBG8_1X8/2592x1944 field:none]"
+v4l2-ctl -d0 -v width=2592,height=1944,pixelformat=BA81
+
+Step 2:
+media-ctl -p
+v4l2-ctl -D -d /dev/video0 --all
+
+Step 3:
+https://github.com/fastr/yavta
+git clone https://github.com/fastr/yavta.git
+
+Step 4:
+cd yatch
+patch -p1 < ../1.patch
+
+Get the patch(manual copy here):
+
+diff --git a/yavta.c b/yavta.c
+index ea687d2..3d96b23 100644
+--- a/yavta.c
++++ b/yavta.c
+@@ -1026,7 +1026,7 @@ int main(int argc, char *argv[])
+ 
+ 	/* Capture loop */
+ 	unsigned int delay = 0, nframes = (unsigned int)-1;
+-	const char *filename = "/dev/shm/capture.output";
++	const char *filename = "/tmp/capture.output";
+ 
+ 	opterr = 0;
+ 	while ((c = getopt_long(argc, argv, "c::d:f:F::hi:ln:pq:r:s:t:uw:", opts, NULL)) != -1) {
+@@ -1054,6 +1054,10 @@ int main(int argc, char *argv[])
+ 				pixelformat = V4L2_PIX_FMT_SGRBG10DPCM8;
+ 			else if (strcasecmp(optarg, "SGRBG10") == 0)
+ 				pixelformat = V4L2_PIX_FMT_SGRBG10;
++			else if (strcasecmp(optarg, "SBGGR8") == 0)
++				pixelformat = V4L2_PIX_FMT_SBGGR8;
++			else if (strcasecmp(optarg, "BA81") == 0)
++				pixelformat = V4L2_PIX_FMT_SBGGR8;
+ #ifdef V4L2_PIX_FMT_SGRBG12
+ 			else if (strcasecmp(optarg, "SGRBG12") == 0)
+ 				pixelformat = V4L2_PIX_FMT_SGRBG12;
+
+
+Step 5: Comiple / Build - We have Makefile - Please repalce the CROSS_COMPILE
+
+CROSS_COMPILE ?=
+
+CC  := $(CROSS_COMPILE)gcc
+CFLAGS  ?= -O2 -W -Wall
+LDFLAGS ?=
+
+%.o : %.c
+    $(CC) $(CFLAGS) -c -o $@ $<
+
+all: yavta
+
+yavta: yavta.o
+    $(CC) $(LDFLAGS) -o $@ $^
+
+clean:
+    -rm -f *.o
+    -rm -f yavta
+
+Step 6: Run the yavta on device:
+
+ ./yavta -c3 -f SBGGR8  -s 2592x1944  -F /dev/video0
+Device /dev/video0 opened: Integrated Camera: Integrated C (usb-0000:00:14.0-7).
+Video format set: width: 640 height: 480 buffer size: 614400
+Video format: MJPG (47504a4d) 640x480
+8 buffers requested.
+length: 614400 offset: 0
+Buffer 0 mapped at address 0x7f10f7489000.
+length: 614400 offset: 614400
+Buffer 1 mapped at address 0x7f10f73f3000.
+length: 614400 offset: 1228800
+Buffer 2 mapped at address 0x7f10f735d000.
+length: 614400 offset: 1843200
+Buffer 3 mapped at address 0x7f10f6ea5000.
+length: 614400 offset: 2457600
+Buffer 4 mapped at address 0x7f10f6e0f000.
+length: 614400 offset: 3072000
+Buffer 5 mapped at address 0x7f10f6d79000.
+length: 614400 offset: 3686400
+Buffer 6 mapped at address 0x7f10f6ce3000.
+length: 614400 offset: 4300800
+Buffer 7 mapped at address 0x7f10f6c4d000.
+0 (0) [-] 0 65544 bytes 7595.793174 1640098074.474152
+1 (1) [-] 1 65565 bytes 7595.857176 1640098074.506096
+2 (2) [-] 2 65450 bytes 7595.889175 1640098074.542088
+Captured 2 frames in 0.068123 seconds (29.358660 fps, 2885354.432424 B/s).
+8 buffers released.
+
+Step 7:  output
+ls -l /tmp/capture.output-00000*.bin
+
+
+
+
+
+
+
