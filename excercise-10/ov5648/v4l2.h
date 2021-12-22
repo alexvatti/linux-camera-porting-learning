@@ -89,7 +89,7 @@ using namespace std;
 #define IMAGE_H 100
 #endif
 
-#define FRAME_NUM 1
+#define FRAME_NUM 2
 
 //Map each buffer frame
 struct buffer
