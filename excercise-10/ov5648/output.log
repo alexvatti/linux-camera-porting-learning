@@ -1,0 +1,23 @@
+root@raibos:~# ./ov5648 
+camera open success
+VIDIOC_STREAMOFF success
+VIDIOC_QUERYCAP success
+Device supports V4L2_CAP_VIDEO_CAPTURE_MPLAN[   18.841926] bypass csc
+E
+Device supports V4L2_CAP_STREA[   18.845137] input fmt RGB4
+[   18.850709] output fmt BA81
+MING
+V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE->VIDIOC_S_FMT success
+VIDIOC_REQBUFS success
+VIDIOC_QUERYBUF success
+MMAP success
+VIDIOC_QUERYBUF success
+MMAP success
+VIDIOC_QBUF success
+VIDIOC_QBUF success
+VIDIOC_STREAMON success
+dqbuf return value:  -1
+VIDIOC_DQBUF error
+camera read error
+VIDIOC_STREAMOFF success
+root@raibos:~# 
