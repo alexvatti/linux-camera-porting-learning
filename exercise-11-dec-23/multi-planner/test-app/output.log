@@ -1,0 +1,29 @@
+root@raibos:~# media-ctl -V "ov5648 1-0036:0[fmt:SBGGR8_1X8/2592x1944 field:none]"
+Unable to setup formats: Invalid argument (22)
+root@raibos:~# media-ctl -V "\"ov5648 1-0036\":0[fmt:SBGGR8_1X8/2592x1944 field:none]"                                                                                                                             
+root@raibos:~# media-ctl -V "\"ov5648 1-0036\":0[fmt:SBGGR8_1X8/2592x1944 field:none]"
+root@raibos:~# media-ctl -V "\"mxc-mipi-csi2.0\":0[fmt:SBGGR8_1X8/2592x1944 field:none]"
+root@raibos:~# media-ctl -V "\"mxc-mipi-csi2.0\":4[fmt:SBGGR8_1X8/2592x1944 field:none]"
+root@raibos:~# media-ctl -V "\"mxc_isi.0\":0[fmt:SBGGR8_1X8/2592x1944 field:none]"
+Unable to setup formats: No such file or directory (2)
+root@raibos:~# media-ctl -V "\"mxc_isi.0\":12[fmt:SBGGR8_1X8/2592x1944 field:none]"
+Unable to setup formats: No such file or directory (2)
+root@raibos:~# v4l2-ctl -d0 -v width=2592,height=1944,pixelformat=BA81
+root@raibos:~# ./multi-plane 
+width=2592
+height=1944
+planes=1
+Video format: BA81 (31384142) 2592x1944
+get_format
+query_buffers
+[ 2964.881333] bypass csc
+[ 2964.883712] input fmt RGB4
+[ 2964.886439] output fmt BA81
+stream_on
+bufflen = 0 
+bufflen = 5038848 
+ptrData > 0
+get_frame
+stream_off
+close_device
+root@raibos:~# 
