@@ -1,0 +1,282 @@
+Inputs:
+https://rageworx.info/?p=1694
+git clone git://linuxtv.org/v4l-utils.git
+
+
+Step 1:
+struct v4l_fd {
+    int fd;
+    struct v4l2_capability cap;
+    char devname[128];
+    __u32 type;
+    __u32 caps;
+    unsigned int trace;
+    bool direct;
+    bool have_query_ext_ctrl;
+    bool have_ext_ctrls;
+    bool have_next_ctrl;
+    bool have_selection;
+    bool is_subdev;
+    bool is_media;
+
+    int (*open)(struct v4l_fd *f, const char *file, int oflag, ...);
+    int (*close)(struct v4l_fd *f);
+    int (*ioctl)(struct v4l_fd *f, unsigned long cmd, ...);
+    ssize_t (*read)(struct v4l_fd *f, void *buffer, size_t n);
+    ssize_t (*write)(struct v4l_fd *f, const void *buffer, size_t n);
+    void *(*mmap)(void *addr, size_t length, int prot, int flags,
+              struct v4l_fd *f, off_t offset);
+    int (*munmap)(struct v4l_fd *f, void *addr, size_t length);
+};
+
+
+Step 2:
+static inline void v4l_fd_init(struct v4l_fd *f)
+{
+    memset(f, 0, sizeof(*f));
+    f->fd = -1;
+    f->is_subdev = false;
+    f->is_media = false;
+    f->open = v4l_wrap_open;
+    f->close = v4l_wrap_close;
+    f->ioctl = v4l_wrap_ioctl;
+    f->read = v4l_wrap_read;
+    f->write = v4l_wrap_write;
+    f->mmap = v4l_wrap_mmap;
+    f->munmap = v4l_wrap_munmap;
+}
+
+Step 3:
+static inline int v4l_open(struct v4l_fd *f, const char *devname, bool non_blocking)
+{
+    int fd = f->open(f, devname, O_RDWR | (non_blocking ? O_NONBLOCK : 0));
+
+    return v4l_s_fd(f, fd, devname, f->direct);
+}
+
+Step 4:
+static inline int v4l_wrap_open(struct v4l_fd *f, const char *file, int oflag, ...)
+{
+    return f->direct ? open(file, oflag) : v4l2_open(file, oflag);
+}
+
+Step 5:
+v4l2_open ??????
+
+Step 6:
+static inline int v4l_s_fd(struct v4l_fd *f, int fd, const char *devname, bool direct)
+{
+    struct v4l2_query_ext_ctrl qec;
+    struct v4l2_ext_controls ec;
+    struct v4l2_queryctrl qc;
+    struct v4l2_selection sel;
+
+    if (f->fd >= 0)
+        f->close(f);
+
+    f->fd = fd;
+    f->direct = direct;
+    if (fd < 0)
+        return fd;
+
+    memset(&qec, 0, sizeof(qec));
+    qec.id = V4L2_CTRL_FLAG_NEXT_CTRL | V4L2_CTRL_FLAG_NEXT_COMPOUND;
+    memset(&ec, 0, sizeof(ec));
+    memset(&qc, 0, sizeof(qc));
+    qc.id = V4L2_CTRL_FLAG_NEXT_CTRL;
+    memset(&sel, 0, sizeof(sel));
+
+    if (f->devname != devname)
+        strncpy(f->devname, devname, sizeof(f->devname));
+    f->devname[sizeof(f->devname) - 1] = '\0';
+
+    memset(&f->cap, 0, sizeof(f->cap));
+    if (v4l_querycap(f, &f->cap)) {
+        v4l_close(f);
+        return -1;
+    }
+    f->is_subdev = false;
+    f->is_media = false;
+    f->caps = v4l_capability_g_caps(&f->cap);
+    f->type = v4l_determine_type(f);
+
+    f->have_query_ext_ctrl = v4l_ioctl(f, VIDIOC_QUERY_EXT_CTRL, &qec) == 0;
+    f->have_ext_ctrls = v4l_ioctl(f, VIDIOC_TRY_EXT_CTRLS, &ec) == 0;
+    f->have_next_ctrl = v4l_ioctl(f, VIDIOC_QUERYCTRL, &qc) == 0;
+    sel.type = v4l_g_selection_type(f);
+    sel.target = sel.type == V4L2_BUF_TYPE_VIDEO_CAPTURE ?
+            V4L2_SEL_TGT_CROP : V4L2_SEL_TGT_COMPOSE;
+    f->have_selection = v4l_ioctl(f, VIDIOC_G_SELECTION, &sel) != ENOTTY;
+
+    return f->fd;
+}
+
+
+Step 7:
+static inline __u32 v4l_determine_type(const struct v4l_fd *f)
+{
+    if (v4l_has_vid_mplane(f))
+        return v4l_has_vid_cap(f) ? V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE :
+                        V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE;
+}
+
+static inline bool v4l_has_vid_mplane(const struct v4l_fd *f)
+{
+    return v4l_g_caps(f) & (V4L2_CAP_VIDEO_CAPTURE_MPLANE |
+                V4L2_CAP_VIDEO_OUTPUT_MPLANE |
+                V4L2_CAP_VIDEO_M2M_MPLANE);
+}
+
+static inline __u32 v4l_g_caps(const struct v4l_fd *f)
+{
+    return f->caps;
+}
+
+Step 8:
+static inline int v4l_querycap(struct v4l_fd *f, struct v4l2_capability *cap)
+{
+    return v4l_ioctl(f, VIDIOC_QUERYCAP, cap);
+}
+
+static inline __u32 v4l_capability_g_caps(const struct v4l2_capability *cap)
+{
+    return (cap->capabilities & V4L2_CAP_DEVICE_CAPS) ?
+            cap->device_caps : cap->capabilities;
+}
+
+Step 9:
+v4l_buffer_init
+
+static inline void v4l_buffer_init(struct v4l_buffer *buf,
+        unsigned type, unsigned memory, unsigned index)
+{
+    memset(buf, 0, sizeof(*buf));
+    buf->buf.type = type;
+    buf->buf.memory = memory;
+    buf->buf.index = index;
+    if (V4L2_TYPE_IS_MULTIPLANAR(type)) {
+        buf->buf.m.planes = buf->planes;
+        buf->buf.length = VIDEO_MAX_PLANES;
+    }
+}
+Step 10:
+static inline int v4l_buffer_prepare_buf(struct v4l_fd *f, struct v4l_buffer *buf)
+{
+    return v4l_ioctl(f, VIDIOC_PREPARE_BUF, &buf->buf);
+}
+
+Step 11:
+static inline void v4l_queue_init(struct v4l_queue *q,
+        unsigned type, unsigned memory)
+{
+    unsigned i, p;
+
+    memset(q, 0, sizeof(*q));
+    q->type = type;
+    q->memory = memory;
+    for (i = 0; i < VIDEO_MAX_FRAME; i++)
+        for (p = 0; p < VIDEO_MAX_PLANES; p++)
+            q->fds[i][p] = -1;
+}
+
+Step 12:
+static inline int v4l_queue_querybufs(struct v4l_fd *f, struct v4l_queue *q, unsigned from)
+{
+    unsigned b, p;
+    int ret;
+
+    for (b = from; b < v4l_queue_g_buffers(q); b++) {
+        struct v4l_buffer buf;
+
+        v4l_buffer_init(&buf, v4l_queue_g_type(q), v4l_queue_g_memory(q), b);
+        ret = v4l_ioctl(f, VIDIOC_QUERYBUF, &buf.buf);
+        if (ret)
+            return ret;
+        if (b == 0) {
+            q->num_planes = v4l_buffer_g_num_planes(&buf);
+            for (p = 0; p < v4l_queue_g_num_planes(q); p++)
+                q->lengths[p] = v4l_buffer_g_length(&buf, p);
+        }
+        if (q->memory == V4L2_MEMORY_MMAP)
+            for (p = 0; p < q->num_planes; p++)
+                q->mem_offsets[b][p] = v4l_buffer_g_mem_offset(&buf, p);
+    }
+    return 0;
+}
+
+Step 13:
+static inline int v4l_queue_reqbufs(struct v4l_fd *f,
+        struct v4l_queue *q, unsigned count, unsigned int flags = 0)
+{
+    struct v4l2_requestbuffers reqbufs;
+    int ret;
+
+    reqbufs.type = q->type;
+    reqbufs.memory = q->memory;
+    reqbufs.count = count;
+    reqbufs.flags = flags;
+    /*
+     * Problem: if REQBUFS returns an error, did it free any old
+     * buffers or not?
+     */
+    ret = v4l_ioctl(f, VIDIOC_REQBUFS, &reqbufs);
+    if (ret)
+        return ret;
+    q->buffers = reqbufs.count;
+    q->capabilities = reqbufs.capabilities;
+    return v4l_queue_querybufs(f, q, 0);
+}
+
+Step 14:
+static inline int v4l_queue_mmap_bufs(struct v4l_fd *f,
+        struct v4l_queue *q, unsigned from)
+{
+    unsigned b, p;
+
+    if (q->memory != V4L2_MEMORY_MMAP && q->memory != V4L2_MEMORY_DMABUF)
+        return 0;
+
+    for (b = from; b < v4l_queue_g_buffers(q); b++) {
+        for (p = 0; p < v4l_queue_g_num_planes(q); p++) {
+            void *m = MAP_FAILED;
+
+            if (q->memory == V4L2_MEMORY_MMAP)
+                m = v4l_mmap(f, v4l_queue_g_length(q, p), v4l_queue_g_mem_offset(q, b, p));
+            else if (q->memory == V4L2_MEMORY_DMABUF)
+                m = mmap(NULL, v4l_queue_g_length(q, p),
+                        PROT_READ | PROT_WRITE, MAP_SHARED,
+                        v4l_queue_g_fd(q, b, p), 0);
+
+            if (m == MAP_FAILED)
+                return errno;
+            v4l_queue_s_mmapping(q, b, p, m);
+        }
+    }
+    q->mappings = b;
+    return 0;
+}
+
+Step 15:
+static inline int v4l_buffer_dqbuf(struct v4l_fd *f, struct v4l_buffer *buf)
+{
+    return v4l_ioctl(f, VIDIOC_DQBUF, &buf->buf);
+}
+
+static inline __u32 v4l_queue_g_length(const struct v4l_queue *q, unsigned plane)
+{
+    return q->lengths[plane];
+}
+
+static inline void *v4l_queue_g_mmapping(const struct v4l_queue *q, unsigned index, unsigned plane)
+{
+    if (index >= v4l_queue_g_mappings(q) || plane >= v4l_queue_g_num_planes(q))
+        return NULL;
+    return q->mmappings[index][plane];
+}
+
+Step 16:
+static inline int v4l_buffer_qbuf(struct v4l_fd *f, struct v4l_buffer *buf)
+{
+    return v4l_ioctl(f, VIDIOC_QBUF, &buf->buf);
+}
+
