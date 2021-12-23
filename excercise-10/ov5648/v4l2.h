@@ -69,27 +69,7 @@ using namespace std;
 #define test_pattern                    0x009f0903 //(menu)    //min=0 max=4 default=0 value=0
 #define digital_gain                    0x009f0905 //(int)     //min=1000 max=15999 step=1 default=1000 value=1000
 
-#define IMAGE_W 1280
-#define IMAGE_H 720
-
-#ifdef CAP_RESOLUTION_1280x800
-#define IMAGE_W 1280
-#define IMAGE_H 720
-#endif
-#ifdef CAP_RESOLUTION_640x400
-#define IMAGE_W 640
-#define IMAGE_H 400
-#endif
-#ifdef CAP_RESOLUTION_320x200
-#define IMAGE_W 320
-#define IMAGE_H 200
-#endif
-#ifdef CAP_RESOLUTION_160x100
-#define IMAGE_W 160
-#define IMAGE_H 100
-#endif
-
-#define FRAME_NUM 2
+#define FRAME_NUM 5
 
 //Map each buffer frame
 struct buffer
@@ -104,7 +84,7 @@ class V4L2 : public QObject
     Q_OBJECT
 
 public:
-    V4L2 ();
+    V4L2 (bool ov5648);
     ~V4L2 ();
 
     int open (string port);
@@ -130,6 +110,9 @@ private:
     bool isCamOpen{false};
     struct buffer buffers[FRAME_NUM];
     unsigned int m_buffers; //Number of frame buffers
+    bool is_ov5648{false};
+    int IMAGE_W{1280};
+    int IMAGE_H{800};
 };
 
 #endif // V4L2_H

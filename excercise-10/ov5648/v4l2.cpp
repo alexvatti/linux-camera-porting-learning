@@ -2,9 +2,17 @@
 
 #ifdef TARGET_BUILD
 
-V4L2::V4L2 ()
+V4L2::V4L2 (bool ov5648)
 {
     fd = -1;
+    is_ov5648 = ov5648;
+    if (is_ov5648){
+        IMAGE_W = 1280;
+        IMAGE_H = 720;
+    }else{
+        IMAGE_W = 1280;
+        IMAGE_H = 800;
+    }
 }
 
 V4L2::~V4L2 ()
@@ -27,8 +35,10 @@ int V4L2::open(string port)
     }else qDebug()<<"camera open success";
 
     stop_streaming();
-    //setctrl(digital_gain_red,1400);
-    //setctrl(digital_gain_blue,1700);
+    if (!is_ov5648){
+        setctrl(digital_gain_red,1400);
+        setctrl(digital_gain_blue,1700);
+    }
 
     //Query the capabilities of video equipment
     struct v4l2_capability cap;
@@ -60,15 +70,15 @@ int V4L2::open(string port)
     //5. Set the rotation method of the video
 
     //Apply for several frame buffers, generally not less than 3
-    //Query the length and offset of the frame buffer in the kernel space
     request_buffer ();
-    for(m_buffers = 0; m_buffers < FRAME_NUM; ++m_buffers)
+    //Query the length and offset of the frame buffer in the kernel space
+    for(m_buffers = 0; m_buffers<FRAME_NUM; ++m_buffers)
     {
         buffers[m_buffers].start = MAP_FAILED;
         query_buffer (m_buffers);
     }
     //Open video capture
-    for(unsigned int i=0;i<m_buffers;i++) {
+    for(unsigned int i = 0; i<m_buffers; i++) {
         queue_buffer (i);
     }
     start_streaming ();
@@ -125,13 +135,16 @@ int V4L2::set_format() {
     format.type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
     format.fmt.pix_mp.width = IMAGE_W;
     format.fmt.pix_mp.height = IMAGE_H;
-    //format.fmt.pix_mp.colorspace = V4L2_COLORSPACE_DEFAULT;
-    format.fmt.pix_mp.pixelformat = V4L2_PIX_FMT_SBGGR8;
-    //format.fmt.pix_mp.xfer_func = V4L2_XFER_FUNC_SRGB;
-    //format.fmt.pix_mp.ycbcr_enc = V4L2_YCBCR_ENC_601;
-    //format.fmt.pix_mp.quantization = V4L2_QUANTIZATION_FULL_RANGE;
-    format.fmt.pix_mp.field = V4L2_FIELD_ANY;
-    //format.fmt.pix_mp.field = V4L2_FIELD_INTERLACED;
+    if (is_ov5648){
+        format.fmt.pix_mp.colorspace = V4L2_COLORSPACE_JPEG;
+        format.fmt.pix_mp.pixelformat = V4L2_PIX_FMT_SBGGR8;
+        format.fmt.pix_mp.field = V4L2_FIELD_ANY;
+    }
+    else
+    {
+        format.fmt.pix_mp.pixelformat = V4L2_PIX_FMT_SGRBG12;
+        format.fmt.pix_mp.field = V4L2_FIELD_INTERLACED;
+    }
     int res = ioctl(fd, VIDIOC_S_FMT, &format);
     if(res == -1) {
         qDebug()<<"V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE->VIDIOC_S_FMT error";
@@ -167,7 +180,6 @@ bool V4L2::query_buffer (unsigned int buff_index) {
         qDebug()<<"VIDIOC_QUERYBUF error";
         return false;
     }else qDebug()<<"VIDIOC_QUERYBUF success";
-
     buffers[buff_index].start = mmap(NULL, buffers[buff_index].plane.length, PROT_READ | PROT_WRITE, MAP_SHARED, fd, buffers[buff_index].plane.m.mem_offset);
     buffers[buff_index].length = buffers[buff_index].plane.length;
     if (buffers[buff_index].start == MAP_FAILED) {
@@ -183,12 +195,18 @@ bool V4L2::queue_buffer(int buff_index) {
     buff.type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
     buff.memory = V4L2_MEMORY_MMAP;
     buff.m.planes = &buffers[buff_index].plane;
-    //buff.field = V4L2_FIELD_INTERLACED;
-    buff.field = V4L2_FIELD_ANY;
+    if (is_ov5648)
+    {
+        buff.field = V4L2_FIELD_NONE;
+    }
+    else
+    {
+        buff.field = V4L2_FIELD_INTERLACED;
+    }
     buff.index = buff_index;
     buff.length = 1;
 
-    if(-1 == ioctl (fd, VIDIOC_QBUF, &buff))
+    if (-1 == ioctl (fd, VIDIOC_QBUF, &buff))
     {
         qDebug()<<"VIDIOC_QBUF Error";
         return false;
@@ -222,20 +240,25 @@ bool V4L2::read (cv::Mat &img)
     memset (&buf, 0, sizeof(buf));
     buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
     buf.memory = V4L2_MEMORY_MMAP;
-    //buf.field = V4L2_FIELD_INTERLACED;
-    buf.field = V4L2_FIELD_ANY;
+    if (is_ov5648)
+    {
+        buf.field = V4L2_FIELD_NONE;
+    }
+    else
+    {
+        buf.field = V4L2_FIELD_INTERLACED;
+    }
     buf.m.planes = &buffers[buf.index].plane;
-    buf.length = 1;
-    int ret = ioctl (fd, VIDIOC_DQBUF, &buf);
-    qDebug()<<"dqbuf return value: "<<ret;
-    if(ret != 0) {
+    buf.length = 1; //number of planes
+
+    if(-1 == ioctl (fd, VIDIOC_DQBUF, &buf)) {
         qDebug()<<"VIDIOC_DQBUF error";
         return false;
     }
     else
         qDebug()<<"VIDIOC_DQBUF success";
 
-    qDebug()<<"buf.index: "<<buf.index;
+    //qDebug()<<"buf.index: "<<buf.index;
     img = BA12_to_RGB24((unsigned char *)buffers[buf.index].start);
 
     if(-1 == ioctl (fd, VIDIOC_QBUF, &buf)) {
@@ -254,7 +277,14 @@ cv::Mat V4L2::BA12_to_RGB24(unsigned char *ba12)
     cv::Mat Mat8Bit = Mat16Bit.clone();
     Mat16Bit.convertTo(Mat8Bit, CV_8UC3, 1.0/256);
     cv::Mat MatRgb(IMAGE_W, IMAGE_H, CV_8UC3);
-    cv::cvtColor(Mat8Bit, MatRgb, cv::COLOR_BayerGR2RGB);
+    if (is_ov5648)
+    {
+        cv::cvtColor(Mat8Bit, MatRgb, cv::COLOR_BayerBG2RGB);   //ov5648
+    }
+    else
+    {
+        cv::cvtColor(Mat8Bit, MatRgb, cv::COLOR_BayerGR2RGB);   //ar0144
+    }
     return MatRgb;
 }
 
@@ -277,3 +307,4 @@ void V4L2::release ()
 }
 
 #endif  //TARGET_BUILD
+
