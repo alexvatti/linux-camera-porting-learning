@@ -15,6 +15,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdlib.h>
 #include <linux/videodev2.h>
 #include <sys/ioctl.h>
 #include <sys/mman.h>
@@ -103,7 +104,6 @@ public:
     bool isOpened();
     bool read(cv::Mat &img);
     void release ();
-    cv::ColorConversionCodes convFmt{cv::COLOR_BayerGB2RGB};
 
 private:
     SensorType_t m_sensor;
@@ -115,16 +115,17 @@ private:
         int imageFormat;
     }SensorProperties_t;
 
-    SensorProperties_t Sensors[3]={
-        {1280,800,V4L2_PIX_FMT_SGRBG8},    //AR0144
+    SensorProperties_t Sensors[3] = {
+        {1280,800,V4L2_PIX_FMT_SBGGR8},    //AR0144
         {1280,720,V4L2_PIX_FMT_SBGGR8},    //OV5648
-        {1280,800,V4L2_PIX_FMT_SGRBG12}     //IMX219
+        {1920,1080,V4L2_PIX_FMT_SGRBG8}     //IMX219
     };
 
     int set_format ();
-    int queryctrl(int ctrl);
-    int setctrl(int ctrl, int value);
-    int getctrl(int ctrl,int *value);
+    int get_format ();
+    int query_ctrl(int ctrl);
+    int set_ctrl(int ctrl, int value);
+    int get_ctrl(int ctrl,int *value);
     bool request_buffer();
     bool query_buffer(unsigned int buff_index);
     bool queue_buffer(int buff_index);

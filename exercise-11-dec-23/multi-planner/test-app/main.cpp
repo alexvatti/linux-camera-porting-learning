@@ -77,6 +77,23 @@ int get_format()
     return ret;
 }
 
+int set_format()
+{
+    struct v4l2_format vfmt = {0};
+    unsigned int captype = v4l_determine_type( &cam1 );
+    int ret = 0;
+
+    ret = v4l_s_fmt(&cam1,&vfmt,captype);
+
+    IMAGE_W  = 2592;
+    v4l_format_s_width( &vfmt, IMAGE_W );
+    IMAGE_H = 1944;
+    v4l_format_s_height( &vfmt, IMAGE_H );
+    unsigned pixelfmt = V4L2_PIX_FMT_SBGGR8;
+    v4l_format_s_pixelformat( &vfmt, pixelfmt );
+    return ret;
+}
+
 int request_query_buffers()
 {
     int ret = 0;
@@ -174,9 +191,10 @@ int get_frame()
     printf("bufflen = %u \n",bufflen);
     if ( bufflen > 0 )
     {
-        printf("ptrData > 0\n");
+        printf("bufflen > 0\n");
         size_t bidx = 0;
         void *ptrData = v4l_queue_g_mmapping( &vqueue, bidx, 0 );
+        printf ("ptrData = %p\n");
         if ( ptrData != NULL )
         {
             printf("ptrData != NULL\n");
@@ -213,6 +231,8 @@ int main(int argc, char *argv[])
     }
     get_format();
     printf ("get_format\n");
+    //set_format();
+    //printf ("set_format\n");
     request_query_buffers();
     printf ("query_buffers\n");
     stream_on();

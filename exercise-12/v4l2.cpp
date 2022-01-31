@@ -36,7 +36,7 @@ int V4L2::open(string port, SensorType_t sensor)
     struct v4l2_capability cap;
     memset (&cap, 0, sizeof(cap));
     if(ioctl (fd, VIDIOC_QUERYCAP, &cap) == -1) {
-        //qDebug()<<"VIDIOC_QUERYCAP error";
+        //qDebug()<<"VIDIOC_QUERYCAP error: "<<errno;
         return -1;
     }else{
         //qDebug()<<"VIDIOC_QUERYCAP success";
@@ -63,17 +63,19 @@ int V4L2::open(string port, SensorType_t sensor)
     //1. Set the video format
     //2. Set the video image capture window size
     //3. Set the format of the video
-    set_format ();
+    get_format();
+    set_format();
+    get_format();
     //4. Set the frame rate of the video
     //5. Set the rotation method of the video
     if (m_sensor == V4L2::SENSOR_AR0144){
-        setctrl(digital_gain_red,1400);
-        setctrl(digital_gain_blue,1700);
-    }
-    else if (m_sensor == V4L2::SENSOR_OV5648){
-        setctrl(auto_exposure,1);
-        setctrl(white_balance_automatic,1);
-        setctrl(gain_automatic,1);
+        set_ctrl(digital_gain_red,1400);
+        set_ctrl(digital_gain_blue,1700);
+    }else if (m_sensor == V4L2::SENSOR_OV5648){
+        set_ctrl(auto_exposure,1);
+        set_ctrl(gain_automatic,1);
+        set_ctrl(white_balance_automatic,1);
+    }else if (m_sensor == V4L2::SENSOR_IMX219){
     }
 
     //Apply for several frame buffers, generally not less than 3
@@ -100,12 +102,12 @@ bool V4L2::isOpened()
     return isCamOpen;
 }
 
-int V4L2::queryctrl(int ctrl){
+int V4L2::query_ctrl(int ctrl){
     struct v4l2_queryctrl v4l2_qctrl;
     memset (&v4l2_qctrl, 0, sizeof (v4l2_qctrl));
     v4l2_qctrl.id = ctrl;
     if (-1 == ioctl (fd, VIDIOC_QUERYCTRL, &v4l2_qctrl)) {
-        //qDebug()<<"VIDIOC_QUERYCTRL error";
+        //qDebug()<<"VIDIOC_QUERYCTRL error: "<<errno;
         return -1;
     }else{
         //qDebug()<<"VIDIOC_QUERYCTRL success";
@@ -113,14 +115,14 @@ int V4L2::queryctrl(int ctrl){
     return 0;
 }
 
-int V4L2::setctrl(int ctrl, int value)
+int V4L2::set_ctrl(int ctrl, int value)
 {
     struct v4l2_control v4l2_ctrl;
     memset (&v4l2_ctrl, 0, sizeof (v4l2_ctrl));
     v4l2_ctrl.id = ctrl;
     v4l2_ctrl.value = value;
     if (-1 == ioctl (fd, VIDIOC_S_CTRL, &v4l2_ctrl)) {
-        //qDebug()<<"VIDIOC_S_CTRL error";
+        //qDebug()<<"VIDIOC_S_CTRL error: "<<errno;
         return -1;
     }else{
         //qDebug()<<"VIDIOC_S_CTRL success";
@@ -128,13 +130,13 @@ int V4L2::setctrl(int ctrl, int value)
     return 0;
 }
 
-int V4L2::getctrl(int ctrl, int *value)
+int V4L2::get_ctrl(int ctrl, int *value)
 {
     struct v4l2_control v4l2_ctrl;
     memset (&v4l2_ctrl, 0, sizeof (v4l2_ctrl));
     v4l2_ctrl.id = ctrl;
     if (-1 == ioctl (fd, VIDIOC_G_CTRL, &v4l2_ctrl)) {
-        //qDebug()<<"VIDIOC_G_CTRL error";
+        //qDebug()<<"VIDIOC_G_CTRL error: "<<errno;
         return -1;
     }else{
         //qDebug()<<"VIDIOC_G_CTRL success";
@@ -144,6 +146,7 @@ int V4L2::getctrl(int ctrl, int *value)
 }
 
 int V4L2::set_format() {
+    int res = -1;
     struct v4l2_format format;
     memset(&format,0,sizeof(format));
     format.type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
@@ -152,16 +155,41 @@ int V4L2::set_format() {
     format.fmt.pix_mp.pixelformat = Sensors[m_sensor].imageFormat;
     //qDebug()<<"output image format: "<<fourcc(Sensors[m_sensor].imageFormat).c_str();
     if (m_sensor == V4L2::SENSOR_AR0144){
-        format.fmt.pix_mp.field = V4L2_FIELD_INTERLACED;
+        format.fmt.pix_mp.field = V4L2_FIELD_NONE;
     }else if (m_sensor == V4L2::SENSOR_OV5648){
-        format.fmt.pix_mp.colorspace = V4L2_COLORSPACE_RAW;
+        format.fmt.pix_mp.field = V4L2_FIELD_NONE;
+        format.fmt.pix_mp.colorspace = V4L2_COLORSPACE_SRGB;
+    }else if (m_sensor == V4L2::SENSOR_IMX219){
         format.fmt.pix_mp.field = V4L2_FIELD_NONE;
     }
-    int res = ioctl(fd, VIDIOC_S_FMT, &format);
-    if(res == -1) {
-        //qDebug()<<"V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE->VIDIOC_S_FMT error";
+    res = ioctl(fd, VIDIOC_S_FMT, &format);
+    if (-1 == res) {
+        //qDebug()<<"V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE->VIDIOC_S_FMT error: "<<errno;
     }else{
         //qDebug()<<"V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE->VIDIOC_S_FMT success";
+    }
+    return res;
+}
+
+int V4L2::get_format() {
+    int res = -1;
+    struct v4l2_format format;
+    memset(&format,0,sizeof(format));
+    format.type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
+    res = ioctl(fd, VIDIOC_G_FMT, &format);
+    if (-1 == res) {
+        //qDebug()<<"V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE->VIDIOC_S_FMT error: "<<errno;
+    }else{
+        //qDebug()<<"V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE->VIDIOC_S_FMT success";
+        qDebug()<<"##########";
+        qDebug()<<"width: "<<format.fmt.pix_mp.width;
+        qDebug()<<"height: "<<format.fmt.pix_mp.height;
+        qDebug()<<"colorspace: "<<format.fmt.pix_mp.colorspace;
+        qDebug()<<"ycbcr: "<<format.fmt.pix_mp.ycbcr_enc;
+        qDebug()<<"field: "<<format.fmt.pix_mp.field;
+        qDebug()<<"format: "<<fourcc(Sensors[m_sensor].imageFormat).c_str();
+        qDebug()<<"xfer: "<<format.fmt.pix_mp.xfer_func;
+        qDebug()<<"~~~~~~~~~~";
     }
     return res;
 }
@@ -175,7 +203,7 @@ bool V4L2::request_buffer() {
     int res = ioctl(fd, VIDIOC_REQBUFS, &req);
     if (res == -1)
     {
-        //qDebug()<<"VIDIOC_REQBUFS error";
+        //qDebug()<<"VIDIOC_REQBUFS error: "<<errno;
         return false;
     }else{
         //qDebug()<<"VIDIOC_REQBUFS success";
@@ -193,7 +221,7 @@ bool V4L2::query_buffer (unsigned int buff_index) {
     buff.length = 1;
     int res = ioctl (fd, VIDIOC_QUERYBUF, &buff);
     if(res != 0) {
-        //qDebug()<<"VIDIOC_QUERYBUF error";
+        //qDebug()<<"VIDIOC_QUERYBUF error: "<<errno;
         return false;
     }else{
         //qDebug()<<"VIDIOC_QUERYBUF success";
@@ -217,8 +245,10 @@ bool V4L2::queue_buffer(int buff_index) {
     buff.m.planes = &buffers[buff_index].plane;
 
     if (m_sensor == V4L2::SENSOR_AR0144){
-        buff.field = V4L2_FIELD_INTERLACED;
+        buff.field = V4L2_FIELD_NONE;
     }else if (m_sensor == V4L2::SENSOR_OV5648){
+        buff.field = V4L2_FIELD_NONE;
+    }else if (m_sensor == V4L2::SENSOR_IMX219){
         buff.field = V4L2_FIELD_NONE;
     }
 
@@ -227,7 +257,7 @@ bool V4L2::queue_buffer(int buff_index) {
 
     if(-1 == ioctl (fd, VIDIOC_QBUF, &buff))
     {
-        //qDebug()<<"VIDIOC_QBUF Error";
+        //qDebug()<<"VIDIOC_QBUF Error: "<<errno;
         return false;
     }else{
         //qDebug()<<"VIDIOC_QBUF success";
@@ -238,7 +268,7 @@ bool V4L2::queue_buffer(int buff_index) {
 bool V4L2::start_streaming () {
     enum v4l2_buf_type type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
     if(ioctl (fd, VIDIOC_STREAMON, &type) == -1){
-        //qDebug()<<"VIDIOC_STREAMON Error";
+        //qDebug()<<"VIDIOC_STREAMON Error: "<<errno;
         return false;
     }else{
         //qDebug()<<"VIDIOC_STREAMON success";
@@ -249,7 +279,7 @@ bool V4L2::start_streaming () {
 bool V4L2::stop_streaming () {
     enum v4l2_buf_type type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
     if(ioctl (fd, VIDIOC_STREAMOFF, &type) == -1){
-        //qDebug()<<"VIDIOC_STREAMOFF Error";
+        //qDebug()<<"VIDIOC_STREAMOFF Error: "<<errno;
         return false;
     }else{
         //qDebug()<<"VIDIOC_STREAMOFF success";
@@ -261,47 +291,41 @@ bool V4L2::read (cv::Mat &img)
 {
     if (isCamOpen == false)
         return false;
-    struct v4l2_buffer buf;
-    memset (&buf, 0, sizeof(buf));
-    buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
-    buf.memory = V4L2_MEMORY_MMAP;
+    struct v4l2_buffer buff;
+    memset (&buff, 0, sizeof(buff));
+    buff.type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
+    buff.memory = V4L2_MEMORY_MMAP;
     if (m_sensor == V4L2::SENSOR_AR0144){
-        buf.field = V4L2_FIELD_INTERLACED;
+        buff.field = V4L2_FIELD_NONE;
     }else if (m_sensor == V4L2::SENSOR_OV5648){
-        buf.field = V4L2_FIELD_NONE;
+        buff.field = V4L2_FIELD_NONE;
+    }else if (m_sensor == V4L2::SENSOR_IMX219){
+        buff.field = V4L2_FIELD_NONE;
     }
 
-    buf.m.planes = &buffers[buf.index].plane;
-    buf.length = 1; //number of planes
+    buff.m.planes = &buffers[buff.index].plane;
+    buff.length = 1; //number of planes
 
-    //QThread::msleep(10);
-
-    int ret = ioctl (fd, VIDIOC_DQBUF, &buf);
-    if (-1 == ret) {
-        qDebug()<<"VIDIOC_DQBUF error: "<<ret<<" : "<<errno;
+    int ret = ioctl (fd, VIDIOC_DQBUF, &buff);
+    if (-1 == ret){
+        //qDebug()<<"VIDIOC_DQBUF error: "<<errno;
         return false;
     }else{
         //qDebug()<<"VIDIOC_DQBUF success";
     }
-    //qDebug()<<"buffer length: "<<buffers[buf.index].length;
-    //qDebug()<<"buf.index: "<<buf.index;
+
+    //qDebug()<<"buffer length: "<<buffers[buff.index].length;
+    //qDebug()<<"buff.index: "<<buff.index;
+    cv::Mat Mat(Sensors[m_sensor].imageHeight, Sensors[m_sensor].imageWidth, CV_8UC1,(unsigned char *)buffers[buff.index].start);
     if (m_sensor == V4L2::SENSOR_AR0144){
-        cv::Mat Mat(Sensors[m_sensor].imageHeight, Sensors[m_sensor].imageWidth, CV_8UC1,(unsigned char *)buffers[buf.index].start);
-        cv::cvtColor(Mat, img, cv::COLOR_BayerGR2RGB);   //ar0144
+        cv::cvtColor(Mat, img, cv::COLOR_BayerGR2RGB);
     }else if (m_sensor == V4L2::SENSOR_OV5648){
-        cv::Mat Mat(Sensors[m_sensor].imageHeight, Sensors[m_sensor].imageWidth, CV_8UC1,(unsigned char *)buffers[buf.index].start);
-        //cv::cvtColor(img, img, cv::COLOR_BayerGB2RGB);
-        if (convFmt >= cv::COLOR_COLORCVT_MAX){
-            qDebug()<<"no conversion";
-            img = Mat;
-        }else{
-            qDebug()<<"conv"<<convFmt;
-            cv::cvtColor(Mat, img, convFmt);
-        }
+        cv::cvtColor(Mat, img, cv::COLOR_BayerGR2RGB);
+    }else if (m_sensor == V4L2::SENSOR_IMX219){
     }
 
-    if (-1 == ioctl (fd, VIDIOC_QBUF, &buf)) {
-        //qDebug()<<"VIDIOC_QBUF error";
+    if (-1 == ioctl (fd, VIDIOC_QBUF, &buff)) {
+        //qDebug()<<"VIDIOC_QBUF error: "<<errno;
         return false;
     }else{
         //qDebug()<<"VIDIOC_QBUF success";

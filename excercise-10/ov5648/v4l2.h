@@ -18,6 +18,7 @@
 #include <linux/videodev2.h>
 #include <sys/ioctl.h>
 #include <sys/mman.h>
+#include "v4l-helpers.h"
 
 using namespace std;
 
@@ -94,6 +95,7 @@ public:
 
 private:
     int set_format ();
+    int get_format ();
     int queryctrl(int ctrl);
     int setctrl(int ctrl, int value);
     int getctrl(int ctrl,int *value);

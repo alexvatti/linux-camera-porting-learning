@@ -65,6 +65,7 @@ int V4L2::open(string port)
     //1. Set the video format
     //2. Set the video image capture window size
     //3. Set the format of the video
+    get_format();
     set_format ();
     //4. Set the frame rate of the video
     //5. Set the rotation method of the video
@@ -149,6 +150,28 @@ int V4L2::set_format() {
     if(res == -1) {
         qDebug()<<"V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE->VIDIOC_S_FMT error";
     }else qDebug()<<"V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE->VIDIOC_S_FMT success";
+    return res;
+}
+
+int V4L2::get_format() {
+    struct v4l2_format format;
+    memset(&format,0,sizeof(format));
+    format.type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
+    int res = ioctl(fd, VIDIOC_G_FMT, &format);
+    if(res == -1) {
+        qDebug()<<"V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE->VIDIOC_G_FMT error";
+    }else qDebug()<<"V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE->VIDIOC_G_FMT success";
+
+    qDebug()<<"width: "<<format.fmt.pix_mp.width;
+    qDebug()<<"height: "<<format.fmt.pix_mp.height;
+    qDebug()<<"planes: "<<format.fmt.pix_mp.num_planes;
+    qDebug()<<"colorspace: "<<format.fmt.pix_mp.colorspace;
+    qDebug()<<"pixelformat: "<<fourcc(format.fmt.pix_mp.pixelformat).c_str();
+    qDebug()<<"feild: "<<format.fmt.pix_mp.field;
+    qDebug()<<"quant: "<<format.fmt.pix_mp.quantization;
+    qDebug()<<"xfer: "<<format.fmt.pix_mp.xfer_func;
+    qDebug()<<"ycbcr: "<<format.fmt.pix_mp.ycbcr_enc;
+
     return res;
 }
 
@@ -284,6 +307,8 @@ cv::Mat V4L2::BA12_to_RGB24(unsigned char *ba12)
     else
     {
         cv::cvtColor(Mat8Bit, MatRgb, cv::COLOR_BayerGR2RGB);   //ar0144
+        /*if (pixformat == SGRBG8_1X8)
+            cv::COLOR_BayerGB2BGR*/
     }
     return MatRgb;
 }
