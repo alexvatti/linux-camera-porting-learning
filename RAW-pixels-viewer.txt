@@ -1,0 +1,37 @@
+Step 1:
+https://rawpixels.net/
+
+Step 2:
+http://trace.eas.asu.edu/yuv/
+We provide video sequences of commonly used video test sequences in the 4:2:0 YUV format below. All video sequences are compressed in the 7-Zip format. 
+
+Step 3:
+Download the Image from Step 2 and upload to Step 1, with mentioned 
+
+width: 
+height: 
+offset: 
+flip h: 
+flip v:
+ 
+Predefined format:
+Pixel Format:
+Ignore Alpha:
+Alpha First:
+
+bpp1:
+bpp2:
+bpp3:
+bpp4:
+Litle Endian:
+Pixel Plane:
+alignment:
+subsamplig H:
+subsamplig V:
+
+
+Reference:
+https://gist.github.com/commshare/51ee9e3a11ac86c1b483
+http://trace.eas.asu.edu/yuv/
+https://rawpixels.net/
+https://stackoverflow.com/questions/3644501/where-can-i-obtain-a-raw-yuv-file
