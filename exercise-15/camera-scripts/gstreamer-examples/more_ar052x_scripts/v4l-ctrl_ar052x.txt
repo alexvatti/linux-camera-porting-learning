@@ -1,0 +1,118 @@
+#  v4l2 control settings ar052x with v4l-ctrl
+#  PHYTEC 2021, V0.2
+
+# show all v4l Controls
+# ======================
+v4l2-ctl [CAM_DEVICE] --all (list all)
+v4l2-ctl [CAM_DEVICE] -L (list all detail)
+v4l2-ctl [CAM_DEVICE] -H (help)
+
+[CAM_DEVICE] = ipux_csix capture device
+for example: v4l2-ctl -d /dev/video0 --all
+
+# set AR052x COARSE INTEGRATIN TIME (EXPOSURE)
+# ============================================
+# Specified in multiples of line_length_pck (Number of Rows)
+# 1817 for approx. 60fps (@Resolution 2048x1536 and lower e.g. @i.MX6)
+# 2240 for approx. 60fps (@Resolution 2592x1944/8-Bit e.g. @i.MX8M Mini)
+v4l2-ctl -d /dev/video0 --set-ctrl=exposure=2240
+
+
+# set AR052x COLUMN BINNING
+# =========================
+# Note: only for col-camera in skipping mode 
+# Set binning of columns, 
+v4l2-ctl -d /dev/video0 --set-ctrl=columnn_binning=0
+
+
+# set AR052x FLIP
+# ================
+# Note: If flip the color camera read direction, the bayer-sequence will be changed. 
+# Set readout flip row and/or column, 
+v4l2-ctl -d /dev/video0 --set-ctrl=horizontal_flip=0
+v4l2-ctl -d /dev/video0 --set-ctrl=vertical_flip=0
+
+
+# set AR052x DIGITAL GAIN
+# =======================
+# Value/1000 = Digital Gain, Range: Value [1000..7999], Range: Digital Gain [1..122]
+# digital gain global
+v4l2-ctl -d /dev/video0 --set-ctrl=digital_gain=1000
+# digital gain color components (e.g. for white balance)
+v4l2-ctl -d /dev/video0 --set-ctrl=digital_gain_red=1000
+v4l2-ctl -d /dev/video0 --set-ctrl=digital_gain_green_red=1000
+v4l2-ctl -d /dev/video0 --set-ctrl=digital_gain_blue=1000
+v4l2-ctl -d /dev/video0 --set-ctrl=digital_gain_green_blue=1000
+
+
+# set AR052x DYNAMIC DEFECT PIXEL CORRECTION
+# ==========================================
+# 0 = DDPC off / 1 = DDPC on, Note: Used only sensor is stopped
+v4l2-ctl -d /dev/video0 --set-ctrl=dynamic_defect_pixel_correction=0
+
+
+# set AR052x VERTICAL BLANKING
+# =============================
+# number of blank rows, Note: Used only sensor is stopped
+v4l2-ctl -d /dev/video0 --set-ctrl=vertical_blanking=28
+
+
+# set AR052x VERTICAL BLANKING FINE
+# =================================
+# Extra blanking (clock) inserted between frames
+v4l2-ctl -d /dev/video0 --set-ctrl=extra_vertical_blanking=0
+
+
+# set AR052x HORIZONTAL BLANKING
+# ===============================
+# number of blank columns, Note: Used only sensor is stopped
+v4l2-ctl -d /dev/video0 --set-ctrl=horizontal_blanking=240
+
+
+# read AR052x HBLANK EFFECTIVE
+# ============================
+# read only, real value on used h-blanking pixel clocks
+v4l2-ctl -d /dev/video0 --get-ctrl=hblank_effective
+
+
+# set AR052x GLOBAL ANALOG GAIN
+# =============================
+# Value/1000 = Analog Gain, Range: Value[1000..14250], Range: Analog Gain [1..14,25]
+v4l2-ctl -d /dev/video0 --set-ctrl=analogue_gain=5000 (approx. Gain = 5)
+Note: Use first analog gain and then digital gain.
+
+
+# set AR052x TEST PATTERN
+# ========================
+# testpattern range [0-6], xxx_pixel_value range [0-4095]
+# for test_pattern=1 set the color via v4l2-ctl xxx_pixel_value 
+v4l2-ctl -d /dev/video0 --set-ctrl=test_pattern=0
+v4l2-ctl -d /dev/video0 --set-ctrl=red_pixel_value=0
+v4l2-ctl -d /dev/video0 --set-ctrl=green_red_pixel_value=0
+v4l2-ctl -d /dev/video0 --set-ctrl=blue_pixel_value=0
+v4l2-ctl -d /dev/video0 --set-ctrl=green_blue_pixel_value=0
+
+
+# get AR052x CURRENT LINK FREQUENCY
+# =================================
+# Read Current link frequency (read only)
+v4l2-ctl -d /dev/video0 --get-ctrl=link_frequency
+
+
+# set AR052x FLASH/STROBE
+# =======================
+# 0 = FLASH/TOURCH off / 1 = FLASH = on / 1 = TORCH = on
+v4l2-ctl -d /dev/video0 --set-ctrl=led_mode=0
+
+
+# set AR052x INVERT FLASH
+# =======================
+# 1 = invert FLASH
+v4l2-ctl -d /dev/video0 --set-ctrl=invert_flash=0
+
+
+# set AR052x FLASH XENON WIDTH
+# ============================
+# width of FLASH
+v4l2-ctl -d /dev/video0 --set-ctrl=flash_xenon_width=256
+

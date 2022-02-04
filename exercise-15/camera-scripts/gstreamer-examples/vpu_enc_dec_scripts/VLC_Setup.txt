@@ -1,0 +1,5 @@
+VLC - Tools - Preferences - Show Settings "All" - Inputs and Codecs - Scroll down to find "Network Caching". 
+Set to desired speed in ms, save, done.
+
+
+Deactivate Firewall on PC.

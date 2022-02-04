@@ -1,0 +1,67 @@
+deutsch =======================================================================================
+
+Das Programm "save_raw_image.c" zeigt ihnen den Zugriff auf die v2l Schnittstelle aus einem C-Programm heraus.
+- Die Sourcen befinden sich im "bvtest-0.1.0.tar.gz" Archiv.
+- Die mitgelieferten Scripte "xxx.sh" zeigen den Aufruf des "save_raw_image" für die verschiedenen PHYTEC phyCAM Kameras.
+- Die v4l2-ctl Aufrufe erfolgen separat. Solange keine Geometrie- oder Farbformatänderung notwendig ist,
+  müssen diese Funktionen nur einmal nach dem Neustart aufgerufen werden.
+- Das "save_raw_image" binary ist auf dem YOCTO BSP PD21.1.0 getestet worden.
+- Alternativ kann auch das Programm yavta zum speichern von Bildern verwendet werden.
+Troubleshooting:
+- Vor dem ersten Verwenden des Kameratreibers mit "save_raw_image" muß in dem PD21.x noch folgender Aufruf durchgeführt werden:
+  <gst-launch-1.0 v4l2src num-buffers=1 device=/dev/video0 ! fakesink>
+
+
+Vorgehen:
+- System starten
+- ins "/phytec-v4l2-c-examples/..." wechseln
+- das jeweilige Script starten
+- das generierte RAW-Bild kann z.B. mit einem Bildbetrachtungsprogramm z.B. "Irfanview" betrachtet werden. 
+
+
+Folgende Kameras wurden getestet:
+VM-016-BW-M 	= ar0144_bw_full_save-raw.sh (phyCAM-M)
+VM-016-COL-M 	= ar0144_col_full_save-raw.sh (phyCAM-M)
+VM-017-BW-M 	= ar052x_bw_full_save-raw.sh (phyCAM-M)
+VM-017-COL-M 	= ar052x_col_full_save-raw.sh (phyCAM-M)
+
+Achtung: Es muß die jeweis richtige Kamera angeschlossen sein.
+
+Hinweis: Das Programm "save_raw-image.c" befindet sich noch im Entwicklungsstadium.
+         Es kann daher noch keine vollständig korrekte Arbeitsweise garantiert werden.
+         Die Aufrufparameter können durch Eingabe "save_raw_image -h" angezeigt werden.
+
+
+
+english =======================================================================================
+
+The program "save_raw_image.c" show the access on the  v2l-interface with an C-program.
+- The sources are locate in "bvtest-0.1.0.tar.gz" archive.
+- The included scripts "xxx.sh" show the "save_raw_image" call for the different PHYTEC phyCAM cameras.
+- The v4l2-ctl calls are seperat.If no geometrie- or colorformatchange necessary,
+  call the v4l2-ctl functions only once after restart.
+- The "save_raw_image" binary runs on YOCTO BSP PD21.1.0
+- Alternate you can use the program yavta for save of pictures.
+Troubleshooting:
+- Before using the camera driver with "save_raw_image" for the first time, the following call must be made in the PD21.x:
+  <gst-launch-1.0 v4l2src num-buffers=1 device=/dev/video0 ! fakesink>
+
+procedure:
+- start up the modul
+- change into directory "/phytec-v4l2-c-examples/..."
+- call the respective script
+- the created RAW-image can viewed, with an image-viewer for example  "Irfanview"
+
+
+following cameras have been tested:
+VM-016-BW-M 	= ar0144_bw_full_save-raw.sh (phyCAM-M)
+VM-016-COL-M 	= ar0144_col_full_save-raw.sh (phyCAM-M)
+VM-017-BW-M 	= ar052x_bw_full_save-raw.sh (phyCAM-M)
+VM-017-COL-M 	= ar052x_col_full_save-raw.sh (phyCAM-M)
+
+Attention: It must be connected the right camera.
+
+Note: The program "save_raw-image.c" is in a evaluation status.
+      An right work of the programm is not guaranteed.
+      For help of "save_raw_image" type "save_raw_image -h".
+
