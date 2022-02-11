@@ -12,15 +12,20 @@ v4l2_subdev_pad_ops	        imx219_enum_mbus_code
                             imx219_get_pad_format
                             imx219_set_pad_format
                             imx219_enum_frame_size
+
 v4l2_subdev_ops     	    imx219_core_ops
                             imx219_video_ops
                             imx219_pad_ops
+
 v4l2_subdev_internal_ops	imx219_open
+
 media_entity_operations	    imx219_link_setup
+
 dev_pm_ops	                imx219_suspend
                             imx219_resume
                             imx219_power_off
                             imx219_power_on
+
 v4l2_ctrl_ops               imx219_set_ctrl
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -70,7 +75,7 @@ imx219_1: camera@1a {
 	};
 };
 
-&imx219{
+&imx219_1{
     status = "okay";
 };
 
