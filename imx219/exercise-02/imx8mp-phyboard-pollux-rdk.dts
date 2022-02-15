@@ -1,0 +1,52 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * Copyright (C) 2020 PHYTEC Messtechnik GmbH
+ * Author: Teresa Remmet <t.remmet@phytec.de>
+ */
+
+/dts-v1/;
+
+#include "imx8mp-phycore-som.dtsi"
+#include "imx8mp-phyboard-pollux.dtsi"
+#include "imx8mp-phyboard-pollux-peb-av-010.dtsi"
+#include "imx8mp-phyboard-pollux-peb-wlbt-05.dtsi"
+
+/ {
+	model = "PHYTEC phyBOARD-Pollux i.MX8MP";
+	compatible = "phytec,imx8mp-phyboard-pollux-rdk",
+		     "phytec,imx8mp-phycore-som", "fsl,imx8mp";
+
+};
+
+&cameradev {
+	status = "okay";
+};
+
+&flash0 {
+	status = "okay";
+};
+
+&ov5648_0 {
+	status = "okay";
+};
+
+&imx219_1 {
+	status = "okay";
+};
+
+&mipi_dsi {
+	panel@0 {
+		compatible = "bananapi,lhr050h41";
+		reg = <0>;
+		/* pinctrl-0 = <&pinctrl_mipi_dsi_en>; */
+		/* reset-gpio = <&gpio1 8 GPIO_ACTIVE_LOW>; */
+		dsi-lanes = <4>;
+		video-mode = <2>;	/* 0: burst mode
+					 * 1: non-burst mode with sync event
+					 * 2: non-burst mode with sync pulse
+					 */
+		panel-width-mm = <62>;
+		panel-height-mm = <110>;
+		status = "okay";
+	};
+};
