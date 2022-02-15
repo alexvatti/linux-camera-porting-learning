@@ -1,0 +1,74 @@
+root@raibos:~# media-ctl -p
+Failed to enumerate /dev/media0 (-2)
+root@raibos:~# v4l2-ctl -d /dev/video0 --all
+[  133.383932] Unable to handle kernel NULL pointer dereference at virtual address 000000000000000c
+[  133.392764] Mem abort info:
+[  133.395593]   ESR = 0x96000004
+Driver Info:
+        Driver name      :[  133.398669]   EC = 0x25: DABT (current EL), IL = 32 bits
+ mxc-isi-m2m
+        Card type        :[  133.406844]   SET = 0, FnV = 0
+[  133.412744]   EA = 0, S1PTW = 0
+[  133.415895] Data abort info:
+[  133.418786]   ISV = 0, ISS = 0x00000004
+[  133.422632]   CM = 0, WnR = 0
+[  133.425599] user pgtable: 4k pages, 48-bit VAs, pgdp=00000000b5a30000
+ mxc-isi-m2m
+        Bus info         :[  133.432051] [000000000000000c] pgd=0000000000000000
+[  133.439788] Internal error: Oops: 96000004 [#1] PREEMPT SMP
+[  133.445358] Modules linked in: crct10dif_ce flexcan
+[  133.450241] CPU: 1 PID: 656 Comm: v4l2-ctl Not tainted 5.4.70-bsp-yocto-fsl-i.mx8mp-alpha2 #1
+[  133.458761] Hardware name: PHYTEC phyBOARD-Pollux i.MX8MP (DT)
+[  133.464592] pstate: 60000005 (nZCv daif -PAN -UAO)
+[  133.469388] pc : mxc_isi_m2m_g_fmt_vid_cap+0x58/0xe8
+[  133.474351] lr : mxc_isi_m2m_g_fmt_vid_cap+0x24/0xe8
+[  133.479313] sp : ffff800013173ae0
+[  133.482624] x29: ffff800013173ae0 x28: 00000000c0d05604 
+[  133.487935] x27: 0000000000000000 x26: ffffffffffffffed 
+[  133.493246] x25: ffff000079263088 x24: ffff00007467c800 
+[  133.498556] x23: ffff8000115c6398 x22: ffff0000798d6008 
+[  133.503869] x21: ffff0000798d6f00 x20: ffff000079263080 
+[  133.509180] x19: ffff0000798d6f00 x18: 0000000000000000 
+[  133.514490] x17: 0000000000000000 x16: 0000000000000000 
+[  133.519801] x15: 0000000000000000 x14: 0000000000000000 
+[  133.525111] x13: 0000000000000000 x12: 0000000000000000 
+[  133.530421] x11: 0000000000000000 x10: 0000000000000000 
+[  133.535733] x9 : 0000000000000000 x8 : 0000000000000000 
+[  133.541043] x7 : 0000000000000000 x6 : 0000000000000000 
+[  133.546353] x5 : 0000000000000001 x4 : 0000000000000000 
+[  133.551663] x3 : 0000000000000000 x2 : 0000000000000007 
+[  133.556974] x1 : ffff800012622e60 x0 : 0000000000000009 
+[  133.562284] Call trace:
+[  133.564732]  mxc_isi_m2m_g_fmt_vid_cap+0x58/0xe8
+[  133.569349]  v4l_g_fmt+0xd0/0x2e8
+[  133.572662]  __video_do_ioctl+0x18c/0x3f0
+[  133.576670]  video_usercopy+0x214/0x740
+[  133.580505]  video_ioctl2+0x3c/0x50
+[  133.583994]  v4l2_ioctl+0x64/0x90
+[  133.587312]  do_vfs_ioctl+0x6d8/0xaf0
+[  133.590974]  ksys_ioctl+0x84/0xb8
+[  133.594289]  __arm64_sys_ioctl+0x28/0xc8
+[  133.598212]  el0_svc_common.constprop.0+0x74/0x168
+[  133.603001]  el0_svc_handler+0x34/0xa0
+[  133.606749]  el0_svc+0x8/0x208
+[  133.609806] Code: b9487e84 b9000e64 b9001663 f9445a83 (b9400c63) 
+[  133.615899] ---[ end trace 277526baa0010508 ]---
+ platform:32e00000.isi:m2m_devic
+        Driver version   : 5.4.70
+        Cap[  133.626357] mxc-isi 32e00000.isi: genpd_runtime_suspend()
+abilities     : 0x84204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+Priority: 2
+Segmentation fault
+root@raibos:~# ls -l /dev/video*
+crw-rw---- 1 root video 81, 0 Jan  1 00:00 /dev/video0
+root@raibos:~# ls -l /dev/media*
+ls: cannot access '/dev/media*': No such file or directory
+root@raibos:~#

@@ -1,0 +1,143 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * Copyright (C) 2020 PHYTEC Messtechnik GmbH
+ * Author: Teresa Remmet <t.remmet@phytec.de>
+ */
+
+/dts-v1/;
+
+#include "imx8mp-phycore-som.dtsi"
+#include "imx8mp-phyboard-pollux.dtsi"
+#include "imx8mp-phyboard-pollux-peb-av-010.dtsi"
+#include "imx8mp-phyboard-pollux-peb-wlbt-05.dtsi"
+
+/ {
+	model = "PHYTEC phyBOARD-Pollux i.MX8MP";
+	compatible = "phytec,imx8mp-phyboard-pollux-rdk",
+		     "phytec,imx8mp-phycore-som", "fsl,imx8mp";
+
+};
+
+&cameradev {
+	status = "okay";
+};
+
+&flash0 {
+	status = "okay";
+};
+
+&cam_clk {
+	clock-frequency = <24000000>;
+};
+
+&isi_0 {
+	status = "okay";
+
+	cap_device {
+		status = "okay";
+	};
+
+    m2m_device {
+		status = "okay";
+    };
+};
+
+&isi_1 {
+	status = "disabled";
+
+	cap_device {
+		status = "okay";
+	};
+};
+
+&i2c2 {
+	ov5648_0: ov5648_mipi_0@36 {
+		reg = <0x36>;
+		clocks = <&cam_clk>;
+		assigned-clocks = <&cam_clk>;
+		csi_id = <0>;
+		assigned-clock-rates = <24000000>;
+		clock-names = "ext";
+		compatible = "ovti,ov5648";
+		mipi_csi;
+		status = "disabled";
+
+		port {
+			ov5648_0_mipi_ep: endpoint {
+				data-lanes = <1 2>;
+				clock-lanes = <0>;
+				bus-type = <4>;
+				link-frequencies = /bits/ 64 <210000000 168000000>;
+				remote-endpoint = <&mipi_csi0_ep>;
+			};
+		};
+	};
+};
+
+&i2c3 {
+	/delete-node/vm016;
+	imx219_1: imx219_mipi_1@1a {
+		compatible = "sony,imx219";
+		reg = <0x1a>;
+		clocks = <&cam_clk>;
+		assigned-clocks = <&cam_clk>;
+		csi_id = <1>;
+		assigned-clock-rates = <24000000>;
+		clock-names = "ext";
+		status = "disabled";
+
+		port {
+			imx219_1_mipi_ep: endpoint {
+				remote-endpoint = <&mipi_csi1_ep>;
+				data-lanes = <1 2>;
+				clock-noncontinuous;
+				link-frequencies = /bits/ 64 <456000000>;
+			};
+		};
+	};
+};
+
+&mipi_csi_0 {
+	status = "okay";
+	port@0 {
+		reg = <0>;
+		mipi_csi0_ep: endpoint {
+			remote-endpoint = <&ov5648_0_mipi_ep>;
+		};
+	};
+};
+
+&mipi_csi_1 {
+	status = "okay";
+	port@1 {
+		reg = <1>;
+		mipi_csi1_ep: endpoint {
+			remote-endpoint = <&imx219_1_mipi_ep>;
+		};
+	};
+};
+
+&ov5648_0 {
+	status = "okay";
+};
+
+&imx219_1 {
+	status = "okay";
+};
+
+&mipi_dsi {
+	panel@0 {
+		compatible = "bananapi,lhr050h41";
+		reg = <0>;
+		/* pinctrl-0 = <&pinctrl_mipi_dsi_en>; */
+		/* reset-gpio = <&gpio1 8 GPIO_ACTIVE_LOW>; */
+		dsi-lanes = <4>;
+		video-mode = <2>;	/* 0: burst mode
+					 * 1: non-burst mode with sync event
+					 * 2: non-burst mode with sync pulse
+					 */
+		panel-width-mm = <62>;
+		panel-height-mm = <110>;
+		status = "okay";
+	};
+};
