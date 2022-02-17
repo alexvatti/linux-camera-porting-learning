@@ -1,0 +1,95 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * Copyright (C) 2020 PHYTEC Messtechnik GmbH
+ * Author: Teresa Remmet <t.remmet@phytec.de>
+ */
+
+/dts-v1/;
+
+#include "imx8mp-phycore-som.dtsi"
+#include "imx8mp-phyboard-pollux.dtsi"
+#include "imx8mp-phyboard-pollux-peb-av-010.dtsi"
+#include "imx8mp-phyboard-pollux-peb-wlbt-05.dtsi"
+
+/ {
+	model = "PHYTEC phyBOARD-Pollux i.MX8MP";
+	compatible = "phytec,imx8mp-phyboard-pollux-rdk",
+		     "phytec,imx8mp-phycore-som", "fsl,imx8mp";
+
+};
+
+&cameradev {
+	status = "okay";
+};
+
+&flash0 {
+	status = "okay";
+};
+
+&i2c3 {
+	/delete-node/vm016;
+	imx219: camera@1a {
+		compatible = "sony,imx219";
+		reg = <0x1a>;
+		clocks = <&cam_clk_24mhz>;
+		assigned-clocks = <&cam_clk_24mhz>;
+		csi_id = <0>;
+		assigned-clock-rates = <24000000>;
+		clock-names = "ext";
+		status = "disabled";
+
+		port {
+			imx219_mipi_ep: endpoint {
+				remote-endpoint = <&mipi_csi0_ep>;
+				data-lanes = <1 2>;
+				clock-noncontinuous;
+				link-frequencies = /bits/ 64 <456000000>;
+			};
+		};
+	};
+};
+
+&mipi_csi_0 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+	status = "okay";
+	port@0 {
+		reg = <0>;
+		mipi_csi0_ep: endpoint {
+			remote-endpoint = <&imx219_mipi_ep>;
+			data-lanes = <2>;
+			csis-hs-settle = <13>;
+			csis-clk-settle = <2>;
+			csis-wclk;
+		};
+	};
+};
+
+&isi_0 {
+	status = "okay";
+
+	cap_device {
+		status = "okay";
+	};
+};
+
+&imx219 {
+	status = "okay";
+};
+
+&mipi_dsi {
+	panel@0 {
+		compatible = "bananapi,lhr050h41";
+		reg = <0>;
+		/* pinctrl-0 = <&pinctrl_mipi_dsi_en>; */
+		/* reset-gpio = <&gpio1 8 GPIO_ACTIVE_LOW>; */
+		dsi-lanes = <4>;
+		video-mode = <2>;	/* 0: burst mode
+					 * 1: non-burst mode with sync event
+					 * 2: non-burst mode with sync pulse
+					 */
+		panel-width-mm = <62>;
+		panel-height-mm = <110>;
+		status = "okay";
+	};
+};
